@@ -23,10 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="lemonade">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <nav className="navbar bg-amber-100 flex justify-around"><div>LOGO</div> </nav>
         {children}
       </body>
     </html>
