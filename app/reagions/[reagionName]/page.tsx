@@ -85,7 +85,7 @@ export default async function RegionPage({
           className="w-full max-w-sm md:max-w-md lg:max-w-lg bg-base-100 shadow-lg rounded-xl overflow-hidden transition-transform hover:scale-105">
           {/* الصورة */}
           <figure className="w-full h-48 md:h-56 lg:h-64 overflow-hidden">
-            <Image width={200} height={200} src={'/public/Images/Damascus.png'} alt={""} />
+            <Image width={400} height={200} src={'/assets/Images/Damascus.png'} alt={""} />
           </figure>
 
           {/* المحتوى */}
