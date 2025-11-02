@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 export default function Home() {
   const mapWidth = 550;
@@ -10,20 +11,20 @@ export default function Home() {
     isHovered: boolean;
   }
   const regions: regionsState[] = [
-    { id: 0, name: "Damascus", isHovered: false },
+    { id: 0, name: "Damascus",   isHovered: false },
     { id: 1, name: "Ref-Damascus", isHovered: false },
-    { id: 2, name: "Quneitra", isHovered: false },
-    { id: 3, name: "Daraa", isHovered: false },
-    { id: 4, name: "As-Suwayda", isHovered: false },
-    { id: 5, name: "Homs", isHovered: false },
-    { id: 6, name: "Deir ez-Zor", isHovered: false },
-    { id: 7, name: "Al-Hasakah", isHovered: false },
-    { id: 8, name: "Al-Raqqah", isHovered: false },
-    { id: 9, name: "Aleppo", isHovered: false },
-    { id: 10, name: "Idlib", isHovered: false },
-    { id: 11, name: "Latakia", isHovered: false },
-    { id: 12, name: "Tartus", isHovered: false },
-    { id: 13, name: "Hama", isHovered: false },
+    { id: 2, name: "Quneitra"    ,   isHovered: false },
+    { id: 3, name: "Daraa"       , isHovered: false },
+    { id: 4, name: "As-Suwayda"  , isHovered: false },
+    { id: 5, name: "Homs"        , isHovered: false },
+    { id: 6, name: "Deir ez-Zor"  , isHovered: false },
+    { id: 7, name: "Al-Hasakah"  , isHovered: false },
+    { id: 8, name: "Al-Raqqah"  , isHovered: false },
+    { id: 9, name: "Aleppo"     , isHovered: false },
+    { id: 10, name: "Idlib"     , isHovered: false },
+    { id: 11, name: "Latakia"   , isHovered: false },
+    { id: 12, name: "Tartus"    , isHovered: false },
+    { id: 13, name: "Hama"      , isHovered: false },
   ];
   const [isHovered, setIsHovered] = useState<regionsState[]>(regions);
   const handleMouseEnter = (regionName: string) => {
@@ -64,17 +65,18 @@ export default function Home() {
           height={mapHeight}
         />
       </div>
-      <div className=" w-[50%] grid grid-cols-2 place-items-center gap-4  overflow-y-auto h-[80vh]    ">
+      <div className=" w-[50%] grid grid-cols-2 place-items-center gap-4  overflow-y-auto h-[80vh] py-2   ">
         {regions.map((region) => (
-          <div
+          <Link
             onMouseEnter={(e) => handleMouseEnter(region.name)}
             onMouseLeave={(e) => handleMouseLeave(region.name)}
             className="  hover:scale-105 transition-transform duration-300 m-2 "
+            href={`/reagions/${region.name}`}
             key={region.id}>
             <Image
-              src={"/assets/Images/OmayadMosque.jpeg"}
+              src={`/assets/Images/${region.name}.png`}
               alt="OmayadMosque"
-              width="200"
+              width="300"
               height="100"
               className="rounded-lg shadow-xl  "
             />
@@ -87,7 +89,7 @@ export default function Home() {
               similique inventore provident blanditiis minima! Eius, tempore.
               Inventore nihil nisi aliquam iste!
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </main>
