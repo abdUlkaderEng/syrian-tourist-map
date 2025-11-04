@@ -42,6 +42,22 @@ export default function Home() {
   return (
     <main className="flex py-4  ">
       <div className="w-1/2 pl-[5%] align-middle justify-center ">
+        
+        
+        {regions.map((region) => (
+          <Image
+            key={region.id}
+            className={
+              isHovered[region.id].isHovered
+                ? "visible  absolute z-0 transition-all duration-1000"
+                : "absolute z-0 hidden transition-all duration-1000"
+            }
+            src={`/assets/Images/${region.name}.png`}
+            alt={region.name}
+            width={400}
+            height={200}
+          />
+        ))}
         {regions.map((region) => (
           <Image
             key={region.id}
