@@ -57,13 +57,7 @@ export default function Home() {
           src={"/assets/SVG/MapBG.svg"}
           alt={""}
         />
-        <Image
-          width={"600"}
-          height={"300"}
-          className="  opacity-30 blur-lg   left-12 top-13 absolute -z-10"
-          src={"/assets/SVG/RedMapBG.svg"}
-          alt={""}
-        />
+        
       </div>
       <div className="w-1/2 pl-[5%] h-screen  ">
         {regions.map((region) => (
@@ -99,7 +93,13 @@ export default function Home() {
             className="h-screen"
           />
         </div>
-
+        <Image
+          width={"600"}
+          height={"300"}
+          className="  opacity-30 blur-lg    top-15 absolute -z-10"
+          src={"/assets/SVG/RedMapBG.svg"}
+          alt={""}
+        />
         {regions.map((region) => (
           <Link
             onMouseEnter={(e) => handleMouseEnter(region.name)}
