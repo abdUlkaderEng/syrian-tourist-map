@@ -1,19 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import Image from "next/image";
-import { House, Languages, LogIn } from "lucide-react";
+import { House, LogIn } from "lucide-react";
 import LanguageToggle from "./Components/LanguageToggle";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { Roboto, Tajawal } from "next/font/google";
+
+const primaryFont = Roboto({
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
+  variable: "--font-primary",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const arabicFont = Tajawal({
+  weight: ["400", "700"],
+  subsets: ["arabic"],
+  variable: "--font-arabic",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -29,8 +34,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className=" navbar  absolute bg-transparent  backdrop-blur-sm z-50   flex justify-between ">
+        className={`${primaryFont.variable} ${arabicFont.variable} antialiased`}>
+        <nav className="     navbar  fixed bg-transparent  backdrop-blur-sm z-50   flex justify-between ">
           <Link
             className="ml-5 p-1 rounded-lg text-[#E7A24A]  hover:text-amber-50   hover:scale-105 hover:bg-[#E7A24A] transition-all duration-200   flex items-center justify-center"
             href={"/"}>

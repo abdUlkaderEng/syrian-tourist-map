@@ -1,0 +1,56 @@
+{
+    "title": "Syrian Tourist Map",
+    "description": "Find tourist attractions, hotels and restaurants across Syria.",
+    "nav": {
+        "home": "Home",
+        "map": "Map",
+        "attractions": "Attractions",
+        "hotels": "Hotels",
+        "restaurants": "Restaurants",
+        "about": "About",
+        "contact": "Contact"
+    },
+    "buttons": {
+        "search": "Search",
+        "clear": "Clear",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "loadMore": "Load more"
+    },
+    "search": {
+        "placeholder": "Search places, addresses or keywords",
+        "noResults": "No results found"
+    },
+    "map": {
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out",
+        "currentLocation": "Current location",
+        "layers": "Map layers",
+        "satellite": "Satellite",
+        "street": "Street"
+    },
+    "attraction": {
+        "rating": "Rating",
+        "reviews": "{count} reviews",
+        "openHours": "Open hours",
+        "closed": "Closed"
+    },
+    "errors": {
+        "network": "Network error. Please try again.",
+        "notFound": "Not found.",
+        "unexpected": "An unexpected error occurred."
+    },
+    "auth": {
+        "login": "Log in",
+        "logout": "Log out",
+        "signup": "Sign up",
+        "username": "Username",
+        "password": "Password",
+        "forgotPassword": "Forgot password?"
+    },
+    "footer": {
+        "copyright": "© {year} Syrian Tourist Map. All rights reserved.",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service"
+    }
+}

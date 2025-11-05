@@ -104,7 +104,7 @@ export default async function RegionPage({
                 href={place.google_map_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary btn-sm w-full sm:w-auto">
+                className="btn btn-[#E7A24A] btn-sm w-full sm:w-auto">
                 زيارة الموقع
               </Link>
             </div>
