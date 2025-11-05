@@ -5,8 +5,15 @@
 }
 
 :root {
-  /* --background: #ffffff; */
-}
+background: hsla(38, 44%, 96%, 1);
+
+background: linear-gradient(360deg, hsla(38, 44%, 96%, 1) 0%, hsla(34, 95%, 78%, 1) 100%);
+
+background: -moz-linear-gradient(360deg, hsla(38, 44%, 96%, 1) 0%, hsla(34, 95%, 78%, 1) 100%);
+
+background: -webkit-linear-gradient(360deg, hsla(38, 44%, 96%, 1) 0%, hsla(34, 95%, 78%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FAF7F2", endColorstr="#FCCF94", GradientType=1 );;}
 
 /* @theme inline {
   --color-background: var(--background);

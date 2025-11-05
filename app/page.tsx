@@ -8,23 +8,24 @@ export default function Home() {
   interface regionsState {
     id: number;
     name: string;
+    arabicName: string;
     isHovered: boolean;
   }
   const regions: regionsState[] = [
-    { id: 0, name: "Damascus",   isHovered: false },
-    { id: 1, name: "Ref-Damascus", isHovered: false },
-    { id: 2, name: "Quneitra"    ,   isHovered: false },
-    { id: 3, name: "Daraa"       , isHovered: false },
-    { id: 4, name: "As-Suwayda"  , isHovered: false },
-    { id: 5, name: "Homs"        , isHovered: false },
-    { id: 6, name: "Deir ez-Zor"  , isHovered: false },
-    { id: 7, name: "Al-Hasakah"  , isHovered: false },
-    { id: 8, name: "Al-Raqqah"  , isHovered: false },
-    { id: 9, name: "Aleppo"     , isHovered: false },
-    { id: 10, name: "Idlib"     , isHovered: false },
-    { id: 11, name: "Latakia"   , isHovered: false },
-    { id: 12, name: "Tartus"    , isHovered: false },
-    { id: 13, name: "Hama"      , isHovered: false },
+    { id: 0, name: "Damascus", arabicName:'دمشق' , isHovered: false },
+    { id: 1, name: "Ref-Damascus", arabicName:'ريف دمشق',isHovered: false },
+    { id: 2, name: "Quneitra",arabicName:'القنيطرة', isHovered: false },
+    { id: 3, name: "Daraa", arabicName:'درعا',isHovered: false },
+    { id: 4, name: "As-Suwayda",arabicName:'السويداء', isHovered: false },
+    { id: 5, name: "Homs", arabicName:'حمص',isHovered: false },
+    { id: 6, name: "Deir ez-Zor" ,arabicName:'دير الزور', isHovered: false },
+    { id: 7, name: "Al-Hasakah", arabicName:'الحسكة',isHovered: false },
+    { id: 8, name: "Al-Raqqah", arabicName:'الرقة',isHovered: false },
+    { id: 9, name: "Aleppo", arabicName:'حلب',isHovered: false },
+    { id: 10, name: "Idlib", arabicName:'إدلب',isHovered: false },
+    { id: 11, name: "Latakia", arabicName:'اللاذقية',isHovered: false },
+    { id: 12, name: "Tartus", arabicName:'طرطوس',isHovered: false },
+    { id: 13, name: "Hama", arabicName:'حماة',isHovered: false },
   ];
   const [isHovered, setIsHovered] = useState<regionsState[]>(regions);
   const handleMouseEnter = (regionName: string) => {
@@ -40,31 +41,44 @@ export default function Home() {
     );
   };
   return (
-    <main className="flex py-4  ">
-      <div className="w-1/2 pl-[5%] align-middle justify-center ">
-        
-        
+    <main className="flex   ">
+      <Image
+        width={"600"}
+        height={"300"}
+        className=" opacity-50 top-5  absolute blur-xl -z-10  "
+        src={"/assets/SVG/MapBG.svg"}
+        alt={""}
+      />
+      <Image
+        width={"600"}
+        height={"300"}
+        className="  opacity-20 top-5 absolute -z-10"
+        src={"/assets/SVG/MapBG.svg"}
+        alt={""}
+      />
+      <div className="w-1/2 pl-[5%]  ">
+        {/* {regions.map((region) => (
+          // <Image
+          //   key={region.id}
+          //   className={
+          //     isHovered[region.id].isHovered
+          //       ? "visible  absolute z-0 transition-all duration-1000"
+          //       : "absolute z-0 hidden transition-all duration-1000"
+          //   }
+          //   src={`/assets/Images/${region.name}.png`}
+          //   alt={region.name}
+          //   width={400}
+          //   height={200}
+          // />
+        ))} */}
+
         {regions.map((region) => (
           <Image
             key={region.id}
             className={
               isHovered[region.id].isHovered
-                ? "visible  absolute z-0 transition-all duration-1000"
-                : "absolute z-0 hidden transition-all duration-1000"
-            }
-            src={`/assets/Images/${region.name}.png`}
-            alt={region.name}
-            width={400}
-            height={200}
-          />
-        ))}
-        {regions.map((region) => (
-          <Image
-            key={region.id}
-            className={
-              isHovered[region.id].isHovered
-                ? "visible  absolute z-10 transition-all duration-1000"
-                : "absolute z-10 hidden transition-all duration-1000"
+                ? "visible  absolute z-10 "
+                : "absolute z-10 hidden "
             }
             src={`/assets/SVG/${region.name}.svg`}
             alt={region.name}
@@ -81,12 +95,21 @@ export default function Home() {
           height={mapHeight}
         />
       </div>
-      <div className=" w-[50%] grid grid-cols-2 place-items-center gap-4  overflow-y-auto h-[80vh] py-2   ">
+      <div className=" w-[50%] grid grid-cols-2 place-items-center gap-4  overflow-y-auto h-[80vh]    ">
+        <div className="col-span-2">
+          <Image
+            src={"/assets/SVG/Header.svg"}
+            alt={""}
+            width={600}
+            height={400}
+          />
+        </div>
+
         {regions.map((region) => (
           <Link
             onMouseEnter={(e) => handleMouseEnter(region.name)}
             onMouseLeave={(e) => handleMouseLeave(region.name)}
-            className="  hover:scale-105 transition-transform duration-300 m-2 "
+            className="flex flex-col items-center   hover:scale-105 hover:shadow-lg hover:shadow-amber-300 transition-all duration-300 m-2 ease-in "
             href={`/reagions/${region.name}`}
             key={region.id}>
             <Image
@@ -94,16 +117,18 @@ export default function Home() {
               alt="OmayadMosque"
               width="300"
               height="100"
-              className="rounded-lg shadow-xl  "
+              className="rounded-lg shadow-xl items-center  "
             />
-            <div className="font-bold text-xl py-2">{region.name}</div>
-            <div className="text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores temporibus inventore quas neque obcaecati alias,
-              voluptas adipisci id error, ducimus sunt dicta iure distinctio
-              esse, modi accusantium. Nesciunt maiores qui rem suscipit dolore
-              similique inventore provident blanditiis minima! Eius, tempore.
-              Inventore nihil nisi aliquam iste!
+            <h3 className="text-[#8B3E2F] font-bold text-xl py-2">
+              {region.arabicName}
+            </h3>
+            <div className="text-sm text-[#3E3E3E]">
+              عاصمة سوريا وأقدم عاصمة مأهولة في العالم، تجمع بين التاريخ العريق
+              والحياة العصرية. تنبض أزقتها القديمة بروح الحضارات التي مرت بها
+              منذ آلاف السنين، حيث الجامع الأموي والأسواق العتيقة مثل الحميدية
+              وساروجة. تتناثر حولها الحدائق والمقاهي الدمشقية الأصيلة، التي تفوح
+              منها رائحة الياسمين، رمز المدينة الدائم. دمشق هي مزيج رائع من
+              الروح الشرقية والتاريخ الحي الذي لا يموت.
             </div>
           </Link>
         ))}
