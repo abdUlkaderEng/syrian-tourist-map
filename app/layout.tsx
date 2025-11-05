@@ -27,15 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light" >
+    <html lang="en" data-theme="light">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className=" navbar    flex justify-between ">
-          <Link className="ml-5 p-1 rounded-lg text-[#E7A24A]  hover:text-amber-50   hover:scale-105 hover:bg-[#E7A24A] transition-all duration-200   flex items-center justify-center" href={"/"}><House size={35} /></Link>
+        <nav className=" navbar  absolute bg-transparent  backdrop-blur-sm z-50   flex justify-between ">
+          <Link
+            className="ml-5 p-1 rounded-lg text-[#E7A24A]  hover:text-amber-50   hover:scale-105 hover:bg-[#E7A24A] transition-all duration-200   flex items-center justify-center"
+            href={"/"}>
+            <House size={35} />
+          </Link>
           <div className="w-[10%] flex justify-around">
-            {/* <button className=" text-[#E7A24A]   hover:scale-120 hover:text-amber-50 transition-all duration-200   flex items-center justify-center">
-              <Languages size={35} />
-            </button> */}
             <LanguageToggle />
             <button className=" text-[#E7A24A]   hover:scale-120 hover:text-amber-50 transition-all duration-200   flex items-center justify-center">
               <LogIn size={35} />

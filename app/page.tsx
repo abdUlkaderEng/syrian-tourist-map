@@ -12,20 +12,20 @@ export default function Home() {
     isHovered: boolean;
   }
   const regions: regionsState[] = [
-    { id: 0, name: "Damascus", arabicName:'دمشق' , isHovered: false },
-    { id: 1, name: "Ref-Damascus", arabicName:'ريف دمشق',isHovered: false },
-    { id: 2, name: "Quneitra",arabicName:'القنيطرة', isHovered: false },
-    { id: 3, name: "Daraa", arabicName:'درعا',isHovered: false },
-    { id: 4, name: "As-Suwayda",arabicName:'السويداء', isHovered: false },
-    { id: 5, name: "Homs", arabicName:'حمص',isHovered: false },
-    { id: 6, name: "Deir ez-Zor" ,arabicName:'دير الزور', isHovered: false },
-    { id: 7, name: "Al-Hasakah", arabicName:'الحسكة',isHovered: false },
-    { id: 8, name: "Al-Raqqah", arabicName:'الرقة',isHovered: false },
-    { id: 9, name: "Aleppo", arabicName:'حلب',isHovered: false },
-    { id: 10, name: "Idlib", arabicName:'إدلب',isHovered: false },
-    { id: 11, name: "Latakia", arabicName:'اللاذقية',isHovered: false },
-    { id: 12, name: "Tartus", arabicName:'طرطوس',isHovered: false },
-    { id: 13, name: "Hama", arabicName:'حماة',isHovered: false },
+    { id: 0, name: "Damascus", arabicName: "دمشق", isHovered: false },
+    { id: 1, name: "Ref-Damascus", arabicName: "ريف دمشق", isHovered: false },
+    { id: 2, name: "Quneitra", arabicName: "القنيطرة", isHovered: false },
+    { id: 3, name: "Daraa", arabicName: "درعا", isHovered: false },
+    { id: 4, name: "As-Suwayda", arabicName: "السويداء", isHovered: false },
+    { id: 5, name: "Homs", arabicName: "حمص", isHovered: false },
+    { id: 6, name: "Deir ez-Zor", arabicName: "دير الزور", isHovered: false },
+    { id: 7, name: "Al-Hasakah", arabicName: "الحسكة", isHovered: false },
+    { id: 8, name: "Al-Raqqah", arabicName: "الرقة", isHovered: false },
+    { id: 9, name: "Aleppo", arabicName: "حلب", isHovered: false },
+    { id: 10, name: "Idlib", arabicName: "إدلب", isHovered: false },
+    { id: 11, name: "Latakia", arabicName: "اللاذقية", isHovered: false },
+    { id: 12, name: "Tartus", arabicName: "طرطوس", isHovered: false },
+    { id: 13, name: "Hama", arabicName: "حماة", isHovered: false },
   ];
   const [isHovered, setIsHovered] = useState<regionsState[]>(regions);
   const handleMouseEnter = (regionName: string) => {
@@ -42,43 +42,37 @@ export default function Home() {
   };
   return (
     <main className="flex   ">
-      <Image
-        width={"600"}
-        height={"300"}
-        className=" opacity-50 top-5  absolute blur-xl -z-10  "
-        src={"/assets/SVG/MapBG.svg"}
-        alt={""}
-      />
-      <Image
-        width={"600"}
-        height={"300"}
-        className="  opacity-20 top-5 absolute -z-10"
-        src={"/assets/SVG/MapBG.svg"}
-        alt={""}
-      />
-      <div className="w-1/2 pl-[5%]  ">
-        {/* {regions.map((region) => (
-          // <Image
-          //   key={region.id}
-          //   className={
-          //     isHovered[region.id].isHovered
-          //       ? "visible  absolute z-0 transition-all duration-1000"
-          //       : "absolute z-0 hidden transition-all duration-1000"
-          //   }
-          //   src={`/assets/Images/${region.name}.png`}
-          //   alt={region.name}
-          //   width={400}
-          //   height={200}
-          // />
-        ))} */}
-
+      <div>
+        <Image
+          width={"600"}
+          height={"300"}
+          className=" opacity-50 top-15  absolute blur-xs -z-10  "
+          src={"/assets/SVG/MapBG.svg"}
+          alt={""}
+        />
+        <Image
+          width={"600"}
+          height={"300"}
+          className="  opacity-20 top-15 absolute -z-10"
+          src={"/assets/SVG/MapBG.svg"}
+          alt={""}
+        />
+        <Image
+          width={"600"}
+          height={"300"}
+          className="  opacity-30 blur-lg   left-12 top-13 absolute -z-10"
+          src={"/assets/SVG/RedMapBG.svg"}
+          alt={""}
+        />
+      </div>
+      <div className="w-1/2 pl-[5%] h-screen  ">
         {regions.map((region) => (
           <Image
             key={region.id}
             className={
               isHovered[region.id].isHovered
-                ? "visible  absolute z-10 "
-                : "absolute z-10 hidden "
+                ? "  absolute z-10  transition-all duration-200 top-20 "
+                : "absolute -z-10   transition-all duration-200  top-20"
             }
             src={`/assets/SVG/${region.name}.svg`}
             alt={region.name}
@@ -89,19 +83,20 @@ export default function Home() {
 
         <Image
           src={"/assets/SVG/Syria.svg"}
-          className="z-0 absolute "
+          className="z-0 absolute top-20 "
           alt="syria map"
           width={mapWidth}
           height={mapHeight}
         />
       </div>
-      <div className=" w-[50%] grid grid-cols-2 place-items-center gap-4  overflow-y-auto h-[80vh]    ">
+      <div className=" w-[50%] grid grid-cols-2 place-items-center gap-4  overflow-y-auto h-screen    ">
         <div className="col-span-2">
           <Image
             src={"/assets/SVG/Header.svg"}
             alt={""}
             width={600}
             height={400}
+            className="h-screen"
           />
         </div>
 
@@ -109,7 +104,7 @@ export default function Home() {
           <Link
             onMouseEnter={(e) => handleMouseEnter(region.name)}
             onMouseLeave={(e) => handleMouseLeave(region.name)}
-            className="flex flex-col items-center   hover:scale-105 hover:shadow-lg hover:shadow-amber-300 transition-all duration-300 m-2 ease-in "
+            className="flex flex-col items-center   hover:scale-105   transition-all duration-300 m-2  ease-in "
             href={`/reagions/${region.name}`}
             key={region.id}>
             <Image
