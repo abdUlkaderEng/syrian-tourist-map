@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { getPlaces } from "@/app/libs/getPlaces";
 interface Place {
   name: string;
   description: string;
@@ -13,14 +14,15 @@ export default async function RegionPage({
   params: { id: string };
 }) {
   const { id } = await  params;
-  const places: Place[] = await fetch(`http://127.0.0.1:8000/places?region_id=${id}`)
-    .then((res) => res.json())
-    .then((data) => data.data)  
-    .catch((error) => {
-      console.error("Error fetching places:", error);
-      return [];
-    });
-    {console.log(places)}
+  const places = await getPlaces(id)
+  // const places: Place[] = await fetch(`http://127.0.0.1:8000/places?region_id=${id}`)
+  //   .then((res) => res.json())
+  //   .then((data) => data.data)  
+  //   .catch((error) => {
+  //     console.error("Error fetching places:", error);
+  //     return [];
+  //   });
+  //   {console.log(places)}
   return (
     
     <div  className="grid  justify-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6">
@@ -34,7 +36,7 @@ export default async function RegionPage({
       {places?.map((place, index) => (
         <div
           key={index}
-          className="bg-transparent backdrop-blur-sm  w-full max-w-sm md:max-w-md lg:max-w-lg  shadow-lg rounded-xl overflow-hidden transition-all hover:scale-105 hover:backdrop-blur-3xl duration-400">
+          className="bg-transparent backdrop-blur-md  w-full max-w-sm md:max-w-md lg:max-w-lg  shadow-xl rounded-xl overflow-hidden transition-all hover:scale-105 border-2 border-transparent hover:border-[#FFFFFF2E] ] hover:backdrop-blur-3xl duration-400">
           <figure className="w-full h-48 md:h-56 lg:h-64 overflow-hidden">
             <Image width={400} height={200} src={`/assets/Images/Damascus.png`} alt={""} />
           </figure>
