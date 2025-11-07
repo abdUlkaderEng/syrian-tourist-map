@@ -11,35 +11,46 @@ export default function Home() {
     arabicName: string;
     isHovered: boolean;
   }
+  
+
+  
+    const [isHovered, setIsHovered] = useState<{ [key: number]: boolean }>({});
+  // const [isHovered, setIsHovered] = useState<regionsState[]>(regions);
+  const handleMouseEnter = (regionId: number) => {
+  setIsHovered(prev => ({ ...prev, [regionId]: true }));
+};
+const handleMouseLeave = (regionId: number) => {
+  setIsHovered(prev => ({ ...prev, [regionId]: false }));
+};
+
   const regions: regionsState[] = [
-    { id: 0, name: "Damascus", arabicName: "دمشق", isHovered: false },
-    { id: 1, name: "Ref-Damascus", arabicName: "ريف دمشق", isHovered: false },
-    { id: 2, name: "Quneitra", arabicName: "القنيطرة", isHovered: false },
-    { id: 3, name: "Daraa", arabicName: "درعا", isHovered: false },
-    { id: 4, name: "As-Suwayda", arabicName: "السويداء", isHovered: false },
-    { id: 5, name: "Homs", arabicName: "حمص", isHovered: false },
-    { id: 6, name: "Deir ez-Zor", arabicName: "دير الزور", isHovered: false },
-    { id: 7, name: "Al-Hasakah", arabicName: "الحسكة", isHovered: false },
-    { id: 8, name: "Al-Raqqah", arabicName: "الرقة", isHovered: false },
-    { id: 9, name: "Aleppo", arabicName: "حلب", isHovered: false },
-    { id: 10, name: "Idlib", arabicName: "إدلب", isHovered: false },
-    { id: 11, name: "Latakia", arabicName: "اللاذقية", isHovered: false },
-    { id: 12, name: "Tartus", arabicName: "طرطوس", isHovered: false },
-    { id: 13, name: "Hama", arabicName: "حماة", isHovered: false },
+    { id: 1, name: "Damascus", arabicName: "دمشق", isHovered: false },
+    { id: 2, name: "Daraa", arabicName: "درعا", isHovered: false },
+    { id: 3, name: "Aleppo", arabicName: "حلب", isHovered: false },
+    { id: 4, name: "Homs", arabicName: "حمص", isHovered: false },
+    { id: 5, name: "Hama", arabicName: "حماة", isHovered: false },
+    { id: 6, name: "Latakia", arabicName: "اللاذقية", isHovered: false },
+    { id: 7, name: "Tartus", arabicName: "طرطوس", isHovered: false },
+    { id: 8, name: "Ref-Damascus", arabicName: "ريف دمشق", isHovered: false },
+    { id: 9, name: "As-Suwayda", arabicName: "السويداء", isHovered: false },
+    { id: 10, name: "Deir ez-Zor", arabicName: "دير الزور", isHovered: false },
+    { id: 11, name: "Al-Hasakah", arabicName: "الحسكة", isHovered: false },
+    { id: 12, name: "Al-Raqqah", arabicName: "الرقة", isHovered: false },
+    { id: 13, name: "Idlib", arabicName: "إدلب", isHovered: false },
+    { id: 14, name: "Quneitra", arabicName: "القنيطرة", isHovered: false },
   ];
-  const [isHovered, setIsHovered] = useState<regionsState[]>(regions);
-  const handleMouseEnter = (regionName: string) => {
-    setIsHovered((region) =>
-      region.map((r) => (r.name === regionName ? { ...r, isHovered: true } : r))
-    );
-  };
-  const handleMouseLeave = (regionName: string) => {
-    setIsHovered((region) =>
-      region.map((r) =>
-        r.name === regionName ? { ...r, isHovered: false } : r
-      )
-    );
-  };
+  // const handleMouseEnter = (regionId: number) => {
+  //   setIsHovered((region) =>
+  //     region.map((r) => (r.id === regionId ? { ...r, isHovered: true } : r))
+  //   );
+  // };
+  // const handleMouseLeave = (regionId: number) => {
+  //   setIsHovered((region) =>
+  //     region.map((r) =>
+  //       r.id === regionId ? { ...r, isHovered: false } : r
+  //     )
+  //   );
+ 
   return (
     <main className="flex   ">
       <div>
@@ -57,14 +68,13 @@ export default function Home() {
           src={"/assets/SVG/MapBG.svg"}
           alt={""}
         />
-        
       </div>
       <div className="w-1/2 pl-[5%] h-screen  ">
         {regions.map((region) => (
           <Image
             key={region.id}
             className={
-              isHovered[region.id].isHovered
+             (isHovered[region.id])
                 ? "  absolute z-10  transition-all duration-200 top-20 "
                 : "absolute -z-10   transition-all duration-200  top-20"
             }
@@ -102,10 +112,10 @@ export default function Home() {
         />
         {regions.map((region) => (
           <Link
-            onMouseEnter={(e) => handleMouseEnter(region.name)}
-            onMouseLeave={(e) => handleMouseLeave(region.name)}
+            onMouseEnter={(e) => handleMouseEnter(region.id)}
+            onMouseLeave={(e) => handleMouseLeave(region.id)}
             className="flex flex-col items-center   hover:scale-105   transition-all duration-300 m-2  ease-in "
-            href={`/reagions/${region.name}`}
+            href={`/reagions/${region.id}`}
             key={region.id}>
             <Image
               src={`/assets/Images/${region.name}.png`}
