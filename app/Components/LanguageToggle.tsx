@@ -23,7 +23,8 @@ export default function LanguageToggle() {
   return (
     <button
     onClick={toggleLang}
-    className="  text-[#E7A24A]   hover:scale-120 hover:text-amber-50 transition-all duration-200   flex items-center justify-center"
+    className="  text-[#E7A24A] hover:cursor-pointer   hover:scale-120 hover:text-[#832411] transition-all duration-200   flex items-center justify-center"
+    
     >
     
        <Languages size={35} className={''}  />

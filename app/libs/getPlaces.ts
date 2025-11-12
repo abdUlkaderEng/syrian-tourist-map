@@ -1,3 +1,5 @@
+import api from "./axios";
+
 export interface Place {
   id?: number;
   name: string;
@@ -8,17 +10,13 @@ export interface Place {
 }
 
 export async function getPlaces(regionId: string): Promise<Place[]> {
+
   try {
-    const res = await fetch(
-      `http://127.0.0.1:8000/places?region_id=${regionId}`
-    );
+    const res = await api.get(`/places`, {
+      params: { region_id: regionId },
+    });
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch places: ${res.status}`);
-    }
-
-    const data = await res.json();
-    return data.places || data.data || [];
+    return  res.data.data ;
   } catch (error) {
     console.error("Error fetching places:", error);
     return [];

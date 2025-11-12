@@ -3,12 +3,8 @@ import Link from "next/link";
 import React from "react";
 import { getPlaces } from "@/app/libs/getPlaces";
 import SyriaMapBG from "@/app/Components/SyriaMapBG";
-interface Place {
-  name: string;
-  description: string;
-  location: string;
-  google_map_url: string;
-}
+import image from '@/public/assets/Images/Damascus.png';
+
 export default async function RegionPage({
   params,
 }: {
@@ -16,14 +12,7 @@ export default async function RegionPage({
 }) {
   const { id } = await params;
   const places = await getPlaces(id);
-  // const places: Place[] = await fetch(`http://127.0.0.1:8000/places?region_id=${id}`)
-  //   .then((res) => res.json())
-  //   .then((data) => data.data)
-  //   .catch((error) => {
-  //     console.error("Error fetching places:", error);
-  //     return [];
-  //   });
-  //   {console.log(places)}
+  
   return (
     <div className="animate-enter">
       <SyriaMapBG />
@@ -31,14 +20,13 @@ export default async function RegionPage({
         {places?.map((place, index) => (
           <div
             key={index}
-            // bg-transparent backdrop-blur-md hover:scale-105 border-2 border-transparent hover:border-[#FFFFFF2E] ] hover:backdrop-blur-3xl duration-400
             className="w-full max-w-sm md:max-w-md lg:max-w-lg  shadow-xl rounded-xl  glass  glass:hover  transition-all duration-300  hover:shadow-2xl ">
             <figure className="w-full h-48 md:h-56 lg:h-64 overflow-hidden">
               <Image
                 width={400}
                 height={200}
-                src={`/assets/Images/Damascus.png`}
-                alt={""}
+                src={'/assets/Images/RegionImage/دمشق.png'}
+                alt={place.name}
               />
             </figure>
 
@@ -68,8 +56,6 @@ export default async function RegionPage({
         ))}
       </div>
     </div>
-    // <div style={{ fontSize: "24px", padding: "20px" }}>
-    //   Welcom to {reagionName}
-    // </div>
+
   );
 }

@@ -5,7 +5,7 @@ const SyriaMapBG = () => {
     <div>
        <Image
         src={"/assets/SVG/Syria.svg"}
-        className="-z-10 h-screen blur-xs fixed w-screen"
+        className="-z-10 h-screen blur-xs fixed w-screen "
         alt="syria map"
         width={700}
         height={500}

@@ -5,6 +5,7 @@ import { House, LogIn } from "lucide-react";
 import LanguageToggle from "./Components/LanguageToggle";
 
 import { Roboto, Tajawal } from "next/font/google";
+import AdminLink from "./Components/AdminLink";
 
 const primaryFont = Roboto({
   weight: ["400", "700"],
@@ -41,11 +42,12 @@ export default function RootLayout({
             href={"/"}>
             <House size={35} />
           </Link>
-          <div className="w-[10%] flex justify-around">
+          <div className="w-[12%]  flex justify-around items-center ">
             <LanguageToggle />
-            <Link href={'/login'} className=" text-[#E7A24A]   hover:scale-120 hover:text-amber-50 transition-all duration-200   flex items-center justify-center">
+            <Link href={'/login'} className=" text-[#E7A24A]   hover:scale-120 hover:text-[#832411] transition-all duration-200   flex items-center justify-center">
               <LogIn size={35} />
             </Link>
+            <AdminLink />
           </div>
         </nav>
         {children}
