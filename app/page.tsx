@@ -118,10 +118,10 @@ export default function Home() {
               height="100"
               className="rounded-lg shadow-xl items-center  "
             />
-            <h3 className="text-[#8B3E2F] font-bold text-xl py-2">
+            <h3 className=" font-bold text-xl py-2">
               {region.name}
             </h3>
-            <div className="text-sm text-[#3E3E3E]">
+            <div className="text-sm ">
             {region.description}
             </div>
           </Link>

@@ -1,21 +1,39 @@
 @import "tailwindcss";
-@plugin "daisyui"{
-    themes: light --default, dark --prefersdark, lemonade;
-
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, lemonade;
 }
 
 :root {
-background: hsla(38, 44%, 96%, 1);
+  background: hsla(38, 44%, 96%, 1);
 
-background: linear-gradient(360deg, hsla(38, 44%, 96%, 1) 0%, hsla(34, 95%, 78%, 1) 100%);
+  background: linear-gradient(
+    360deg,
+    hsla(38, 44%, 96%, 1) 0%,
+    hsla(34, 95%, 78%, 1) 100%
+  );
 
-background: -moz-linear-gradient(360deg, hsla(38, 44%, 96%, 1) 0%, hsla(34, 95%, 78%, 1) 100%);
+  background: -moz-linear-gradient(
+    360deg,
+    hsla(38, 44%, 96%, 1) 0%,
+    hsla(34, 95%, 78%, 1) 100%
+  );
 
-background: -webkit-linear-gradient(360deg, hsla(38, 44%, 96%, 1) 0%, hsla(34, 95%, 78%, 1) 100%);
+  background: -webkit-linear-gradient(
+    360deg,
+    hsla(38, 44%, 96%, 1) 0%,
+    hsla(34, 95%, 78%, 1) 100%
+  );
+  --bg-glass: rgba(255, 255, 255, 0.192);
+  --border-glass: rgba(255, 255, 255, 0.4);
+  --shadow-glass: rgba(0, 0, 0, 0.05);
+  --button-gradient: linear-gradient(145deg, #f9bc4388, #e5a63f88);
+  --text-dark: #1c1c1e;
+  --text-light: #f2f2f7;
 
---font-primary: 'Roboto', sans-serif; 
-  --font-arabic: 'Tajawal', sans-serif;
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FAF7F2", endColorstr="#FCCF94", GradientType=1 );;}
+  --font-primary: "Roboto", sans-serif;
+  --font-arabic: "Tajawal", sans-serif;
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FAF7F2", endColorstr="#FCCF94", GradientType=1 );
+}
 
 /* @theme inline {
   --color-background: var(--background);
@@ -32,10 +50,9 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FAF7F2", en
 
 body {
   background: var(--background);
-  color:#333;
- font-family:  var(--font-arabic) ,var(--font-primary);
+  color: #333;
+  font-family: var(--font-arabic), var(--font-primary);
   scroll-behavior: smooth;
-
 }
 /* [dir='rtl'] body {
   font-family: var(--font-arabic);
@@ -45,165 +62,147 @@ body {
   font-family: var(--font-primary);
 } */
 
-
-
-/* ================================
-   🟤 الألوان الأساسية للموقع
-================================ */
-/* :root {
-  --bg-main: #FAF7F2;
-  --map-main: #9B3D2A;
-  --map-border: #F3D9B1;
-  --navbar-bg: #2D2A32;
-  --text-main: #3E3E3E;
-  --title: #8B3E2F;
-  --btn-main: #E7A24A;
-  --btn-hover: #C97E2A;
-  --text-light: #FAF7F2;
+/* ألوان عامة */
+:root {
 }
- */
-/* ================================
-   🟡 إعدادات عامة
-================================ */
-
-/* * {
-  box-sizing: border-box;
+h1,
+h2,
+h3 {
+  color: #832411;
 }
-
-img {
-  border-radius: 12px;
+/* خلفية أساسية تشبه iOS */
+/* body {
+  @apply bg-gradient-to-br from-[#f9f9fb] to-[#e5e7eb] text-gray-800;
+  font-family: "SF Pro Display", "Cairo", sans-serif;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 } */
 
-/* ================================
-   🔷 الشريط العلوي (Navbar)
-================================ */
-/* .navbar {
-  background: rgba(45, 42, 50, 0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-light);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-} */
+/* الزجاج الأساسي */
+.glass {
+  background: var(--bg-glass);
+  color: var(--text-dark);
+  backdrop-filter: blur(13px) saturate(125%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 8px 20px var(--shadow-glass);
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+}
 
-/* ================================
-   🟤 العناوين والنصوص
-================================ */
-/* h1, h2, h3, h4, h5 {
-  color: var(--title);
+/* تأثير hover زجاجي */
+.glass:hover {
+  /* transform: scale(1.03); */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(30px) saturate(125%);
+}
+
+/* أزرار بنمط iOS */
+.btn-ios {
+  background: linear-gradient(145deg, #f9bc432d, #e5a63f2d);
+  backdrop-filter: blur(10px) saturate(100%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  color: white;
   font-weight: 600;
-}
-
-p, span, li {
-  color: var(--text-main);
-  line-height: 1.6;
-}
-
-.text-muted {
-  color: rgba(62, 62, 62, 0.8);
-} */
-
-/* ================================
-   🟠 الأزرار
-================================ */
-/* button, .btn {
-  background-color: var(--btn-main);
-  color: var(--navbar-bg);
-  border: none;
-  border-radius: 10px;
-  padding: 8px 14px;
-  font-weight: 500;
+  border-radius: 1rem;
+  padding: 0.6rem 1.2rem;
+  box-shadow: 0 4px 12px #a9432a9c;
+  transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.1s ease;
 }
 
-button:hover, .btn:hover {
-  background-color: var(--btn-hover);
-  transform: translateY(-2px);
-} */
+/* background: linear-gradient(145deg, #f9bc4388, #e5a63f88); */
 
-/* ================================
-   🔶 البطاقات (Cards)
-================================ */
-/* .card {
-  background: rgba(250, 247, 242, 0.5);
-  border: 1px solid rgba(243, 217, 177, 0.5);
-  border-radius: 18px;
-  box-shadow: 0 6px 20px rgba(155, 61, 42, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.btn-ios:hover {
+  background: #f9bc43b4;
+  box-shadow: 0 6px 16px #f9bc43b4;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(155, 61, 42, 0.18);
+/* بطاقات شفافة */
+.card-ios {
+  @apply glass p-6 rounded-2xl;
+}
+.card-ios:hover {
+  transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  backdrop-filter: blur(15px) saturate(115%);
 }
 
-.card-title {
-  color: var(--title);
-  font-size: 1.2rem;
-  font-weight: 600;
+/* حركة fade لطيفة للصفحات والعناصر */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-in-out forwards;
 }
 
-.card-desc {
-  color: var(--text-main);
-  opacity: 0.9;
+/* تأثير ضغط بسيط عند النقر */
+.active-tap:active {
+  transform: scale(0.97);
+  transition: transform 0.15s ease;
 }
 
-.card-dark {
-  background: rgba(155, 61, 42, 0.8);
-  border: 1px solid rgba(243, 217, 177, 0.6);
+.input-base {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  border-bottom: 2px solid #83241100;
+  /* border: 1px solid rgba(255,255,255,0.45); */
+  background: rgba(255, 255, 255, 0.041);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.06);
+  color: #1c1c1e;
+  font-size: 0.95rem;
+  transition: all 180ms ease;
+  outline: none;
+}
+.input-label {
+  color: rgba(28, 28, 30, 0.8);
+}
+/* Focus state */
+.input-base:focus {
+  /* border-radius: 1rem; */
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 2px solid #ffffff85;
+  background: rgba(255, 255, 255, 0.25);
+
+  /* border-color: #832411d5; */
+  box-shadow: 0 8px 22px #ffffff23;
+  /* transform: translateY(-1px); */
 }
 
-.card-dark .card-title,
-.card-dark .card-desc {
-  color: var(--text-light);
-} */
-
-/* ================================
-   🟣 الخريطة
-================================ */
-/* .map {
-  background-color: var(--map-main);
-  border: 2px solid var(--map-border);
-  border-radius: 10px;
-} */
-
-/* ================================
-   🟢 تفاصيل إضافية
-================================ */
-/* .shadow-soft {
-  box-shadow: 0 4px 20px rgba(45, 42, 50, 0.15);
+/* Placeholder softer */
+.input-base::placeholder {
+  color: rgba(28, 28, 30, 0.45);
+  transition: color 160ms ease;
 }
 
-.text-gold {
-  color: var(--btn-main);
+/* Error state */
+.input-base.input-error {
+  border-color: rgba(255, 69, 58, 0.9);
+  box-shadow: 0 6px 18px rgba(255, 69, 58, 0.08);
 }
 
-.text-contrast {
-  color: var(--navbar-bg);
+/* Disabled */
+.input-base:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-.text-light {
-  color: var(--text-light);
-} */
+@keyframes fade-scale {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.97);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
 
-/* ================================
-   🔘 تفاعل وشفافية
-================================ */
-/* .glass {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-} */
-
-/* .fade-in {
-  animation: fadein 0.4s ease-in-out;
-} */
-
-/* @keyframes fadein {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
-} */
+.animate-enter {
+  animation: fade-scale 0.6s ease forwards;
+}

@@ -43,9 +43,9 @@ export default function RootLayout({
           </Link>
           <div className="w-[10%] flex justify-around">
             <LanguageToggle />
-            <button className=" text-[#E7A24A]   hover:scale-120 hover:text-amber-50 transition-all duration-200   flex items-center justify-center">
+            <Link href={'/login'} className=" text-[#E7A24A]   hover:scale-120 hover:text-amber-50 transition-all duration-200   flex items-center justify-center">
               <LogIn size={35} />
-            </button>
+            </Link>
           </div>
         </nav>
         {children}
