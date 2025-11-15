@@ -45,6 +45,7 @@ const RegisterPage = () => {
         name: data.name,
         email: data.email,
         password: data.password,
+        password_confirmation: data.confirmPassword,
       });
       console.log(res.data);
       setMessage("تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.");
@@ -102,6 +103,7 @@ const RegisterPage = () => {
             )}
           </div>
           <input
+            {...register("password")}
             type={showPassword ? "text" : "password"}
             placeholder="تأكيد كلمة المرور"
             {...register("confirmPassword")}
