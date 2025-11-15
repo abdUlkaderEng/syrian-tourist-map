@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
-import { House, LogIn } from "lucide-react";
+import { House } from "lucide-react";
 import LanguageToggle from "./Components/LanguageToggle";
-
 import { Roboto, Tajawal } from "next/font/google";
 import AdminLink from "./Components/AdminLink";
+import AuthStatus from "./Components/AuthStatus";
 
 const primaryFont = Roboto({
   weight: ["400", "700"],
@@ -44,9 +44,8 @@ export default function RootLayout({
           </Link>
           <div className="w-[12%]  flex justify-around items-center ">
             <LanguageToggle />
-            <Link href={'/login'} className=" text-[#E7A24A]   hover:scale-120 hover:text-[#832411] transition-all duration-200   flex items-center justify-center">
-              <LogIn size={35} />
-            </Link>
+            <AuthStatus />
+            
             <AdminLink />
           </div>
         </nav>

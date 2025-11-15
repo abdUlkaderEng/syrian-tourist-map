@@ -22,7 +22,7 @@ export async function getRegions(): Promise<Region[]> {
   //   }
 
   try {
-    const res = await api.get(`api/region`);
+    const res = await api.get(`/region`);
     return res.data.regions || res.data.data || res.data || [];
   } catch (error) {
     console.error("Error fetching regions:", error);

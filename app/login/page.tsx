@@ -20,6 +20,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -30,15 +31,16 @@ const LoginPage = () => {
     try {
       loginSchema.parse({ email, password });
 
-      await api.post("api/login", { email, password });
-      setLoading(false);
-      window.location.href = "/";
+      await api.post("/login", { email, password },{withCredentials: true});
     } catch (err: any) {
       if (err instanceof z.ZodError) {
         setError(err.message);
-      } else {
-        setError(err.response?.data?.message || "فشل تسجيل الدخول");
       }
+      setError(err.response?.data?.message || "فشل تسجيل الدخول");
+    } finally {
+      setMessage("Login successful!");
+      setLoading(false);
+      // window.location.href = "/";
     }
   };
 
@@ -89,6 +91,7 @@ const LoginPage = () => {
             className="w-full btn-ios by-2 btn-ios:hover transition-colors duration-300">
             {loading ? "جاري الدخول..." : "تسجيل الدخول"}
           </button>
+          {message && <p className="text-green-500 text-sm mt-4">{message}</p>}
           <p className="pt-4 text-sm text-[#832411] text-center">
             ليس لديك حساب؟{" "}
             <Link

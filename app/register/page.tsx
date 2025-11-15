@@ -41,18 +41,18 @@ const RegisterPage = () => {
     setMessage("");
 
     try {
-      const res = await api.post("/api/register", {
+      const res = await api.post("/register", {
         name: data.name,
         email: data.email,
         password: data.password,
         password_confirmation: data.confirmPassword,
       });
-      console.log(res.data);
       setMessage("تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.");
     } catch (err: any) {
       setMessage(err.response?.data?.message || "فشل إنشاء الحساب");
     } finally {
       setLoading(false);
+      window.location.href = "/login";
     }
   };
   return (
