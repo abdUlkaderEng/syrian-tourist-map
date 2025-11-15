@@ -12,7 +12,7 @@ export interface Place {
 export async function getPlaces(regionId: string): Promise<Place[]> {
 
   try {
-    const res = await api.get(`/places`, {
+    const res = await api.get(`api/places`, {
       params: { region_id: regionId },
     });
 

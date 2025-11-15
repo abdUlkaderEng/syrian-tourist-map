@@ -36,12 +36,12 @@ const LoginPage = () => {
       loginSchema.parse({ email, password });
 
       // إرسال البيانات إلى السيرفر
-      await api.post("/login", { email, password });
+      await api.post("api/register", { email, password,  });
 
-      window.location.href = "/dashboard";
+      window.location.href = "/";
     } catch (err: any) {
       if (err instanceof z.ZodError) {
-        setError( err.message);
+        setError( err.message || 'تم التسجيل');
       } else {
         setError(err.response?.data?.message || "فشل تسجيل الدخول");
       }
