@@ -30,15 +30,18 @@ const LoginPage = () => {
 
     try {
       loginSchema.parse({ email, password });
+      await api.get("http://localhost:8000/sanctum/csrf-cookie", {
+        withCredentials: true,
+      });
+      setMessage("Login successful!");
 
-      await api.post("/login", { email, password },{withCredentials: true});
+      await api.post("/login", { email, password }, { withCredentials: true });
     } catch (err: any) {
       if (err instanceof z.ZodError) {
         setError(err.message);
       }
       setError(err.response?.data?.message || "فشل تسجيل الدخول");
     } finally {
-      setMessage("Login successful!");
       setLoading(false);
       // window.location.href = "/";
     }

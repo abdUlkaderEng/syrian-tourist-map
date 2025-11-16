@@ -33,13 +33,7 @@ const AdminLoginPage = () => {
     return (
     <div className=" animate-enter ">
       <SyriaMapBG />
-      {/* <Image
-        src={"/assets/SVG/Lock.svg"}
-        className="-z-10 h-1/2 top-1/4  fixed w-screen"
-        alt="syria map"
-        width={700}
-        height={500}
-      /> */}
+     
       <div className=" min-h-screen flex  items-center justify-center">
         <form
         onSubmit={handleSubmit(onSubmit)}
