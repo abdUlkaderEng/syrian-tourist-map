@@ -1,0 +1,11 @@
+.card-ios {
+  background: var(--bg-glass);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(13px);
+  transition: 0.25s ease;
+}
+
+.card-ios:hover {
+  backdrop-filter: blur(15px) saturate(115%);
+}

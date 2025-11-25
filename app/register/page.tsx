@@ -117,7 +117,7 @@ const RegisterPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2 btn-ios ">
+            className="w-full py-2 btn-login ">
             {loading ? "جاري الإنشاء..." : "إنشاء حساب"}
           </button>
           {message}

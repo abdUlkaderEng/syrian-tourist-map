@@ -7,37 +7,7 @@ import { getRegions, Region } from "./libs/getRegions";
 export default function Home() {
   const mapWidth = 550;
   const mapHeight = 550;
-  // interface regionsState {
-  //   id: number;
-  //   name: string;
-  //   arabicName: string;
-  //   isHovered: boolean;
-  // }
-
-  // const regions: regionsState[] = [
-  //   { id: 1, name: "Damascus", arabicName: "دمشق", isHovered: false },
-  //   { id: 2, name: "Daraa", arabicName: "درعا", isHovered: false },
-  //   { id: 3, name: "Aleppo", arabicName: "حلب", isHovered: false },
-  //   { id: 4, name: "Homs", arabicName: "حمص", isHovered: false },
-  //   { id: 5, name: "Hama", arabicName: "حماة", isHovered: false },
-  //   { id: 6, name: "Latakia", arabicName: "اللاذقية", isHovered: false },
-  //   { id: 7, name: "Tartus", arabicName: "طرطوس", isHovered: false },
-  //   { id: 8, name: "Ref-Damascus", arabicName: "ريف دمشق", isHovered: false },
-  //   { id: 9, name: "As-Suwayda", arabicName: "السويداء", isHovered: false },
-  //   { id: 10, name: "Deir ez-Zor", arabicName: "دير الزور", isHovered: false },
-  //   { id: 11, name: "Al-Hasakah", arabicName: "الحسكة", isHovered: false },
-  //   { id: 12, name: "Al-Raqqah", arabicName: "الرقة", isHovered: false },
-  //   { id: 13, name: "Idlib", arabicName: "إدلب", isHovered: false },
-  //   { id: 14, name: "Quneitra", arabicName: "القنيطرة", isHovered: false },
-  // ];
-
-  // const regions =  fetch('http://http://127.0.0.1:8000/regions')
-  //   .then((res) => res.json())
-  //   .then((data) => {data.data})
-  //   .catch((error) => {
-  //     console.error("Error fetching regions:", error);
-  //     return [];
-  //   });
+ 
   const [isHovered, setIsHovered] = useState<{ [key: number]: boolean }>({});
   const handleMouseEnter = (regionId: number) => {
     setIsHovered((prev) => ({ ...prev, [regionId]: true }));

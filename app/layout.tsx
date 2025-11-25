@@ -39,7 +39,7 @@ export default function RootLayout({
         className={`${primaryFont.variable} ${arabicFont.variable} antialiased`}>
         <nav className="navbar fixed top-0 left-0 right-0 bg-transparent backdrop-blur-sm z-50 hover:backdrop-blur-lg transition-all duration-400 flex justify-between">
           <Link
-            className="ml-5 p-1 rounded-lg text-[#E7A24A] hover:text-amber-50 hover:scale-105 hover:bg-transparent hover:backdrop-blur-3xl transition-all duration-200 flex items-center justify-center"
+            className="ml-5 p-1 rounded-lg text-[#E7A24A] hover:text-[#832411] hover:scale-105 hover:bg-transparent hover:backdrop-blur-3xl transition-all duration-200 flex items-center justify-center"
             href={"/"}>
             <House size={35} />
           </Link>

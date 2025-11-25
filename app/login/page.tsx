@@ -90,7 +90,7 @@ const LoginPage = () => {
 
           <button
             type="submit"
-            className="w-full btn-ios by-2 btn-ios:hover transition-colors duration-300">
+            className="w-full btn-login by-2 btn-login:hover transition-colors duration-300">
             {loading ? "جاري الدخول..." : "تسجيل الدخول"}
           </button>
           {message && <p className="text-green-500 text-sm mt-4">{message}</p>}

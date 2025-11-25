@@ -67,7 +67,7 @@ const AdminLoginPage = () => {
 
   const onSubmit = async (data: AdminForm) => {
     setLoading(true);
-    
+
     try {
       const res = await api.post<LoginResponse>("/superadmin/login", {
         email: data.email,
@@ -75,8 +75,8 @@ const AdminLoginPage = () => {
       });
 
       const token = res.data.token;
-      console.log(res.data)
-      console.log(token)
+      console.log(res.data);
+      console.log(token);
       localStorage.setItem("adminToken", token);
 
       superApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -141,7 +141,7 @@ const AdminLoginPage = () => {
 
           <button
             type="submit"
-            className="w-full btn-ios active-tap text-lg font-semibold">
+            className="w-full btn-login active-tap text-lg font-semibold">
             {loading ? "جاري التحقق..." : "تسجيل الدخول"}
           </button>
         </form>
