@@ -48,12 +48,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div className=" animate-enter ">
+    <div className=" animate-enter  ">
       <SyriaMapBG />
       <div className=" min-h-screen flex  items-center justify-center">
         <form
           onSubmit={onSubmit}
-          // bg-transparent backdrop-blur-md shadow-md rounded-2xl
           className=" glass  glass:hover p-8 w-full max-w-sm ">
           <h1 className="text-3xl font-bold mb-6 text-center ">تسجيل الدخول</h1>
 

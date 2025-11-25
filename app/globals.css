@@ -117,6 +117,43 @@ h3 {
   box-shadow: 0 6px 16px #f9bc43b4;
 }
 
+
+.btn-normal {
+  background: transparent;
+  color: #f9bc43;
+  border: 1px solid #f9bc43;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  cursor: pointer;
+
+}
+.btn-normal:hover {
+  background: #f9bc43 ;
+  color: #f2f2f7;
+  
+
+}
+
+.btn-danger {
+  background: transparent;
+  color: #FF0000;
+  border: 1px solid #FF0000;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  cursor: pointer;
+
+}
+.btn-danger:hover {
+  background: #FF0000 ;
+  color: #f2f2f7;
+  
+
+}
+
+
+
 /* بطاقات شفافة */
 .card-ios {
   @apply glass p-6 rounded-2xl;
@@ -156,6 +193,7 @@ h3 {
 }
 .input-label {
   color: rgba(28, 28, 30, 0.8);
+  font-size: 0.9rem;
 }
 /* Focus state */
 .input-base:focus {
