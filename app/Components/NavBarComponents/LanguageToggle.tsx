@@ -2,7 +2,6 @@
 
 import { Languages } from "lucide-react";
 import { useState, useEffect } from "react";
-import ReactCountryFlag from "react-country-flag";
 
 export default function LanguageToggle() {
   const [lang, setLang] = useState("ar");
@@ -22,13 +21,9 @@ export default function LanguageToggle() {
 
   return (
     <button
-    onClick={toggleLang}
-    className="  text-[#E7A24A] hover:cursor-pointer   hover:scale-120 hover:text-[#832411] transition-all duration-200   flex items-center justify-center"
-    
-    >
-    
-       <Languages size={35} className={''}  />
-      {/* {lang === "ar" ? "English" : 'العربية'} */}
+      onClick={toggleLang}
+      className="  text-[#E7A24A] hover:cursor-pointer   hover:scale-120 hover:text-[#832411] transition-all duration-200   flex items-center justify-center">
+      <Languages size={30} className={""} />
     </button>
   );
 }

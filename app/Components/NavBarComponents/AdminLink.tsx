@@ -12,7 +12,7 @@ const AdminLink = () => {
         <Link
           href={"/admin"}
           className="text-[#E7A24A] hover:text-[#832411] hover:cursor-pointer   hover:scale-120  transition-all duration-200   flex items-center justify-center">
-          <ShieldUser size={35} />
+          <ShieldUser size={30} />
         </Link>
       ) : (
         <></>
