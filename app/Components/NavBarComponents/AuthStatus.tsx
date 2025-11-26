@@ -1,6 +1,6 @@
 "use client";
 import { LogOut, LogIn } from "lucide-react";
-import { useAuth } from "../../libs/useauth";
+import { useAuth } from "../../../libs/useauth";
 import Link from "next/link";
 const AuthStatus = () => {
   const { user } = useAuth();

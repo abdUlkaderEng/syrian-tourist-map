@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
-import { Place } from "@/app/libs/getPlaces";
-import { updatePlace } from "@/app/libs/admin";
+import { Place } from "@/libs/getPlaces";
+import { updatePlace } from "@/libs/admin";
 import { X } from "lucide-react";
 
 interface EditPlaceModalProps {
@@ -85,9 +85,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
 
           {/* Name */}
           <div>
-            <label className="input-label pb-1">
-              اسم المكان
-            </label>
+            <label className="input-label pb-1">اسم المكان</label>
             <input
               type="text"
               name="name"
@@ -101,9 +99,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
 
           {/* Location */}
           <div>
-            <label className="input-label pb-1">
-              الموقع
-            </label>
+            <label className="input-label pb-1">الموقع</label>
             <input
               type="text"
               name="location"
@@ -117,9 +113,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
 
           {/* Description */}
           <div>
-            <label className="input-label pb-1">
-              الوصف
-            </label>
+            <label className="input-label pb-1">الوصف</label>
             <textarea
               name="description"
               value={formData.description || ""}
@@ -132,9 +126,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
 
           {/* Google Map URL */}
           <div>
-            <label className="input-label pb-1">
-              رابط خريطة جوجل
-            </label>
+            <label className="input-label pb-1">رابط خريطة جوجل</label>
             <input
               type="url"
               name="google_map_url"
@@ -147,9 +139,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
 
           {/* Region ID */}
           <div>
-            <label className="input-label pb-1">
-              معرّف المنطقة
-            </label>
+            <label className="input-label pb-1">معرّف المنطقة</label>
             <input
               type="number"
               name="region_id"

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Region } from "@/app/libs/getRegions";
+import { Region } from "@/libs/getRegions";
 
 interface RegionsListProps {
   regions: Region[];
@@ -17,15 +17,14 @@ const RegionsList = ({
   return (
     <div className="w-[50%] grid grid-cols-2 place-items-center gap-4 overflow-y-scroll h-[85vh]">
       {/* Header */}
-      
-        <Image
-          src={"/assets/SVG/Header.svg"}
-          alt="Header"
-          width={550}
-          height={300}
-          className="col-span-2 "
-        />
-      
+
+      <Image
+        src={"/assets/SVG/Header.svg"}
+        alt="Header"
+        width={575}
+        height={300}
+        className="col-span-2 "
+      />
 
       {/* Background shadow effect */}
       <Image

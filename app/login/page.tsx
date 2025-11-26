@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import z from "zod";
-import api from "../libs/axios";
-import SyriaMapBG from "../Components/SyriaMapBG";
+import api from "../../libs/axios";
+import SyriaMapBG from "../../Components/SyriaMapBG";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 // import "../globals.css";

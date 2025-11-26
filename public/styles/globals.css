@@ -33,3 +33,6 @@ h2,
 h3 {
   color: #832411;
 }
+button{
+  cursor: pointer;
+}

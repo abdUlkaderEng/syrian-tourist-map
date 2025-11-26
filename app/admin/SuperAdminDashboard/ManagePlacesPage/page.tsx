@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getPlaces, Place } from "@/app/libs/getPlaces";
-import { deletePlace } from "@/app/libs/admin";
+import { getPlaces, Place } from "@/libs/getPlaces";
+import { deletePlace } from "@/libs/admin";
 import Link from "next/link";
 import { PenBox, Trash2 } from "lucide-react";
 import EditPlaceModal from "../Components/EditPlaceModal";

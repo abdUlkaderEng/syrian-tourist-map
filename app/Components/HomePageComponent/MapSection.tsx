@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Region } from "@/app/libs/getRegions";
+import { Region } from "@/libs/getRegions";
 
 interface MapSectionProps {
   regions: Region[];
@@ -8,11 +8,11 @@ interface MapSectionProps {
 }
 
 const MapSection = ({ regions, isHovered }: MapSectionProps) => {
-    const shadowHeight = '225'
-    const shadowWidth = '560'
-    const mapHeight = '275'
-    const mapwidth = '550'
-    return (
+  const shadowHeight = "225";
+  const shadowWidth = "560";
+  const mapHeight = "275";
+  const mapwidth = "550";
+  return (
     <div className="w-1/2 justify-center  px-5  overflow-y-hidden  ">
       {/* shadow map */}
       <Image

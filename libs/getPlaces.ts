@@ -1,7 +1,7 @@
 import api from "./axios";
 
 export interface Place {
-  place_id?: number;
+  place_id: number;
   name: string;
   description: string;
   location: string;

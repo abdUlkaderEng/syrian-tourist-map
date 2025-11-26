@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import MapSection from "./Components/MapSection";
-import RegionsList from "./Components/RegionsList";
-import { getRegions, Region } from "./libs/getRegions";
+import MapSection from "./Components/HomePageComponent/MapSection";
+import RegionsList from "./Components/HomePageComponent/RegionsList";
+import { getRegions, Region } from "../libs/getRegions";
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState<{ [key: number]: boolean }>({});

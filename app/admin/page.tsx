@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { Eye, EyeOff } from "lucide-react";
-import SyriaMapBG from "../Components/SyriaMapBG";
-import api, { superApi, userApi } from "../libs/axios";
+import SyriaMapBG from "../../Components/SyriaMapBG";
+import api, { superApi, userApi } from "../../libs/axios";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 interface LoginResponse {

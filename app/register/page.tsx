@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
-import SyriaMapBG from "../Components/SyriaMapBG";
+import SyriaMapBG from "../../Components/SyriaMapBG";
 import { useState } from "react";
 import { set, z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
-import api from "../libs/axios";
+import api from "../../libs/axios";
 import axios from "axios";
 
 const registerSchema = z

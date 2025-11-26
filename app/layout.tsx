@@ -38,7 +38,7 @@ export default function RootLayout({
       <body
         className={`${primaryFont.variable} ${arabicFont.variable} antialiased`}>
         <nav className="navbar fixed top-0 left-0 right-0 bg-transparent backdrop-blur-sm z-50 hover:backdrop-blur-lg transition-all duration-400 flex justify-between">
-         <HomeLink />
+          <HomeLink />
           <div className="w-[12%] flex justify-around items-center">
             <LanguageToggle />
             <AuthStatus />
