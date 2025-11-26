@@ -8,7 +8,7 @@ import Button from "@/Components/Form/Button";
 import FormContainer from "@/Components/Form/FormContainer";
 import { useAuthLogin } from "@/hooks/useAuthLogin";
 
-interface LoginResponse {
+interface SuperAdminLoginResponse {
   token: string;
   token_type: string;
   superadmin: {
@@ -26,7 +26,7 @@ const adminSchema = z.object({
 type AdminForm = z.infer<typeof adminSchema>;
 
 const AdminLoginPage = () => {
-  const { login, loading } = useAuthLogin<LoginResponse>({
+  const { login, loading } = useAuthLogin<SuperAdminLoginResponse>({
     apiInstance: api,
     endpoint: "/superadmin/login",
 

@@ -1,109 +1,85 @@
 "use client";
-import React, { useState } from "react";
 import z from "zod";
-import api from "../../libs/axios";
-import SyriaMapBG from "../../Components/SyriaMapBG";
-import { Eye, EyeOff } from "lucide-react";
+import api, { userApi } from "../../libs/axios";
 import Link from "next/link";
-// import "../globals.css";
+import Button from "@/Components/Form/Button";
+import FormContainer from "@/Components/Form/FormContainer";
+import InputField from "@/Components/Form/InputField";
+import { useAuthLogin } from "@/hooks/useAuthLogin";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-// import {Style} from;
-const loginSchema = z.object({
-  email: z.string().email("الإيميل غير صالح").nonempty("الإيميل مطلوب"),
-  password: z
-    .string()
-    .min(6, "كلمة المرور قصيرة جداً")
-    .nonempty("كلمة المرور مطلوبة"),
-});
-const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    try {
-      loginSchema.parse({ email, password });
-      await api.get("http://localhost:8000/sanctum/csrf-cookie", {
-        withCredentials: true,
-      });
-      setMessage("Login successful!");
-
-      await api.post("/login", { email, password }, { withCredentials: true });
-    } catch (err: any) {
-      if (err instanceof z.ZodError) {
-        setError(err.message);
-      }
-      setError(err.response?.data?.message || "فشل تسجيل الدخول");
-    } finally {
-      setLoading(false);
-      // window.location.href = "/";
-    }
+interface UserLoginResponse {
+  token: string;
+  token_type: string;
+  user: {
+    user_id: number;
+    name: string;
+    email: string;
   };
+}
+
+const userLoginSchema = z.object({
+  email: z.string().email("الإيميل غير صالح").nonempty("الإيميل مطلوب"),
+  password: z.string().nonempty("كلمة المرور مطلوبة"),
+});
+
+type userLoginForm = z.infer<typeof userLoginSchema>;
+const LoginPage = () => {
+  const { login, loading } = useAuthLogin<UserLoginResponse>({
+    apiInstance: api,
+    endpoint: "/login",
+
+    extractToken: (res) => res.token,
+    tokenStorageKey: "user_Token",
+    redirectTo: "/",
+    setAuthHeader: (token) => {
+      userApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    },
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<userLoginForm>({
+    resolver: zodResolver(userLoginSchema),
+  });
+
+  async function onSubmit(data: userLoginForm) {
+    await login(data);
+  }
 
   return (
-    <div className=" animate-enter  ">
-      <div className=" min-h-full flex  items-center justify-center">
-        <form
-          onSubmit={onSubmit}
-          className=" glass  glass:hover p-8 w-full max-w-sm ">
-          <h1 className="text-3xl font-bold mb-6 text-center ">تسجيل الدخول</h1>
+    <FormContainer title="تسجيل الدخول" onSubmit={handleSubmit(onSubmit)}>
+      <InputField
+        type="email"
+        placeholder="البريد الإلكتروني"
+        {...register("email")}
+        error={errors.email?.message}
+      />
 
-          <div className="mb-4">
-            <input
-              type="email"
-              placeholder="البريد الإلكتروني"
-              className="w-full input-base input-base:focus rounded-lg p-2 focus:ring focus:ring-blue-300"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
+      <InputField
+        type="password"
+        placeholder="كلمة المرور"
+        {...register("password")}
+        error={errors.password?.message}
+      />
 
-          <div className="mb-4">
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="كلمة المرور"
-                className="w-full input-base    "
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#f9bc43b4] transition-colors">
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
-            </div>
-          </div>
+      <Button type="submit" loading={loading}>
+        تسجيل الدخول
+      </Button>
 
-          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-
-          <button
-            type="submit"
-            className="w-full btn-login by-2 btn-login:hover transition-colors duration-300">
-            {loading ? "جاري الدخول..." : "تسجيل الدخول"}
-          </button>
-          {message && <p className="text-green-500 text-sm mt-4">{message}</p>}
-          <p className="pt-4 text-sm text-[#832411] text-center">
-            ليس لديك حساب؟{" "}
-            <Link
-              className="  hover:border-b-[#832411] border-b-2 duration-250 transition-all font-bold border-[#83241100]"
-              href={"/register"}>
-              إنشاء حساب{" "}
-            </Link>
-          </p>
-        </form>
-      </div>
-    </div>
+      <p className="pt-4 text-sm text-[#832411] text-center">
+        ليس لديك حساب؟{" "}
+        <Link
+          className="  hover:border-b-[#832411] border-b-2 duration-250 transition-all font-bold border-[#83241100]"
+          href={"/register"}>
+          إنشاء حساب{" "}
+        </Link>
+      </p>
+    </FormContainer>
   );
 };
 
