@@ -13,7 +13,7 @@ export default function Toast({
 }) {
   const colors: Record<ToastType, string> = {
     success: "bg-emerald-600",
-    error: "bg-rose-600",
+    error: "bg-[#ff0000]",
     info: "bg-sky-600",
   };
 

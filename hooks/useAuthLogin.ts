@@ -9,6 +9,7 @@ export interface AuthLoginOptions<TResponse> {
   apiInstance?: AxiosInstance;         
   endpoint: string;                     
   extractToken: (response: TResponse) => string; 
+  extractSuperAdminUsername: (response: TResponse) => string;
   tokenStorageKey: string;              
   redirectTo?: string;                  
   setAuthHeader?: (token: string) => void; 
@@ -19,6 +20,7 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
     apiInstance = axios,
     endpoint,
     extractToken,
+    extractSuperAdminUsername,
     tokenStorageKey,
     redirectTo,
     setAuthHeader
@@ -35,7 +37,10 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
       const res = await apiInstance.post<TResponse>(endpoint, data);
 
       const token = extractToken(res.data);
-
+      const userName = extractSuperAdminUsername(res.data)
+      localStorage.setItem("SuperAdminUserName", userName);
+      console.log(tokenStorageKey , extractToken(res.data)) 
+      console.log(res.data) 
       localStorage.setItem(tokenStorageKey, token);
 
       if (setAuthHeader) {
@@ -46,6 +51,7 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
 
       showToast({
         title: "تم تسجيل الدخول",
+        description:`أهلا وسهلا ${localStorage.getItem('SuperAdminUserName')}` || '',
         type: "success"
       });
 
@@ -53,7 +59,8 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
 
     } catch (err: any) {
       showToast({
-        title: err.response?.data?.message || "خطأ في تسجيل الدخول",
+        title: 'حصل خطأ ما!' ,
+        description:'err.response?.data?.message || "خطأ في تسجيل الدخول"',
         type: "error"
       });
     } finally {

@@ -3,7 +3,7 @@ import { Place } from "./getPlaces";
 
 export async function deletePlace(placeId: number): Promise<boolean> {
   try {
-    await superApi.delete(`/deleteplace/${placeId}`);
+    await superApi.post(`/deleteplace/${placeId}`);
     return true;
   } catch (error) {
     console.error("Error deleting place:", error);
@@ -17,6 +17,7 @@ export async function updatePlace(
 ): Promise<Place | null> {
   try {
     const res = await superApi.post(`/updateplace/${placeId}`, data);
+    console.log(res.data.data)
     return res.data.data;
   } catch (error) {
     console.error("Error updating place:", error);

@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { Place } from "@/libs/getPlaces";
 import { updatePlace } from "@/libs/admin";
 import { X } from "lucide-react";
+import { attachTokens } from "@/libs/axios";
+import { useToast } from "@/Components/Toast/useToast";
 
 interface EditPlaceModalProps {
   place: Place | null;
@@ -20,8 +22,11 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
   });
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState("");
+  const {showToast} = useToast()
 
   useEffect(() => {
+    attachTokens();
+
     if (place) {
       setFormData({
         name: place.name,
@@ -54,8 +59,16 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
     if (result) {
       onSuccess(result);
       onClose();
+      showToast({
+        title:'تم تحديث المكان بنجاح',
+        type:'success'
+      })
     } else {
       setError("فشل تحديث المكان. يرجى المحاولة مرة أخرى.");
+      showToast({
+        title:'فشل تحديث المكان ',
+        type:'error'
+      })
     }
     setLoading(false);
   };

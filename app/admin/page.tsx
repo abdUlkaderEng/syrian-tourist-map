@@ -31,7 +31,8 @@ const AdminLoginPage = () => {
     endpoint: "/superadmin/login",
 
     extractToken: (res) => res.token,
-    tokenStorageKey: "adminToken",
+    extractSuperAdminUsername: (res) => res.superadmin.username,
+    tokenStorageKey: "super_token",
 
     redirectTo: "/admin/SuperAdminDashboard",
 
