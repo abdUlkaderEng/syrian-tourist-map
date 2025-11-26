@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ReadMoreButton from "../../../Components/ReadMoreButton";
+import { MapPinned, Star } from "lucide-react";
 
 interface Place {
   id: number;
@@ -30,21 +31,22 @@ export default function RegionsPageClient({ places }: RegionsPageClientProps) {
   };
 
   return (
-    <div className="grid justify-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6">
+    <div className="flex flex-wrap justify-center gap-4 p-1">
       {places?.map((place, index) => (
         <div
           key={index}
-          className="w-full max-w-sm md:max-w-md lg:max-w-lg rounded-xl glass transition-all duration-300">
+          className="w-full sm:w-[48%] lg:w-[31%] xl:w-[23%] rounded-xl glass transition-all duration-300 flex flex-col">
           <figure className="w-full h-48 md:h-56 lg:h-64 overflow-hidden rounded-t-xl">
             <Image
               width={400}
               height={200}
               src={"/assets/Images/RegionImage/دمشق.png"}
               alt={place.name}
+              className="object-cover w-full h-full"
             />
           </figure>
 
-          <div className="p-4 md:p-5">
+          <div className="p-4 md:p-5 flex flex-col flex-1">
             <h3 className="text-lg md:text-xl font-bold">{place.name}</h3>
 
             <div className="text-sm md:text-base mt-2">
@@ -59,23 +61,28 @@ export default function RegionsPageClient({ places }: RegionsPageClientProps) {
               />
             </div>
 
-            <div className="mt-2">
+            <div className="mt-2 h-full">
               <span className="font-semibold">عنوان المكان:</span>
               <p>{place.location}</p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4">
-              <div className="flex items-center gap-2">
-                <div className="rating rating-sm">Rating</div>
-                <span className="text-sm text-base-content/70"></span>
-              </div>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-3">
+              
+                <div className="flex text-[#f9bc43] gap-0.5"> 
+                  <Star size={20} />
+                  <Star size={20} />
+                  <Star size={20} />
+                  <Star size={20} />
+                  <Star size={20} />
+                  
+                   </div>
 
               <Link
                 href={place.google_map_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn border-amber-50 border-0 text-[#8B3E2F] hover:scale-105 bg-amber-100 transition-all duration-100 backdrop-opacity-30 btn-sm w-full sm:w-auto">
-                زيارة الموقع
+                className="   sm:w-auto text-[#f9bc43] hover:scale-110 transition duration-200">
+                <MapPinned size={25} />
               </Link>
             </div>
           </div>

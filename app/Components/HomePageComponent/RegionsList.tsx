@@ -41,7 +41,7 @@ const RegionsList = ({
           onMouseEnter={() => onMouseEnter(region.region_id)}
           onMouseLeave={() => onMouseLeave(region.region_id)}
           className="flex flex-col items-center hover:scale-105 transition-all duration-300 m-2 ease-in"
-          href={`/reagions/${region.region_id}`}
+          href={`/reagion/${region.region_id}`}
           key={region.region_id}>
           <Image
             src={`/assets/Images/RegionImage/${region.name}.png`}

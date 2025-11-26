@@ -1,7 +1,7 @@
 import React from "react";
 import { getPlaces } from "@/libs/getPlaces";
 import SyriaMapBG from "@/Components/SyriaMapBG";
-import RegionsPageClient from "@/app/reagions/RegionPageClient/RegionsPageClient";
+import RegionsPageClient from "@/app/reagion/RegionPageClient/RegionsPageClient";
 
 export default async function RegionPage({
   params,
