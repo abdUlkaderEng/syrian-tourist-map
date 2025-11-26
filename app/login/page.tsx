@@ -49,8 +49,7 @@ const LoginPage = () => {
 
   return (
     <div className=" animate-enter  ">
-      <SyriaMapBG />
-      <div className=" min-h-screen flex  items-center justify-center">
+      <div className=" min-h-full flex  items-center justify-center">
         <form
           onSubmit={onSubmit}
           className=" glass  glass:hover p-8 w-full max-w-sm ">

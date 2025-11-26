@@ -8,6 +8,8 @@ import AdminLink from "./Components/NavBarComponents/AdminLink";
 import AuthStatus from "./Components/NavBarComponents/AuthStatus";
 import TokenProvider from "./TokenProvider";
 import HomeLink from "./Components/NavBarComponents/HomeLink";
+import SyriaMapBG from "../Components/SyriaMapBG";
+import { ToastProvider } from "@/Components/Toast/ToastProvider";
 
 const primaryFont = Roboto({
   weight: ["400", "700"],
@@ -37,6 +39,7 @@ export default function RootLayout({
     <html lang="en" data-theme="light">
       <body
         className={`${primaryFont.variable} ${arabicFont.variable} antialiased`}>
+        <SyriaMapBG />
         <nav className="navbar fixed top-0 left-0 right-0 bg-transparent backdrop-blur-sm z-50 hover:backdrop-blur-lg transition-all duration-400 flex justify-between">
           <HomeLink />
           <div className="w-[12%] flex justify-around items-center">
@@ -45,8 +48,10 @@ export default function RootLayout({
             <AdminLink />
           </div>
         </nav>
-        <TokenProvider />
-        <main className="pt-20">{children}</main>
+        <ToastProvider>
+          <TokenProvider />
+          <main className="pt-20">{children}</main>
+        </ToastProvider>
       </body>
     </html>
   );

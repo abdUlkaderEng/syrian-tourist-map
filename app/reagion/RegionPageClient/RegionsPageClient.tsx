@@ -67,15 +67,13 @@ export default function RegionsPageClient({ places }: RegionsPageClientProps) {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-3">
-              
-                <div className="flex text-[#f9bc43] gap-0.5"> 
-                  <Star size={20} />
-                  <Star size={20} />
-                  <Star size={20} />
-                  <Star size={20} />
-                  <Star size={20} />
-                  
-                   </div>
+              <div className="flex text-[#f9bc43] gap-0.5">
+                <Star size={20} />
+                <Star size={20} />
+                <Star size={20} />
+                <Star size={20} />
+                <Star size={20} />
+              </div>
 
               <Link
                 href={place.google_map_url}
