@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import api from "./axios";
 
 export interface Place {
@@ -9,16 +10,32 @@ export interface Place {
   region_id: number;
 }
 
-export async function getPlaces(regionId: string): Promise<Place[]> {
+export async function getPlaces(
+  regionId: string,
+  token: string
+): Promise<{ data: Place[]; error: string }> {
+
+  if (token==='') {
+    return {
+      data: [],
+      error: "no-token",
+    };
+  }
   try {
     const res = await api.get(`/places`, {
       params: { region_id: regionId },
       withCredentials: true,
+       headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
-    return res.data.data;
+    return {
+      data: res.data.data,
+      error: "",
+    };
   } catch (error) {
     console.error("Error fetching places:", error);
-    return [];
+    return { data: [], error: "fetching-error" };
   }
 }

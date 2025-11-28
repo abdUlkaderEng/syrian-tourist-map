@@ -8,6 +8,7 @@ import InputField from "@/Components/Form/InputField";
 import { useAuthLogin } from "@/hooks/useAuthLogin";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuthLoginWithCookies } from "@/hooks/useAuthLoginWithCookies";
 
 interface UserLoginResponse {
   token: string;
@@ -26,12 +27,14 @@ const userLoginSchema = z.object({
 
 type userLoginForm = z.infer<typeof userLoginSchema>;
 const LoginPage = () => {
-  const { login, loading } = useAuthLogin<UserLoginResponse>({
+  const { login, loading } = useAuthLoginWithCookies<UserLoginResponse>({
     apiInstance: api,
     endpoint: "/login",
 
     extractToken: (res) => res.token,
-    tokenStorageKey: "user_Token",
+    extractName: (res: UserLoginResponse) => res.user.name,
+    tokenCookieKey: "user_token",
+    nameCookieKey:'user_name',
     redirectTo: "/",
     setAuthHeader: (token) => {
       userApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;

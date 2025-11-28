@@ -31,9 +31,9 @@ const AdminLoginPage = () => {
     endpoint: "/superadmin/login",
 
     extractToken: (res) => res.token,
-    extractSuperAdminUsername: (res) => res.superadmin.username,
+    extractName: (res) => res.superadmin.username,
     tokenStorageKey: "super_token",
-
+    nameStorageKey:'super_name',
     redirectTo: "/admin/SuperAdminDashboard",
 
     setAuthHeader: (token) => {

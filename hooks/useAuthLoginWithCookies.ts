@@ -4,26 +4,28 @@ import { useState } from "react";
 import axios, { AxiosInstance } from "axios";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/Components/Toast/useToast";
-
-export interface AuthLoginOptions<TResponse> {
+import { setCookie } from "cookies-next";
+export interface AuthLoginCookieOptions<TResponse> {
   apiInstance?: AxiosInstance;
   endpoint: string;
   extractToken: (response: TResponse) => string;
   extractName: (response: TResponse) => string;
-  tokenStorageKey: string;
-  nameStorageKey:string
+  tokenCookieKey: string;
+  nameCookieKey: string;
   redirectTo?: string;
   setAuthHeader?: (token: string) => void;
 }
 
-export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
+export function useAuthLoginWithCookies<TResponse>(
+  options: AuthLoginCookieOptions<TResponse>
+) {
   const {
     apiInstance = axios,
     endpoint,
     extractToken,
-    extractName: extractName,
-    tokenStorageKey,
-    nameStorageKey,
+    extractName,
+    tokenCookieKey,
+    nameCookieKey,
     redirectTo,
     setAuthHeader,
   } = options;
@@ -36,15 +38,28 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
     setLoading(true);
 
     try {
-      const res = await apiInstance.post<TResponse>(endpoint, data);
+      const res = await apiInstance.post<TResponse>(endpoint, data, {
+        withCredentials: true,
+      });
 
       const token = extractToken(res.data);
       const userName = extractName(res.data);
-      localStorage.setItem(nameStorageKey, userName);
-      console.log(tokenStorageKey, extractToken(res.data));
-      console.log(res.data);
-      localStorage.setItem(tokenStorageKey, token);
 
+      // تخزين التوكين
+      setCookie(tokenCookieKey, token, {
+        secure: true,
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24 * 7, // أسبوع
+      });
+
+      // تخزين الاسم
+      setCookie(nameCookieKey, userName, {
+        secure: true,
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24 * 7,
+      });
+
+      // ضبط الهيدر إذا لزم
       if (setAuthHeader) {
         setAuthHeader(token);
       } else {
@@ -53,15 +68,14 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
 
       showToast({
         title: "تم تسجيل الدخول",
-        description:
-          `أهلا وسهلا ${localStorage.getItem(nameStorageKey)}` || "",
+        description: `أهلا ${userName}`,
         type: "success",
       });
 
       if (redirectTo) router.push(redirectTo);
     } catch (err: any) {
       showToast({
-        title: "حصل خطأ ما!",
+        title: "صار خطأ",
         description: err.response?.data?.message || "خطأ في تسجيل الدخول",
         type: "error",
       });

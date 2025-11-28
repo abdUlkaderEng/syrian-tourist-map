@@ -6,10 +6,11 @@ import LanguageToggle from "./Components/NavBarComponents/LanguageToggle";
 import { Roboto, Tajawal } from "next/font/google";
 import AdminLink from "./Components/NavBarComponents/AdminLink";
 import AuthStatus from "./Components/NavBarComponents/AuthStatus";
-import TokenProvider from "./TokenProvider";
 import HomeLink from "./Components/NavBarComponents/HomeLink";
 import SyriaMapBG from "../Components/SyriaMapBG";
 import { ToastProvider } from "@/Components/Toast/ToastProvider";
+import TokenProvider from "./Components/TokenProvider";
+import LoginLogoutButton from "./Components/NavBarComponents/LoginLogoutButton";
 
 const primaryFont = Roboto({
   weight: ["400", "700"],
@@ -44,7 +45,7 @@ export default function RootLayout({
           <HomeLink />
           <div className="w-[12%] flex justify-around items-center">
             <LanguageToggle />
-            <AuthStatus />
+            <LoginLogoutButton />
             <AdminLink />
           </div>
         </nav>

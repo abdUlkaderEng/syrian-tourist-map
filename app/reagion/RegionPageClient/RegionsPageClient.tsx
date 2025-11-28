@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 import ReadMoreButton from "../../../Components/ReadMoreButton";
 import { MapPinned, Star } from "lucide-react";
+import { useToast } from "@/Components/Toast/useToast";
+import { title } from "process";
+import { useRouter } from "next/navigation";
 
 interface Place {
   id: number;
@@ -15,10 +18,12 @@ interface Place {
 }
 
 interface RegionsPageClientProps {
-  places: Place[];
+  places: {data:Place[],error:string};
 }
 
 export default function RegionsPageClient({ places }: RegionsPageClientProps) {
+ const router = useRouter()
+ 
   const [expandedCards, setExpandedCards] = useState<{
     [key: number]: boolean;
   }>({});
@@ -30,9 +35,24 @@ export default function RegionsPageClient({ places }: RegionsPageClientProps) {
     }));
   };
 
+  const {showToast} = useToast()
+  if(places.error === 'no-token'){
+
+    showToast(
+      {
+        title:'لا يمكن الوصول للصفحة',
+        description:'الرجاء تسجيل الدخول',
+        type:'error'
+      }
+    )
+    router.push('/login')
+
+    return;
+  }
+
   return (
     <div className="flex flex-wrap justify-center gap-4 p-1">
-      {places?.map((place, index) => (
+      {places?.data.map((place, index) => (
         <div
           key={index}
           className="w-full sm:w-[48%] lg:w-[31%] xl:w-[23%] rounded-xl glass transition-all duration-300 flex flex-col">

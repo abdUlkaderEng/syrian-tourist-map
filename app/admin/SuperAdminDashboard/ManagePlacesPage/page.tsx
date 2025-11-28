@@ -5,15 +5,17 @@ import { deletePlace } from "@/libs/admin";
 import Link from "next/link";
 import { PenBox, Trash2 } from "lucide-react";
 import EditPlaceModal from "../Components/EditPlaceModal";
-
+import { getCookie } from "cookies-next";
+import { cookies } from "next/headers";
 const ManagePlacesPage = () => {
   const [places, setPlaces] = useState<Place[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
-
+  const token =  getCookie('user_token') || ''
+  
   useEffect(() => {
-    getPlaces("")
+    getPlaces("",token)
       .then(setPlaces)
       .catch(() => setError("Failed to load places"))
       .finally(() => setLoading(false));
