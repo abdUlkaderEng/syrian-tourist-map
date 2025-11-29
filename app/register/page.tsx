@@ -1,17 +1,12 @@
 "use client";
-import React from "react";
-import SyriaMapBG from "../../Components/SyriaMapBG";
-import { useState } from "react";
-import { set, z } from "zod";
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
-import api from "../../libs/axios";
-import axios from "axios";
 import InputField from "@/Components/Form/InputField";
 import Button from "@/Components/Form/Button";
 import FormContainer from "@/Components/Form/FormContainer";
+import { useAuthRegister } from "@/hooks/useAuthRegister";
 
 const registerSchema = z
   .object({
@@ -28,8 +23,6 @@ const registerSchema = z
 type RegisterForm = z.infer<typeof registerSchema>;
 
 const RegisterPage = () => {
-  const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -38,31 +31,9 @@ const RegisterPage = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = async (data: RegisterForm) => {
-    setLoading(true);
-    setMessage("");
-
-    try {
-      const res = await api.post(
-        "/register",
-        {
-          name: data.name,
-          email: data.email,
-          password: data.password,
-          password_confirmation: data.confirmPassword,
-        },
-        { withCredentials: true }
-      );
-      setMessage("تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.");
-    } catch (err: any) {
-      setMessage(err.response?.data?.message || "فشل إنشاء الحساب");
-    } finally {
-      setLoading(false);
-      window.location.href = "/login";
-    }
-  };
+  const { authRegister, loading } = useAuthRegister();
   return (
-    <FormContainer title="التحقق من المشرف" onSubmit={handleSubmit(onSubmit)}>
+    <FormContainer title="إنشاء حساب" onSubmit={handleSubmit(authRegister)}>
       <InputField
         type="text"
         placeholder="البريد الإلكتروني"
@@ -91,7 +62,7 @@ const RegisterPage = () => {
         تسجيل الدخول
       </Button>
 
-      <p className="text-sm  text-[#832411]">
+      <p className="text-sm text-center  text-[#832411]">
         لديك حساب؟{" "}
         <Link
           href="/login"

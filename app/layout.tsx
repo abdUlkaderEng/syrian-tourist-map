@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Link from "next/link";
-import { House } from "lucide-react";
 import LanguageToggle from "./Components/NavBarComponents/LanguageToggle";
 import { Roboto, Tajawal } from "next/font/google";
 import AdminLink from "./Components/NavBarComponents/AdminLink";
-import AuthStatus from "./Components/NavBarComponents/AuthStatus";
 import HomeLink from "./Components/NavBarComponents/HomeLink";
 import SyriaMapBG from "../Components/SyriaMapBG";
 import { ToastProvider } from "@/Components/Toast/ToastProvider";
-import TokenProvider from "./Components/TokenProvider";
 import LoginLogoutButton from "./Components/NavBarComponents/LoginLogoutButton";
 
 const primaryFont = Roboto({
@@ -50,7 +46,6 @@ export default function RootLayout({
           </div>
         </nav>
         <ToastProvider>
-          <TokenProvider />
           <main className="pt-20">{children}</main>
         </ToastProvider>
       </body>

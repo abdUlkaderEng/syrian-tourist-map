@@ -5,10 +5,9 @@ import Link from "next/link";
 import Button from "@/Components/Form/Button";
 import FormContainer from "@/Components/Form/FormContainer";
 import InputField from "@/Components/Form/InputField";
-import { useAuthLogin } from "@/hooks/useAuthLogin";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuthLoginWithCookies } from "@/hooks/useAuthLoginWithCookies";
+import { useAuthLogin } from "@/hooks/useAuthLogin";
 
 interface UserLoginResponse {
   token: string;
@@ -27,7 +26,7 @@ const userLoginSchema = z.object({
 
 type userLoginForm = z.infer<typeof userLoginSchema>;
 const LoginPage = () => {
-  const { login, loading } = useAuthLoginWithCookies<UserLoginResponse>({
+  const { login, loading } = useAuthLogin<UserLoginResponse>({
     apiInstance: api,
     endpoint: "/login",
 

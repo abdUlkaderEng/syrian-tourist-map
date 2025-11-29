@@ -4,26 +4,28 @@ import { useState } from "react";
 import axios, { AxiosInstance } from "axios";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/Components/Toast/useToast";
-
+import { setCookie } from "cookies-next";
 export interface AuthLoginOptions<TResponse> {
   apiInstance?: AxiosInstance;
   endpoint: string;
   extractToken: (response: TResponse) => string;
   extractName: (response: TResponse) => string;
-  tokenStorageKey: string;
-  nameStorageKey:string
+  tokenCookieKey: string;
+  nameCookieKey: string;
   redirectTo?: string;
   setAuthHeader?: (token: string) => void;
 }
 
-export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
+export function useAuthLogin<TResponse>(
+  options: AuthLoginOptions<TResponse>
+) {
   const {
     apiInstance = axios,
     endpoint,
     extractToken,
-    extractName: extractName,
-    tokenStorageKey,
-    nameStorageKey,
+    extractName,
+    tokenCookieKey,
+    nameCookieKey,
     redirectTo,
     setAuthHeader,
   } = options;
@@ -36,14 +38,24 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
     setLoading(true);
 
     try {
-      const res = await apiInstance.post<TResponse>(endpoint, data);
+      const res = await apiInstance.post<TResponse>(endpoint, data, {
+        withCredentials: true,
+      });
 
       const token = extractToken(res.data);
       const userName = extractName(res.data);
-      localStorage.setItem(nameStorageKey, userName);
-      console.log(tokenStorageKey, extractToken(res.data));
-      console.log(res.data);
-      localStorage.setItem(tokenStorageKey, token);
+
+      setCookie(tokenCookieKey, token, {
+        secure: true,
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24 * 7, 
+            });
+
+      setCookie(nameCookieKey, userName, {
+        secure: true,
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24 * 7,
+      });
 
       if (setAuthHeader) {
         setAuthHeader(token);
@@ -53,15 +65,14 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
 
       showToast({
         title: "تم تسجيل الدخول",
-        description:
-          `أهلا وسهلا ${localStorage.getItem(nameStorageKey)}` || "",
+        description: `أهلا ${userName}`,
         type: "success",
       });
 
       if (redirectTo) router.push(redirectTo);
     } catch (err: any) {
       showToast({
-        title: "حصل خطأ ما!",
+        title: "تعذر الوصول للحساب",
         description: err.response?.data?.message || "خطأ في تسجيل الدخول",
         type: "error",
       });

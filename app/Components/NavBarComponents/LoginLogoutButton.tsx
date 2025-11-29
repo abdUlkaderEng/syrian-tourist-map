@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { LogIn, LogOut } from "lucide-react";
-import { getCookie, setCookie, deleteCookie } from "cookies-next";
+import { getCookie,  deleteCookie } from "cookies-next";
 import { getCookies } from "cookies-next";
 
 export default function LoginLogoutButton() {
@@ -12,7 +12,6 @@ export default function LoginLogoutButton() {
   const [username, setUsername] = useState("");
   const router = useRouter();
 
-  // تحديث حالة الدخول عند تحميل component
   useEffect(() => {
     const token =
       getCookie("user_token") ||
@@ -30,7 +29,7 @@ export default function LoginLogoutButton() {
   }, []);
 
    const clearAllCookies = () => {
-  const allCookies = getCookies() || {}; // ترجع object: { cookieName: value }
+  const allCookies = getCookies() || {};
   Object.keys(allCookies).forEach((name) => deleteCookie(name));
 };
 
@@ -38,7 +37,6 @@ export default function LoginLogoutButton() {
     clearAllCookies();
     setHasToken(false);
     setUsername("");
-    router.refresh();
     router.push('/')
   }
 

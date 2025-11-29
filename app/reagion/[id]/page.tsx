@@ -1,6 +1,5 @@
 import { getPlaces } from "@/libs/getPlaces";
 import RegionsPageClient from "@/app/reagion/RegionPageClient/RegionsPageClient";
-import { get_user_token } from "@/app/Components/NavBarComponents/LoginLogoutButton";
 import { cookies } from "next/headers";
 export default async function RegionPage({
   params,
@@ -8,8 +7,9 @@ export default async function RegionPage({
   params: { id: string };
 }) {
   const { id } = await params;
-  const token = (await cookies()).get('user_token')?.value || ''
-  const places = await getPlaces(id,token);
+  const user_token = (await cookies()).get('user_token')?.value 
+  const super_token = (await cookies()).get('super_token')?.value 
+  const places = await getPlaces(id,user_token || super_token || '');
 
   return (
     <div className="animate-enter">
