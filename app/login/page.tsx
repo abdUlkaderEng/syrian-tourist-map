@@ -37,7 +37,7 @@ const LoginPage = () => {
     redirectTo: "/",
     setAuthHeader: (token) => {
       userApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      userApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     },
   });
 

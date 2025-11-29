@@ -8,14 +8,13 @@ import EditPlaceModal from "../Components/EditPlaceModal";
 import { getCookie } from "cookies-next";
 import { cookies } from "next/headers";
 const ManagePlacesPage = () => {
-  const [places, setPlaces] = useState<Place[]>([]);
+  const [places, setPlaces] = useState<{data:Place[],error:string}>({data:[],error:''});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
-  const token =  getCookie('user_token') || ''
   
   useEffect(() => {
-    getPlaces("",token)
+    getPlaces("", 'super_token')
       .then(setPlaces)
       .catch(() => setError("Failed to load places"))
       .finally(() => setLoading(false));
@@ -25,13 +24,19 @@ const ManagePlacesPage = () => {
     if (!id) return;
     if (!confirm("Are you sure you want to delete this place?")) return;
     const success = await deletePlace(id);
-    if (success) setPlaces((prev) => prev.filter((p) => p.place_id !== id));
-    else alert("Failed to delete place");
+    if (success) setPlaces((prev) => 
+    ({...prev,
+      data: prev.data.filter((p) => p.place_id !== id)
+    }))
+      else alert("Failed to delete place");
   };
 
   const handleEditSuccess = (updatedPlace: Place) => {
     setPlaces((prev) =>
-      prev.map((p) => (p.place_id === updatedPlace.place_id ? updatedPlace : p))
+    ({
+      ...prev,
+      data: prev.data.map((p) => (p.place_id === updatedPlace.place_id ? updatedPlace : p))
+    })
     );
     setSelectedPlace(null);
   };
@@ -65,7 +70,7 @@ const ManagePlacesPage = () => {
             </thead>
 
             <tbody>
-              {places.map((place) => (
+              {places.data.map((place) => (
                 <tr key={place.place_id} className="border-b border-[#e4bc75]">
                   <td className="p-4 text-gray-900 border-l border-[#e4bc75]">
                     {place.name}

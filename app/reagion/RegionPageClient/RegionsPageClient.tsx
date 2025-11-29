@@ -8,17 +8,12 @@ import { MapPinned, Star } from "lucide-react";
 import { useToast } from "@/Components/Toast/useToast";
 import { title } from "process";
 import { useRouter } from "next/navigation";
+import { Place } from "@/libs/getPlaces";
 
-interface Place {
-  id: number;
-  name: string;
-  description: string;
-  location: string;
-  google_map_url: string;
-}
+
 
 interface RegionsPageClientProps {
-  places: {data:Place[],error:string};
+  places: {data:Place[],error:string };
 }
 
 export default function RegionsPageClient({ places }: RegionsPageClientProps) {

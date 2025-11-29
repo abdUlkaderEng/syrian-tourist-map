@@ -1,6 +1,6 @@
 "use client";
 import { useToast } from "@/Components/Toast/useToast";
-import api from "@/libs/axios";
+import api, { userApi } from "@/libs/axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -20,7 +20,7 @@ export const useAuthRegister = () => {
     setLoading(true);
 
     try {
-      const res = await api.post(
+      const res = await userApi.post(
         "/register",
         {
           name: data.name,

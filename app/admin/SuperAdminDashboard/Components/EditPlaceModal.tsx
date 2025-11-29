@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { Place } from "@/libs/getPlaces";
 import { updatePlace } from "@/libs/admin";
 import { X } from "lucide-react";
-import { attachTokens } from "@/libs/axios";
 import { useToast } from "@/Components/Toast/useToast";
 
 interface EditPlaceModalProps {
@@ -25,7 +24,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
   const {showToast} = useToast()
 
   useEffect(() => {
-    attachTokens();
+   
 
     if (place) {
       setFormData({

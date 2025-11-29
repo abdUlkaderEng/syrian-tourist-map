@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import api from "./axios";
-
+import { getCookie } from "cookies-next";
 export interface Place {
   place_id: number;
   name: string;
@@ -12,9 +12,9 @@ export interface Place {
 
 export async function getPlaces(
   regionId: string,
-  token: string
+  tokenName: string
 ): Promise<{ data: Place[]; error: string }> {
-
+const token = getCookie(tokenName)
   if (token==='') {
     return {
       data: [],
