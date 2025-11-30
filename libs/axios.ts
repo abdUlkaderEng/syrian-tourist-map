@@ -1,4 +1,3 @@
-"use client";
 
 import axios from "axios";
 import { getCookie } from "cookies-next";
@@ -14,11 +13,12 @@ const api = axios.create({
   },
 });
 
+
+
 // instances
-export const userApi = axios.create({ baseURL: BASE_URL });
+export const userApi =  axios.create({ baseURL: BASE_URL });
 export const adminApi = axios.create({ baseURL: BASE_URL });
 export const superApi = axios.create({ baseURL: BASE_URL });
-
 // attach tokens from cookies
 function getUserToken() {
   return getCookie("user_token");

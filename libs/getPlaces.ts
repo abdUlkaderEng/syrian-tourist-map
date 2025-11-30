@@ -1,5 +1,4 @@
-import { useRouter } from "next/router";
-import api from "./axios";
+import  { adminApi,  superApi, userApi } from "@/libs/axios";
 import { getCookie } from "cookies-next";
 export interface Place {
   place_id: number;
@@ -12,7 +11,8 @@ export interface Place {
 
 export async function getPlaces(
   regionId: string,
-  tokenName: string
+  tokenName: 'user_token' | 'admin_token' | 'super_token',
+  
 ): Promise<{ data: Place[]; error: string }> {
 const token = getCookie(tokenName)
   if (token==='') {
@@ -21,13 +21,33 @@ const token = getCookie(tokenName)
       error: "no-token",
     };
   }
+ 
+  let apiInstance;
+  switch (tokenName) {
+    case "user_token":
+      apiInstance = userApi;
+      break;
+    case "admin_token":
+      apiInstance = adminApi;
+      break;
+    case "super_token":
+      apiInstance = superApi;
+      break;
+
+      default:
+      throw new Error("Invalid token type");
+    
+    }
+    console.log(apiInstance);
+ if (!apiInstance || !apiInstance.get) {
+  throw new Error("apiInstance is not a valid axios instance");
+}
   try {
-    const res = await api.get(`/places`, {
+    
+    const res = await apiInstance.get(`/places`, {
       params: { region_id: regionId },
       withCredentials: true,
-       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      
     });
 
     return {
