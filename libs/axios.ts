@@ -1,59 +1,46 @@
-
 import axios from "axios";
-import { getCookie } from "cookies-next";
 
 const BASE_URL = "http://127.0.0.1:8000/api";
 
+// Default API instance with credentials
 const api = axios.create({
   baseURL: BASE_URL,
-  withCredentials: true,
+  withCredentials: true, // Automatically sends cookies
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
   },
 });
 
-
-
-// instances
-export const userApi =  axios.create({ baseURL: BASE_URL });
-export const adminApi = axios.create({ baseURL: BASE_URL });
-export const superApi = axios.create({ baseURL: BASE_URL });
-// attach tokens from cookies
-function getUserToken() {
-  return getCookie("user_token");
-}
-function getAdminToken() {
-  return getCookie("admin_token");
-}
-function getSuperToken() {
-  return getCookie("super_token");
-}
-
-// super admin interceptor
-superApi.interceptors.request.use((config) => {
-  const token = getSuperToken();
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
+// API instances with credentials enabled (tokens sent via cookies)
+export const userApi = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true, // Sends user_token cookie automatically
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
 });
 
-// admin interceptor
-adminApi.interceptors.request.use((config) => {
-  const token = getAdminToken();
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
+export const adminApi = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true, // Sends admin_token cookie automatically
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
 });
 
-// user interceptor
-userApi.interceptors.request.use((config) => {
-  const token = getUserToken();
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
+export const superApi = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true, // Sends super_token cookie automatically
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
 });
 
 export default api;
-
-
 
 // import axios, { AxiosRequestConfig } from "axios";
 // import { getCookie } from "cookies-next";

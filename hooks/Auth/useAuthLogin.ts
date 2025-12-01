@@ -4,30 +4,25 @@ import { useState } from "react";
 import axios, { AxiosInstance } from "axios";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/Components/Toast/useToast";
-import { setCookie } from "cookies-next";
+import { setUserNameCookie, setTokenCookie } from "@/hooks/useUserName";
+
 export interface AuthLoginOptions<TResponse> {
   apiInstance?: AxiosInstance;
   endpoint: string;
   extractToken: (response: TResponse) => string;
   extractName: (response: TResponse) => string;
-  tokenCookieKey: string;
-  nameCookieKey: string;
+  tokenCookieName?: string;
   redirectTo?: string;
-  setAuthHeader?: (token: string) => void;
 }
 
-export function useAuthLogin<TResponse>(
-  options: AuthLoginOptions<TResponse>
-) {
+export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
   const {
     apiInstance = axios,
     endpoint,
     extractToken,
     extractName,
-    tokenCookieKey,
-    nameCookieKey,
+    tokenCookieName = "user_token",
     redirectTo,
-    setAuthHeader,
   } = options;
 
   const [loading, setLoading] = useState(false);
@@ -42,26 +37,13 @@ export function useAuthLogin<TResponse>(
         withCredentials: true,
       });
 
+      // Extract and store token from response
       const token = extractToken(res.data);
+      setTokenCookie(token, tokenCookieName);
+
+      // Extract and store username
       const userName = extractName(res.data);
-
-      setCookie(tokenCookieKey, token, {
-        secure: true,
-        sameSite: "lax",
-        maxAge: 60 * 60 * 24 * 7, 
-            });
-
-      setCookie(nameCookieKey, userName, {
-        secure: true,
-        sameSite: "lax",
-        maxAge: 60 * 60 * 24 * 7,
-      });
-
-      if (setAuthHeader) {
-        setAuthHeader(token);
-      } else {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      }
+      setUserNameCookie(userName);
 
       showToast({
         title: "تم تسجيل الدخول",

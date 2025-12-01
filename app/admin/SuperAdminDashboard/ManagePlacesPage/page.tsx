@@ -14,7 +14,7 @@ const ManagePlacesPage = () => {
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
   
   useEffect(() => {
-    getPlaces("", 'super_token')
+    getPlaces("", 'super')
       .then(setPlaces)
       .catch(() => setError("Failed to load places"))
       .finally(() => setLoading(false));

@@ -17,7 +17,6 @@ export async function updatePlace(
 ): Promise<Place | null> {
   try {
     const res = await superApi.post(`/updateplace/${placeId}`, data);
-    console.log(res.data.data)
     return res.data.data;
   } catch (error) {
     console.error("Error updating place:", error);

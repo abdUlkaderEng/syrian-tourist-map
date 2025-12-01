@@ -2,11 +2,11 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
-import api, { superApi } from "../../libs/axios";
+import api from "../../libs/axios";
 import InputField from "@/Components/Form/InputField";
 import Button from "@/Components/Form/Button";
 import FormContainer from "@/Components/Form/FormContainer";
-import { useAuthLogin } from "@/hooks/useAuthLogin";
+import { useAuthLogin } from "@/hooks/Auth/useAuthLogin";
 
 interface SuperAdminLoginResponse {
   token: string;
@@ -29,17 +29,10 @@ const AdminLoginPage = () => {
   const { login, loading } = useAuthLogin<SuperAdminLoginResponse>({
     apiInstance: api,
     endpoint: "/superadmin/login",
-
     extractToken: (res) => res.token,
     extractName: (res) => res.superadmin.username,
-    tokenCookieKey: "super_token",
-    nameCookieKey:'super_name',
+    tokenCookieName: "super_token",
     redirectTo: "/admin/SuperAdminDashboard",
-
-    setAuthHeader: (token) => {
-      superApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    },
   });
 
   const {

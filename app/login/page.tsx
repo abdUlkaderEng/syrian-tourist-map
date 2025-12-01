@@ -1,13 +1,13 @@
 "use client";
 import z from "zod";
-import api, { userApi } from "../../libs/axios";
+import api from "../../libs/axios";
 import Link from "next/link";
 import Button from "@/Components/Form/Button";
 import FormContainer from "@/Components/Form/FormContainer";
 import InputField from "@/Components/Form/InputField";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuthLogin } from "@/hooks/useAuthLogin";
+import { useAuthLogin } from "@/hooks/Auth/useAuthLogin";
 
 interface UserLoginResponse {
   token: string;
@@ -29,16 +29,10 @@ const LoginPage = () => {
   const { login, loading } = useAuthLogin<UserLoginResponse>({
     apiInstance: api,
     endpoint: "/login",
-
-    extractToken: (res) => res.token,
+    extractToken: (res: UserLoginResponse) => res.token,
     extractName: (res: UserLoginResponse) => res.user.name,
-    tokenCookieKey: "user_token",
-    nameCookieKey:'user_name',
+    tokenCookieName: "user_token",
     redirectTo: "/",
-    setAuthHeader: (token) => {
-      userApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      userApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    },
   });
 
   const {

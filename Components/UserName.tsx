@@ -1,18 +1,19 @@
 "use client";
 
+import { useUserName } from "@/hooks/useUserName";
+
 interface StoredValueProps {
-  storageKey: string;
+  userKey: string;
   label?: string;
   className?: string;
 }
 
 export default function UserName({
-  storageKey,
+  userKey: storageKey,
   label,
   className,
 }: StoredValueProps) {
-  const value =
-    typeof window !== "undefined" ? localStorage.getItem(storageKey) : null;
+  const value = useUserName(storageKey);
 
   return (
     <div

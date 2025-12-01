@@ -1,5 +1,4 @@
-import  { adminApi,  superApi, userApi } from "@/libs/axios";
-import { getCookie } from "cookies-next";
+import { adminApi, superApi, userApi } from "@/libs/axios";
 export interface Place {
   place_id: number;
   name: string;
@@ -11,45 +10,26 @@ export interface Place {
 
 export async function getPlaces(
   regionId: string,
-  tokenName: 'user_token' | 'admin_token' | 'super_token',
-  
+  apiType: "user" | "admin" | "super"
 ): Promise<{ data: Place[]; error: string }> {
-const token = getCookie(tokenName)
-  if (token==='') {
-    return {
-      data: [],
-      error: "no-token",
-    };
-  }
- 
   let apiInstance;
-  switch (tokenName) {
-    case "user_token":
+  switch (apiType) {
+    case "user":
       apiInstance = userApi;
       break;
-    case "admin_token":
+    case "admin":
       apiInstance = adminApi;
       break;
-    case "super_token":
+    case "super":
       apiInstance = superApi;
       break;
-
-      default:
-      throw new Error("Invalid token type");
-    
-    }
-    console.log(apiInstance);
- if (!apiInstance || !apiInstance.get) {
-  throw new Error("apiInstance is not a valid axios instance");
-}
+    default:
+      throw new Error("Invalid API type");
+  }
   try {
-    
     const res = await apiInstance.get(`/places`, {
       params: { region_id: regionId },
-      withCredentials: true,
-      
     });
-
     return {
       data: res.data.data,
       error: "",

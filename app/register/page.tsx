@@ -6,7 +6,7 @@ import Link from "next/link";
 import InputField from "@/Components/Form/InputField";
 import Button from "@/Components/Form/Button";
 import FormContainer from "@/Components/Form/FormContainer";
-import { useAuthRegister } from "@/hooks/useAuthRegister";
+import { useAuthRegister } from "@/hooks/Auth/useAuthRegister";
 
 const registerSchema = z
   .object({

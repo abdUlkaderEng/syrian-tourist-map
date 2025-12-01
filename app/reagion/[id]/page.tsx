@@ -6,7 +6,7 @@ export default async function RegionPage({
   params: { id: string };
 }) {
   const { id } = await params;
-  const places = await getPlaces(id,'user_token');
+  const places = await getPlaces(id,'user');
 
   return (
     <div className="animate-enter">
