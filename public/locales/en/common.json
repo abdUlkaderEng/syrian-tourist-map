@@ -1,56 +1,155 @@
 {
-    "title": "Syrian Tourist Map",
-    "description": "Find tourist attractions, hotels and restaurants across Syria.",
-    "nav": {
-        "home": "Home",
-        "map": "Map",
-        "attractions": "Attractions",
-        "hotels": "Hotels",
-        "restaurants": "Restaurants",
-        "about": "About",
-        "contact": "Contact"
+  "appName": "Syrian Tourist Map",
+  "title": "Syrian Tourist Map",
+  "description": "Find tourist attractions, hotels and restaurants across Syria.",
+  "hello": "Hello",
+  "welcome": "Welcome",
+  "nav": {
+    "home": "Home",
+    "map": "Map",
+    "attractions": "Attractions",
+    "hotels": "Hotels",
+    "restaurants": "Restaurants",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "buttons": {
+    "search": "Search",
+    "clear": "Clear",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "loadMore": "Load more",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "next": "Next",
+    "previous": "Previous",
+    "check": "Check"
+  },
+  "search": {
+    "placeholder": "Search places, addresses or keywords",
+    "noResults": "No results found"
+  },
+  "map": {
+    "label": "Map",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "currentLocation": "Current location",
+    "layers": "Map layers",
+    "satellite": "Satellite",
+    "street": "Street",
+    "viewOnMap": "View on map",
+    "directions": "Directions"
+  },
+  "attraction": {
+    "rating": "Rating",
+    "reviews": "{count} reviews",
+    "openHours": "Open hours",
+    "closed": "Closed",
+    "details": "Details",
+    "description": "Description"
+  },
+  "place": {
+    "phone": "Phone",
+    "address": "Address",
+    "hours": "Hours",
+    "distance": "Distance",
+    "price": "Price",
+    "currency": "Currency",
+    "places": "Places",
+    "placeName": "Place name",
+    "placeLocation": "Place location",
+    "addPlace": "Add place"
+  },
+  "auth": {
+    "login": "Log in",
+    "logout": "Log out",
+    "checkAdmin": "Check admin",
+    "signup": "Sign up",
+    "register": "Register",
+    "username": "Username",
+    "password": "Password",
+    "confirmpassword": "Confirm password",
+    "email": "Email",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "have an account?"
+  },
+  "profile": {
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "footer": {
+    "copyright": "© {year} Syrian Tourist Map. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "status": {
+    "loading": "Loading...",
+    "success": "Success",
+    "error": "Error",
+    "tryAgain": "Please try again",
+    "unauthorized": "Unauthorized"
+  },
+  "form": {
+    "required": "Required",
+    "longerName": "Name must be longer than 3 characters",
+    "longerPassword": "Password must be longer than 6 characters",
+    "invalidPassword": "Invalid password",
+    "confirmPasswordDontMatch": "Confirm password not match",
+
+    "requiredField": "This field is required",
+    "invalidEmail": "Invalid email",
+    "optional": "Optional"
+  },
+  "misc": {
+    "back": "Back",
+    "more": "More",
+    "download": "Download",
+    "upload": "Upload",
+    "filter": "Filter",
+    "sort": "Sort",
+    "favorites": "Favorites",
+    "share": "Share",
+    "bookings": "Bookings",
+    "tours": "Tours"
+  },
+  "welcomes": {
+    "adminDashboard": "Dashboard admin:"
+  },
+  "admin": {
+    "managePlaces": "Place Management",
+    "manageUsers": "Users Management",
+    "manageAdmins": "Admins Management"
+  },
+  "editPlace": {
+    "title": "Edit Place",
+    "toastSuccess": "Place updated successfully",
+    "toastError": "Failed to update place. Please try again.",
+    "labels": {
+      "name": "Name",
+      "location": "Location",
+      "description": "Description",
+      "googleMapUrl": "Google Map URL",
+      "regionId": "Region ID"
     },
-    "buttons": {
-        "search": "Search",
-        "clear": "Clear",
-        "submit": "Submit",
-        "cancel": "Cancel",
-        "loadMore": "Load more"
+    "place": {
+      "placeholder": {
+        "name": "Enter place name",
+        "location": "Enter location",
+        "description": "Enter place description",
+        "googleMapUrl": "https://...",
+        "regionId": "Region ID"
+      }
     },
-    "search": {
-        "placeholder": "Search places, addresses or keywords",
-        "noResults": "No results found"
-    },
-    "map": {
-        "zoomIn": "Zoom in",
-        "zoomOut": "Zoom out",
-        "currentLocation": "Current location",
-        "layers": "Map layers",
-        "satellite": "Satellite",
-        "street": "Street"
-    },
-    "attraction": {
-        "rating": "Rating",
-        "reviews": "{count} reviews",
-        "openHours": "Open hours",
-        "closed": "Closed"
-    },
-    "errors": {
-        "network": "Network error. Please try again.",
-        "notFound": "Not found.",
-        "unexpected": "An unexpected error occurred."
-    },
-    "auth": {
-        "login": "Log in",
-        "logout": "Log out",
-        "signup": "Sign up",
-        "username": "Username",
-        "password": "Password",
-        "forgotPassword": "Forgot password?"
-    },
-    "footer": {
-        "copyright": "© {year} Syrian Tourist Map. All rights reserved.",
-        "privacy": "Privacy Policy",
-        "terms": "Terms of Service"
+    "actions": {
+      "saveChanges": "Save changes",
+      "saving": "Saving...",
+      "cancel": "Cancel"
     }
+  }
 }

@@ -8,7 +8,8 @@ import InputField from "@/Components/Form/InputField";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuthLogin } from "@/hooks/Auth/useAuthLogin";
-
+import { useTranslations } from "next-intl";
+import { useLocale } from "../Providers/LocaleContext";
 interface UserLoginResponse {
   token: string;
   token_type: string;
@@ -19,13 +20,15 @@ interface UserLoginResponse {
   };
 }
 
-const userLoginSchema = z.object({
-  email: z.string().email("الإيميل غير صالح").nonempty("الإيميل مطلوب"),
-  password: z.string().nonempty("كلمة المرور مطلوبة"),
-});
-
-type userLoginForm = z.infer<typeof userLoginSchema>;
 const LoginPage = () => {
+  const t = useTranslations();
+
+  const userLoginSchema = z.object({
+    email: z.string().email(t("form.invalidEmail")).nonempty(t("form.requiredField")),
+    password: z.string().nonempty(t("form.requiredField")),
+  });
+
+  type userLoginForm = z.infer<typeof userLoginSchema>;
   const { login, loading } = useAuthLogin<UserLoginResponse>({
     apiInstance: api,
     endpoint: "/login",
@@ -47,32 +50,33 @@ const LoginPage = () => {
     await login(data);
   }
 
+
   return (
-    <FormContainer title="تسجيل الدخول" onSubmit={handleSubmit(onSubmit)}>
+    <FormContainer title={t("auth.login")} onSubmit={handleSubmit(onSubmit)}>
       <InputField
         type="email"
-        placeholder="البريد الإلكتروني"
+        placeholder={t("auth.email")}
         {...register("email")}
         error={errors.email?.message}
       />
 
       <InputField
         type="password"
-        placeholder="كلمة المرور"
+        placeholder={t("auth.password")}
         {...register("password")}
         error={errors.password?.message}
       />
 
       <Button type="submit" loading={loading}>
-        تسجيل الدخول
+        {t("auth.login")}
       </Button>
 
       <p className="pt-4 text-sm text-[#832411] text-center">
-        ليس لديك حساب؟{" "}
+        {t("auth.noAccount")}{" "}
         <Link
           className="  hover:border-b-[#832411] border-b-2 duration-250 transition-all font-bold border-[#83241100]"
           href={"/register"}>
-          إنشاء حساب{" "}
+          {t("auth.register")}
         </Link>
       </p>
     </FormContainer>

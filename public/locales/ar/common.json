@@ -1,76 +1,164 @@
 {
-    "appName": "خريطة سياحية لسوريا",
-    "hello": "مرحبًا",
-    "welcome": "أهلاً وسهلاً",
+  "appName": "خريطة سياحية لسوريا",
+  "title": "خريطة سياحية لسوريا",
+  "description": "ابحث عن المعالم السياحية، الفنادق والمطاعم في سوريا.",
+  "hello": "مرحبًا",
+  "welcome": "أهلاً وسهلاً",
+  "nav": {
     "home": "الرئيسية",
+    "map": "الخريطة",
+    "attractions": "المعالم",
+    "hotels": "فنادق",
+    "restaurants": "مطاعم",
     "about": "حول",
-    "contact": "اتصل بنا",
+    "contact": "اتصل بنا"
+  },
+  "buttons": {
     "search": "بحث",
-    "searchPlaceholder": "ابحث عن أماكن، فنادق أو مطاعم...",
-    "login": "تسجيل الدخول",
-    "logout": "تسجيل الخروج",
-    "register": "إنشاء حساب",
-    "username": "اسم المستخدم",
-    "password": "كلمة المرور",
-    "email": "البريد الإلكتروني",
+    "clear": "مسح",
     "submit": "تأكيد",
     "cancel": "إلغاء",
+    "loadMore": "تحميل المزيد",
     "save": "حفظ",
     "edit": "تعديل",
     "delete": "حذف",
-    "update": "تحديث",
-    "create": "إنشاء",
-    "close": "إغلاق",
-    "next": "التالي",
-    "previous": "السابق",
     "confirm": "تأكيد",
     "yes": "نعم",
     "no": "لا",
     "ok": "حسنًا",
-    "language": "اللغة",
-    "settings": "الإعدادات",
-    "profile": "الملف الشخصي",
-    "map": "الخريطة",
+    "next": "التالي",
+    "previous": "السابق",
+    "check": "تحقق"
+  },
+  "search": {
+    "placeholder": "ابحث عن أماكن، فنادق أو مطاعم...",
+    "noResults": "لم يتم العثور على نتائج"
+  },
+  "map": {
+    "label": "الخريطة",
+    "zoomIn": "تكبير",
+    "zoomOut": "تصغير",
+    "currentLocation": "الموقع الحالي",
+    "layers": "طبقات الخريطة",
+    "satellite": "قمر صناعي",
+    "street": "خريطة الشوارع",
     "viewOnMap": "عرض على الخريطة",
-    "directions": "اتجاهات",
-    "attractions": "المعالم",
-    "hotels": "فنادق",
-    "restaurants": "مطاعم",
-    "tours": "جولات",
-    "bookings": "الحجوزات",
-    "favorites": "المفضلة",
-    "share": "مشاركة",
+    "directions": "اتجاهات"
+  },
+  "attraction": {
+    "rating": "التقييم",
+    "reviews": "{count} تعليق",
+    "openHours": "ساعات العمل",
+    "closed": "مغلق",
+    "details": "تفاصيل",
+    "description": "الوصف"
+  },
+  "place": {
+    "phone": "هاتف",
+    "address": "العنوان",
+    "hours": "ساعات العمل",
+    "distance": "المسافة",
+    "price": "السعر",
+    "currency": "العملة",
+    "places": "الأماكن",
+    "placeName": "اسم المكان",
+    "placeLocation": "عنوان المكان",
+    "addPlace": "إضافة مكان"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "checkAdmin": "التحقق من المسؤول",
+    "signup": "إنشاء حساب",
+    "register": "إنشاء حساب",
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "confirmpassword": "تأكيد كلمة المرور",
+    "email": "البريد الإلكتروني",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "noAccount": "ليس لديك حساب؟",
+    "haveAccount": "لديك حساب؟"
+  },
+  "profile": {
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات"
+  },
+  "footer": {
+    "copyright": "© {year} خريطة سياحية لسوريا. جميع الحقوق محفوظة.",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة"
+  },
+  "status": {
+    "loading": "جارٍ التحميل...",
+    "success": "نجاح",
+    "error": "خطأ",
+    "tryAgain": "حاول مرة أخرى",
+    "unauthorized": "غير مصرح"
+  },
+  "form": {
+    "required": "مطلوب",
+    "longerName": "الاسم يجب أن يكون أكثر من 3 أحرف",
+    "longerPassword": "كلمة المرور يجب أن تكون أكثر من 6 أحرف",
+    "invalidPassword": "كلمة المرور غير صحيحة",
+    "confirmPasswordDontMatch": "كلمتا المرور غير متطابقتان",
+    "requiredField": "حقل مطلوب",
+    "invalidEmail": "بريد إلكتروني غير صالح",
+    "optional": "اختياري"
+  },
+  "misc": {
+    "back": "رجوع",
+    "more": "المزيد",
     "download": "تنزيل",
     "upload": "تحميل",
     "filter": "تصفية",
     "sort": "ترتيب",
-    "details": "تفاصيل",
-    "description": "الوصف",
-    "phone": "هاتف",
-    "address": "العنوان",
-    "hours": "ساعات العمل",
-    "rating": "التقييم",
-    "reviews": "التعليقات",
-    "distance": "المسافة",
-    "price": "السعر",
-    "currency": "العملة",
-    "from": "من",
-    "to": "إلى",
-    "day": "يوم",
-    "days": "أيام",
-    "month": "شهر",
-    "months": "أشهر",
-    "loading": "جارٍ التحميل...",
-    "noResults": "لم يتم العثور على نتائج",
-    "notFound": "غير موجود",
-    "unauthorized": "غير مصرح",
-    "success": "نجاح",
-    "error": "خطأ",
-    "required": "مطلوب",
-    "requiredField": "حقل مطلوب",
-    "invalidEmail": "بريد إلكتروني غير صالح",
-    "tryAgain": "حاول مرة أخرى",
-    "back": "رجوع",
-    "more": "المزيد",
-    "optional": "اختياري"
+    "favorites": "المفضلة",
+    "share": "مشاركة",
+    "bookings": "الحجوزات",
+    "tours": "جولات"
+  },
+  "welcomes": {
+    "adminDashboard": "لوحة تحكم المسؤول"
+  },
+  "admin": {
+    "managePlaces": "إدارة الأماكن",
+    "manageUsers": "إدارة المستخدمين",
+    "manageAdmins": "إدارة المسؤولين"
+  },
+  "successMessages": {
+    "placeAdded": "تمت إضافة المكان بنجاح",
+    "placeUpdated": "تم تحديث المكان بنجاح",
+    "placeDeleted": "تم حذف المكان بنجاح"
+  },
+  "errorMessages": {
+    "placeAddFailed": "فشل في إضافة المكان",
+    "placeUpdateFailed": "فشل في تحديث المكان",
+    "placeDeleteFailed": "فشل في حذف المكان"
+  },
+  "editPlace": {
+    "title": "تعديل المكان",
+    "toastSuccess": "تم تحديث المكان بنجاح",
+    "toastError": "فشل تحديث المكان. يرجى المحاولة مرة أخرى.",
+    "labels": {
+      "name": "اسم المكان",
+      "location": "الموقع",
+      "description": "الوصف",
+      "googleMapUrl": "رابط خريطة جوجل",
+      "regionId": "معرّف المنطقة"
+    },
+    "place": {
+      "placeholder": {
+        "name": "أدخل اسم المكان",
+        "location": "أدخل موقع المكان",
+        "description": "أدخل وصف المكان",
+        "googleMapUrl": "https://...",
+        "regionId": "معرّف المنطقة"
+      }
+    },
+    "actions": {
+      "saveChanges": "حفظ التغييرات",
+      "saving": "جاري الحفظ...",
+      "cancel": "إلغاء"
+    }
+  }
 }

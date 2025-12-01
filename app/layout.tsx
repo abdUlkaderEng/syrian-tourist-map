@@ -7,6 +7,8 @@ import HomeLink from "./Components/NavBarComponents/HomeLink";
 import SyriaMapBG from "../Components/SyriaMapBG";
 import { ToastProvider } from "@/Components/Toast/ToastProvider";
 import LoginLogoutButton from "./Components/NavBarComponents/LoginLogoutButton";
+import { LocaleProvider } from "./Providers/LocaleProvider";
+import { LocaleContextProvider } from "./Providers/LocaleContext";
 
 const primaryFont = Roboto({
   weight: ["400", "700"],
@@ -37,17 +39,21 @@ export default function RootLayout({
       <body
         className={`${primaryFont.variable} ${arabicFont.variable} antialiased`}>
         <SyriaMapBG />
-          <ToastProvider>
-        <nav className="navbar fixed top-0 left-0 right-0 bg-transparent backdrop-blur-sm z-50 hover:backdrop-blur-lg transition-all duration-400 flex justify-between">
-          <HomeLink />
-          <div className="w-[12%] flex justify-around items-center">
-            <LanguageToggle />
-            <LoginLogoutButton />
-            <AdminLink />
-          </div>
-        </nav>
-          <main className="pt-20">{children}</main>
-        </ToastProvider>
+        <LocaleContextProvider>
+          <LocaleProvider>
+            <ToastProvider>
+              <nav className="navbar fixed top-0 left-0 right-0 bg-transparent backdrop-blur-sm z-50 hover:backdrop-blur-lg transition-all duration-400 flex justify-between">
+                <HomeLink />
+                <div className="w-[12%] flex justify-around items-center">
+                  <LanguageToggle />
+                  <LoginLogoutButton />
+                  <AdminLink />
+                </div>
+              </nav>
+              <main className="pt-20">{children}</main>
+            </ToastProvider>
+          </LocaleProvider>
+        </LocaleContextProvider>
       </body>
     </html>
   );

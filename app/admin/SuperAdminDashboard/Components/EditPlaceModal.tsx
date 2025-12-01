@@ -4,6 +4,7 @@ import { Place } from "@/libs/getPlaces";
 import { updatePlace } from "@/libs/admin";
 import { X } from "lucide-react";
 import { useToast } from "@/Components/Toast/useToast";
+import { useTranslations } from "next-intl";
 
 interface EditPlaceModalProps {
   place: Place | null;
@@ -22,6 +23,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState("");
   const {showToast} = useToast()
+  const t = useTranslations();
 
   useEffect(() => {
    
@@ -59,15 +61,15 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
       onSuccess(result);
       onClose();
       showToast({
-        title:'تم تحديث المكان بنجاح',
-        type:'success'
-      })
+        title: t("editPlace.toastSuccess"),
+        type: "success",
+      });
     } else {
-      setError("فشل تحديث المكان. يرجى المحاولة مرة أخرى.");
+      setError(t("editPlace.toastError"));
       showToast({
-        title:'فشل تحديث المكان ',
-        type:'error'
-      })
+        title: t("editPlace.toastError"),
+        type: "error",
+      });
     }
     setLoading(false);
   };
@@ -79,7 +81,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
       <div className=" glass max-w-lg w-full max-h-screen   overflow-y-auto">
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-gray-200">
-          <h2 className="text-2xl  ">تعديل المكان</h2>
+          <h2 className="text-2xl  ">{t("editPlace.title")}</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-[#FF0000] cursor-pointer transition">
@@ -91,13 +93,13 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {error && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-              {error}
+                  {error}
             </div>
           )}
 
           {/* Name */}
           <div>
-            <label className="input-label pb-1">اسم المكان</label>
+            <label className="input-label pb-1">{t("editPlace.labels.name")}</label>
             <input
               type="text"
               name="name"
@@ -105,13 +107,13 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
               onChange={handleChange}
               required
               className="input-base"
-              placeholder="أدخل اسم المكان"
+              placeholder={t("editPlace.place.placeholder.name")}
             />
           </div>
 
           {/* Location */}
           <div>
-            <label className="input-label pb-1">الموقع</label>
+            <label className="input-label pb-1">{t("editPlace.labels.location")}</label>
             <input
               type="text"
               name="location"
@@ -119,46 +121,46 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
               onChange={handleChange}
               required
               className="input-base"
-              placeholder="أدخل موقع المكان"
+              placeholder={t("editPlace.place.placeholder.location")}
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="input-label pb-1">الوصف</label>
+            <label className="input-label pb-1">{t("editPlace.labels.description")}</label>
             <textarea
               name="description"
               value={formData.description || ""}
               onChange={handleChange}
               rows={4}
               className="input-base resize-none"
-              placeholder="أدخل وصف المكان"
+              placeholder={t("editPlace.place.placeholder.description")}
             />
           </div>
 
           {/* Google Map URL */}
           <div>
-            <label className="input-label pb-1">رابط خريطة جوجل</label>
+            <label className="input-label pb-1">{t("editPlace.labels.googleMapUrl")}</label>
             <input
               type="url"
               name="google_map_url"
               value={formData.google_map_url || ""}
               onChange={handleChange}
               className="input-base"
-              placeholder="https://..."
+              placeholder={t("editPlace.place.placeholder.googleMapUrl")}
             />
           </div>
 
           {/* Region ID */}
           <div>
-            <label className="input-label pb-1">معرّف المنطقة</label>
+            <label className="input-label pb-1">{t("editPlace.labels.regionId")}</label>
             <input
               type="number"
               name="region_id"
               value={formData.region_id || 0}
               onChange={handleChange}
               className="input-base"
-              placeholder="معرّف المنطقة"
+              placeholder={t("editPlace.place.placeholder.regionId")}
             />
           </div>
 
@@ -168,13 +170,13 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
               type="submit"
               disabled={loading}
               className="flex-1 btn-normal">
-              {loading ? "جاري الحفظ..." : "حفظ التغييرات"}
+              {loading ? t("editPlace.actions.saving") : t("editPlace.actions.saveChanges")}
             </button>
             <button
               type="button"
               onClick={onClose}
               className="flex-1 btn-danger ">
-              إلغاء
+              {t("editPlace.actions.cancel")}
             </button>
           </div>
         </form>

@@ -7,22 +7,25 @@ import InputField from "@/Components/Form/InputField";
 import Button from "@/Components/Form/Button";
 import FormContainer from "@/Components/Form/FormContainer";
 import { useAuthRegister } from "@/hooks/Auth/useAuthRegister";
+import { useTranslations } from "next-intl";
 
-const registerSchema = z
-  .object({
-    name: z.string().min(3, "الاسم يكون 3 أحرف على الأقل"),
-    email: z.string().email("البريد غير صالح"),
-    password: z.string().min(6, "كلمة المرور  تكون 6 أحرف على الأقل"),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "كلمتا المرور غير متطابقتين",
-    path: ["confirmPassword"],
-  });
-
-type RegisterForm = z.infer<typeof registerSchema>;
 
 const RegisterPage = () => {
+  const { authRegister, loading } = useAuthRegister();
+  const t = useTranslations();
+  const registerSchema = z
+    .object({
+      name: z.string().min(3, t('form.longerName')),
+      email: z.string().email(t('form.invalidEmail')).nonempty(t('form.requiredField')),
+      password: z.string().min(6, t('form.longerPassword')),
+      confirmPassword: z.string(),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: t('form.confirmPasswordDontMatch'),
+      path: ["confirmPassword"],
+    });
+  
+  type RegisterForm = z.infer<typeof registerSchema>;
   const {
     register,
     handleSubmit,
@@ -31,43 +34,42 @@ const RegisterPage = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const { authRegister, loading } = useAuthRegister();
   return (
-    <FormContainer title="إنشاء حساب" onSubmit={handleSubmit(authRegister)}>
+    <FormContainer title={t('auth.register')} onSubmit={handleSubmit(authRegister)}>
       <InputField
         type="text"
-        placeholder="البريد الإلكتروني"
+        placeholder={t('auth.username')}
         {...register("name")}
         error={errors.email?.message}
       />
       <InputField
         type="email"
-        placeholder="البريد الإلكتروني"
+        placeholder={t('auth.email')}
         {...register("email")}
         error={errors.email?.message}
       />
       <InputField
         type="password"
-        placeholder="كلمة المرور"
+        placeholder={t('auth.password')}
         {...register("password")}
         error={errors.email?.message}
       />
       <InputField
         type="password"
-        placeholder="تأكيد كلمة المرور"
+        placeholder={t('auth.confirmpassword')}
         {...register("confirmPassword")}
         error={errors.email?.message}
       />
       <Button type="submit" loading={loading}>
-        تسجيل الدخول
-      </Button>
+        {(t('auth.register'))}
+                     </Button>
 
       <p className="text-sm text-center  text-[#832411]">
-        لديك حساب؟{" "}
+        {t('auth.haveAccount')}{" "}
         <Link
           href="/login"
           className=" hover:border-b-[#832411] border-b-2 p-0 duration-250 transition-all font-bold border-[#83241100] ">
-          سجّل الدخول
+          {t('auth.login')}
         </Link>
       </p>
     </FormContainer>

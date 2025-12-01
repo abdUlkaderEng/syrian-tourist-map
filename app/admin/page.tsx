@@ -7,6 +7,7 @@ import InputField from "@/Components/Form/InputField";
 import Button from "@/Components/Form/Button";
 import FormContainer from "@/Components/Form/FormContainer";
 import { useAuthLogin } from "@/hooks/Auth/useAuthLogin";
+import { useTranslations } from "next-intl";
 
 interface SuperAdminLoginResponse {
   token: string;
@@ -18,14 +19,15 @@ interface SuperAdminLoginResponse {
   };
 }
 
-const adminSchema = z.object({
-  email: z.email().min(1, "الرجاء إدخال البريد الإلكتروني"),
-  password: z.string().min(1, "الرجاء إدخال كلمة المرور "),
-});
 
-type AdminForm = z.infer<typeof adminSchema>;
 
 const AdminLoginPage = () => {
+  const t = useTranslations();
+  const adminSchema = z.object({
+    email: z.email().min(1, t("form.requiredField")),
+    password: z.string().min(1, t("form.requiredField")),
+  });
+  type AdminForm = z.infer<typeof adminSchema>;
   const { login, loading } = useAuthLogin<SuperAdminLoginResponse>({
     apiInstance: api,
     endpoint: "/superadmin/login",
@@ -48,23 +50,23 @@ const AdminLoginPage = () => {
   }
 
   return (
-    <FormContainer title="التحقق من المشرف" onSubmit={handleSubmit(onSubmit)}>
+    <FormContainer title={t('auth.checkAdmin')} onSubmit={handleSubmit(onSubmit)}>
       <InputField
         type="email"
-        placeholder="البريد الإلكتروني"
+        placeholder={t('auth.email')}
         {...register("email")}
         error={errors.email?.message}
       />
 
       <InputField
         type="password"
-        placeholder="كلمة المرور"
+        placeholder={t('auth.password')}
         {...register("password")}
         error={errors.password?.message}
       />
 
       <Button type="submit" loading={loading}>
-        تسجيل الدخول
+        {t('buttons.check')}
       </Button>
     </FormContainer>
   );

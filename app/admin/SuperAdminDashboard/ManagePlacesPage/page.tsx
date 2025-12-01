@@ -7,12 +7,13 @@ import { PenBox, Trash2 } from "lucide-react";
 import EditPlaceModal from "../Components/EditPlaceModal";
 import { getCookie } from "cookies-next";
 import { cookies } from "next/headers";
+import { useTranslations } from "next-intl";
 const ManagePlacesPage = () => {
   const [places, setPlaces] = useState<{data:Place[],error:string}>({data:[],error:''});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
-  
+  const t = useTranslations();  
   useEffect(() => {
     getPlaces("", 'super')
       .then(setPlaces)
@@ -51,11 +52,11 @@ const ManagePlacesPage = () => {
     <>
       <div className="max-w-5xl mx-auto p-6">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-semibold text-gray-800">الأماكن</h1>
+          <h1 className="text-3xl font-semibold text-gray-800">{t("place.places")}</h1>
           <Link
             href="/admin/SuperAdminDashboard/AddPlacePage"
             className="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 transition shadow-sm">
-            إضافة مكان
+            {t("place.addPlace")}
           </Link>
         </div>
 
@@ -63,8 +64,8 @@ const ManagePlacesPage = () => {
           <table className="w-full text-center">
             <thead>
               <tr className="">
-                <th className="p-4 ">اسم المكان</th>
-                <th className="p-4 ">عنوان المكان</th>
+                <th className="p-4 ">{t("place.placeName")}</th>
+                <th className="p-4 ">{t("place.placeLocation")}</th>
                 <th className="p-4"></th>
               </tr>
             </thead>
