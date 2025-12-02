@@ -6,7 +6,6 @@ import { useState } from "react";
 import ReadMoreButton from "../../../Components/ReadMoreButton";
 import { MapPinned, Star } from "lucide-react";
 import { useToast } from "@/Components/Toast/useToast";
-import { title } from "process";
 import { useRouter } from "next/navigation";
 import { Place } from "@/libs/getPlaces";
 import { useTranslations } from "next-intl";

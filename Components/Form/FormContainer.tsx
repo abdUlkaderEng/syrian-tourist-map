@@ -1,12 +1,13 @@
 "use client";
 
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 interface FormContainerProps {
   title: string;
   children: ReactNode;
-  onSubmit: () => void;
+  onSubmit?: (e: React.FormEvent) => void;
   className?: string;
+  overflow?: boolean;
 }
 
 export default function FormContainer({
@@ -14,11 +15,14 @@ export default function FormContainer({
   children,
   onSubmit,
   className = "",
+  overflow = false,
 }: FormContainerProps) {
   return (
     <div className="animate-enter min-h-[80%] flex items-center justify-center">
       <div
-        className={` glass p-8 rounded-2xl w-full max-w-md shadow-xl space-y-6 ${className}`}>
+        className={`glass p-8 rounded-2xl w-full max-w-md shadow-xl space-y-6 ${
+          overflow ? "max-h-screen overflow-y-auto" : ""
+        } ${className}`}>
         <form onSubmit={onSubmit} className="space-y-5">
           <h2 className="text-3xl font-bold text-center">{title}</h2>
           {children}

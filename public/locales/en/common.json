@@ -152,8 +152,9 @@
     "logoutFailed": "Logout failed. Please try again.",
     "registerFailed": "Registration failed. Please try again."
   },
-  "editPlace": {
-    "title": "Edit Place",
+  "placeManage": {
+    "editPlace": "Edit place",
+    "AddPlace":"Add place",
     "toastSuccess": "Place updated successfully",
     "toastError": "Failed to update place. Please try again.",
     "labels": {

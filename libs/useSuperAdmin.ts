@@ -8,8 +8,7 @@ export const useSuperAdmin = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
-    console.log(token)
-    if (!token) router.push("/admin"); // إذا ما فيه توكن رجعه على صفحة تسجيل الدخول
+    if (!token) router.push("/admin"); 
     else
     setTimeout(() => setLoading(false), 0);
   }, [router]);

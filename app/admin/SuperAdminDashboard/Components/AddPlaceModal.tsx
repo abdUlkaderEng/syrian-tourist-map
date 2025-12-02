@@ -1,20 +1,19 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { Place } from "@/libs/getPlaces";
-import { updatePlace } from "@/libs/admin";
+import { addPlace } from "@/libs/admin";
 import { useToast } from "@/Components/Toast/useToast";
 import { useTranslations } from "next-intl";
 import Button from "@/Components/Form/Button";
 import Modal from "@/Components/Modal/Modal";
 import InputField from "@/Components/Form/InputField";
 
-interface EditPlaceModalProps {
-  place: Place | null;
+interface AddPlaceModalProps {
   onClose: () => void;
-  onSuccess: (updatedPlace: Place) => void;
+  onSuccess: (newPlace: Place) => void;
 }
 
-const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
+const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
   const [formData, setFormData] = React.useState<Partial<Place>>({
     name: "",
     description: "",
@@ -26,18 +25,6 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
   const [error, setError] = React.useState("");
   const { showToast } = useToast();
   const t = useTranslations();
-
-  useEffect(() => {
-    if (place) {
-      setFormData({
-        name: place.name,
-        description: place.description,
-        location: place.location,
-        google_map_url: place.google_map_url,
-        region_id: place.region_id,
-      });
-    }
-  }, [place]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -51,38 +38,37 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!place?.place_id) return;
-
     setLoading(true);
     setError("");
 
-    const result = await updatePlace(place.place_id, formData);
+    const payload: Omit<Place, "place_id"> = {
+      place_id: 0,
+      name: formData.name || "",
+      description: formData.description || "",
+      location: formData.location || "",
+      google_map_url: formData.google_map_url || "",
+      region_id: formData.region_id || 0,
+    } as unknown as Omit<Place, "place_id">;
+
+    const result = await addPlace(payload as any);
     if (result) {
       onSuccess(result);
       onClose();
-      showToast({
-        title: t("editPlace.toastSuccess"),
-        type: "success",
-      });
+      showToast({ title: t("successMessages.placeAdded"), type: "success" });
     } else {
-      setError(t("editPlace.toastError"));
-      showToast({
-        title: t("editPlace.toastError"),
-        type: "error",
-      });
+      setError(t("errorMessages.placeAddFailed"));
+      showToast({ title: t("errorMessages.placeAddFailed"), type: "error" });
     }
+
     setLoading(false);
   };
 
-  if (!place) return null;
-
   return (
     <Modal
-      title={t("placeManage.editPlace")}
+      title={t("placeManage.AddPlace")}
       onClose={onClose}
       onSubmit={handleSubmit}
-      overflow
-      className="max-w-2xl">
+      overflow>
       <InputField
         type="text"
         name="name"
@@ -92,6 +78,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
         required
         placeholder={t("placeManage.place.placeholder.name")}
       />
+
       <InputField
         type="text"
         name="location"
@@ -101,6 +88,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
         required
         placeholder={t("placeManage.place.placeholder.location")}
       />
+
       <div>
         <label className="mb-1 block font-medium">
           {t("placeManage.labels.description")}
@@ -115,6 +103,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
           rows={6}
         />
       </div>
+
       <InputField
         type="url"
         name="google_map_url"
@@ -123,6 +112,7 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
         onChange={handleChange}
         placeholder={t("placeManage.place.placeholder.googleMapUrl")}
       />
+
       <InputField
         type="number"
         name="region_id"
@@ -131,7 +121,9 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
         onChange={handleChange}
         placeholder={t("placeManage.place.placeholder.regionId")}
       />
+
       {error && <p className="text-red-500 text-sm">{error}</p>}
+
       <div className="flex gap-3 pt-4">
         <Button type="submit" disabled={loading} className="flex-1 btn-normal">
           {loading
@@ -146,4 +138,4 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
   );
 };
 
-export default EditPlaceModal;
+export default AddPlaceModal;

@@ -151,8 +151,9 @@
     "registerFailed": "فشل في إنشاء الحساب. يرجى المحاولة مرة أخرى."
   
   },
-  "editPlace": {
-    "title": "تعديل المكان",
+  "placeManage": {
+    "editPlace": "تعديل المكان",
+    "AddPlace":"إضافة مكان",
     "toastSuccess": "تم تحديث المكان بنجاح",
     "toastError": "فشل تحديث المكان. يرجى المحاولة مرة أخرى.",
     "labels": {

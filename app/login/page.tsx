@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuthLogin } from "@/hooks/Auth/useAuthLogin";
 import { useTranslations } from "next-intl";
-import { useLocale } from "../Providers/LocaleContext";
 interface UserLoginResponse {
   token: string;
   token_type: string;

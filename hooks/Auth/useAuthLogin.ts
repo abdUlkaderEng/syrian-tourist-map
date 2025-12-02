@@ -39,7 +39,10 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
       });
 
       // Extract and store token from response
+
       const token = extractToken(res.data);
+      const dataa = res.data ;
+      console.log('Respons:',dataa);
       setTokenCookie(token, tokenCookieName);
 
       // Extract and store username
