@@ -28,7 +28,9 @@
     "ok": "OK",
     "next": "Next",
     "previous": "Previous",
-    "check": "Check"
+    "check": "Check",
+    "readMore": "Read more",
+    "readLess": "Read less"
   },
   "search": {
     "placeholder": "Search places, addresses or keywords",
@@ -63,6 +65,7 @@
     "places": "Places",
     "placeName": "Place name",
     "placeLocation": "Place location",
+    "summaryPlace": "Place summary",
     "addPlace": "Add place"
   },
   "auth": {
@@ -125,6 +128,28 @@
     "managePlaces": "Place Management",
     "manageUsers": "Users Management",
     "manageAdmins": "Admins Management"
+  },
+  "successMessages": {
+    "hello": "Hello",
+    "placeAdded": "Place added successfully",
+    "placeUpdated": "Place updated successfully",
+    "placeDeleted": "Place deleted successfully",
+   "loginSuccessfuly": "Login successfuly",
+    "logoutSuccessfuly": "Logout successfuly",
+    "registerSuccessfuly": "Register successfuly",
+    "canLoginNow": "You can login now"
+  
+  },
+  "errorMessages": {
+    "placeAddFailed": "Failed to add place",
+    "placeUpdateFailed": "Failed to update place",
+    "placeDeleteFailed": "Failed to delete place",
+    "unauthorizedAccess": "You are not authorized to access this page",
+    "pleaseSignin": "Please sign in",
+    "loginFailed": "Login failed. Please check your credentials and try again.",
+    "somethingWentWrong": "Something went wrong.",
+    "logoutFailed": "Logout failed. Please try again.",
+    "registerFailed": "Registration failed. Please try again."
   },
   "editPlace": {
     "title": "Edit Place",

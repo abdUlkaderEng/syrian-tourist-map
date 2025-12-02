@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios, { AxiosInstance } from "axios";
 import { useToast } from "@/Components/Toast/useToast";
 import { clearUserNameCookie, clearTokenCookie } from "@/hooks/useUserName";
+import { useTranslations } from "next-intl";
 
 export interface AuthLogoutOptions {
   apiInstance?: AxiosInstance;
@@ -16,7 +17,7 @@ export function useAuthLogout(options?: AuthLogoutOptions) {
   const router = useRouter();
   const { showToast } = useToast();
   const [loading, setLoading] = useState(false);
-
+  const t = useTranslations();
   const logout = async () => {
     try {
       setLoading(true);
@@ -37,8 +38,7 @@ export function useAuthLogout(options?: AuthLogoutOptions) {
       clearUserNameCookie();
 
       showToast({
-        title: "تم تسجيل الخروج",
-        description: "تم خروجك بنجاح",
+        title: t('successMessages.logoutSuccessfuly'),
         type: "success",
       });
 
@@ -47,8 +47,7 @@ export function useAuthLogout(options?: AuthLogoutOptions) {
     } catch (err) {
       console.error("Logout error:", err);
       showToast({
-        title: "خطأ في تسجيل الخروج",
-        description: "حدث خطأ أثناء محاولة تسجيل الخروج",
+        title: t('errorMessages.logoutFailed'),
         type: "error",
       });
     } finally {

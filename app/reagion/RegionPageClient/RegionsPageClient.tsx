@@ -9,6 +9,7 @@ import { useToast } from "@/Components/Toast/useToast";
 import { title } from "process";
 import { useRouter } from "next/navigation";
 import { Place } from "@/libs/getPlaces";
+import { useTranslations } from "next-intl";
 
 
 
@@ -18,6 +19,7 @@ interface RegionsPageClientProps {
 
 export default function RegionsPageClient({ places }: RegionsPageClientProps) {
  const router = useRouter()
+ const t = useTranslations();
  
   const [expandedCards, setExpandedCards] = useState<{
     [key: number]: boolean;
@@ -35,8 +37,8 @@ export default function RegionsPageClient({ places }: RegionsPageClientProps) {
 
     showToast(
       {
-        title:'لا يمكن الوصول للصفحة',
-        description:'الرجاء تسجيل الدخول',
+        title:t('errorMessages.unauthorizedAccess'),
+        description:t('errorMessages.pleaseSignin'),
         type:'error'
       }
     )
@@ -65,19 +67,19 @@ export default function RegionsPageClient({ places }: RegionsPageClientProps) {
             <h3 className="text-lg md:text-xl font-bold">{place.name}</h3>
 
             <div className="text-sm md:text-base mt-2">
-              <span className="font-semibold">لمحة عن المكان:</span>
+              <span className="font-semibold">{t("place.summaryPlace")}</span>
               <ReadMoreButton
                 text={place.description}
                 isExpanded={expandedCards[index] || false}
                 onToggle={() => toggleExpand(index)}
                 charLimit={100}
-                expandText="اقرأ المزيد"
-                collapseText="اقرأ أقل"
+                expandText={t('buttons.readMore')}
+                collapseText={t('buttons.readLess')}
               />
             </div>
 
             <div className="mt-2 h-full">
-              <span className="font-semibold">عنوان المكان:</span>
+              <span className="font-semibold">{t('place.placeLocation')}</span>
               <p>{place.location}</p>
             </div>
 

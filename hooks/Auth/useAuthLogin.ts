@@ -5,6 +5,7 @@ import axios, { AxiosInstance } from "axios";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/Components/Toast/useToast";
 import { setUserNameCookie, setTokenCookie } from "@/hooks/useUserName";
+import { useTranslations } from "next-intl";
 
 export interface AuthLoginOptions<TResponse> {
   apiInstance?: AxiosInstance;
@@ -28,7 +29,7 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { showToast } = useToast();
-
+  const t = useTranslations();
   const login = async (data: any) => {
     setLoading(true);
 
@@ -46,16 +47,16 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
       setUserNameCookie(userName);
 
       showToast({
-        title: "تم تسجيل الدخول",
-        description: `أهلا ${userName}`,
+        title: t('successMessages.loginSuccessfuly'),
+        description: `${t("successMessages.hello")} ${userName}!!`,
         type: "success",
       });
 
       if (redirectTo) router.push(redirectTo);
     } catch (err: any) {
       showToast({
-        title: "تعذر الوصول للحساب",
-        description: err.response?.data?.message || "خطأ في تسجيل الدخول",
+        title: t('errorMessages.loginFailed'),
+        description: err.response?.data?.message || t('errorMessages.somethingWentWrong') ,
         type: "error",
       });
     } finally {

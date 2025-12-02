@@ -28,7 +28,9 @@
     "ok": "حسنًا",
     "next": "التالي",
     "previous": "السابق",
-    "check": "تحقق"
+    "check": "تحقق",
+    "readMore": "اقرأ المزيد",
+    "readLess": "اقرأ أقل"
   },
   "search": {
     "placeholder": "ابحث عن أماكن، فنادق أو مطاعم...",
@@ -63,6 +65,7 @@
     "places": "الأماكن",
     "placeName": "اسم المكان",
     "placeLocation": "عنوان المكان",
+    "summaryPlace": "لمحة عامة عن المكان",
     "addPlace": "إضافة مكان"
   },
   "auth": {
@@ -126,14 +129,26 @@
     "manageAdmins": "إدارة المسؤولين"
   },
   "successMessages": {
+    "hello": "مرحبًا",
     "placeAdded": "تمت إضافة المكان بنجاح",
     "placeUpdated": "تم تحديث المكان بنجاح",
-    "placeDeleted": "تم حذف المكان بنجاح"
+    "placeDeleted": "تم حذف المكان بنجاح",
+    "loginSuccessfuly": "تم تسجيل الدخول بنجاح",
+    "logoutSuccessfuly": "تم تسجيل الخروج بنجاح",
+    "registerSuccessfuly": "تم إنشاء الحساب بنجاح",
+    "canLoginNow": "يمكنك تسجيل الدخول الآن"
   },
   "errorMessages": {
     "placeAddFailed": "فشل في إضافة المكان",
     "placeUpdateFailed": "فشل في تحديث المكان",
-    "placeDeleteFailed": "فشل في حذف المكان"
+    "placeDeleteFailed": "فشل في حذف المكان",
+    "unauthorizedAccess": "لا يمكنك الوصول إلى هذه الصفحة",
+      "pleaseSignin": "يرجى تسجيل الدخول",
+    "loginFailed": "فشل تسجيل الدخول. يرجى التحقق من بيانات الاعتماد والمحاولة مرة أخرى.",
+    "somethingWentWrong": "حدث خطأ ما.",
+    "logoutFailed": "فشل تسجيل الخروج. يرجى المحاولة مرة أخرى.",
+    "registerFailed": "فشل في إنشاء الحساب. يرجى المحاولة مرة أخرى."
+  
   },
   "editPlace": {
     "title": "تعديل المكان",

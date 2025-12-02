@@ -1,6 +1,7 @@
 "use client";
 import { useToast } from "@/Components/Toast/useToast";
 import api, { userApi } from "@/libs/axios";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -15,6 +16,7 @@ export const useAuthRegister = () => {
   const [loading, setLoading] = useState(false);
   const { showToast } = useToast();
   const router = useRouter();
+  const t = useTranslations();
 
   const authRegister = async (data: RegisterPayload) => {
     setLoading(true);
@@ -33,16 +35,16 @@ export const useAuthRegister = () => {
       console.log(res.data.data);
 
       showToast({
-        title: "تم إنشاء الحساب بنجاح!",
-        description: "يمكنك الآن تسجيل الدخول",
+        title: t('successMessages.registerSuccessfuly'),
+        description: t('successMessages.canLoginNow'),
         type: "success",
       });
 
       router.push("/login");
     } catch (err: any) {
       showToast({
-        title: "فشل إنشاء الحساب",
-        description: err.response?.data?.message,
+        title: t('errorMessages.registerFailed'),
+        description: err.response?.data?.message || t('errorMessages.somethingWentWrong') ,
         type: "error",
       });
     } finally {
