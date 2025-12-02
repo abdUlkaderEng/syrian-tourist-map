@@ -4,6 +4,7 @@
   "description": "ابحث عن المعالم السياحية، الفنادق والمطاعم في سوريا.",
   "hello": "مرحبًا",
   "welcome": "أهلاً وسهلاً",
+  "headerUrl": "/assets/SVG/HeaderAr.svg",
   "nav": {
     "home": "الرئيسية",
     "map": "الخريطة",

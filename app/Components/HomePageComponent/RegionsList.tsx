@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Region } from "@/libs/getRegions";
+import { useTranslations } from "next-intl";
 
 interface RegionsListProps {
   regions: Region[];
@@ -14,12 +15,13 @@ const RegionsList = ({
   onMouseEnter,
   onMouseLeave,
 }: RegionsListProps) => {
+  const t = useTranslations();
   return (
     <div className="w-[50%] grid grid-cols-2 place-items-center gap-4 overflow-y-scroll h-[85vh]">
       {/* Header */}
 
       <Image
-        src={"/assets/SVG/Header.svg"}
+        src={t('headerUrl')}
         alt="Header"
         width={575}
         height={300}

@@ -4,6 +4,7 @@
   "description": "Find tourist attractions, hotels and restaurants across Syria.",
   "hello": "Hello",
   "welcome": "Welcome",
+  "headerUrl": "/assets/SVG/HeaderEn.svg",
   "nav": {
     "home": "Home",
     "map": "Map",

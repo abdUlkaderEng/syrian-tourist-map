@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 772.18 593.25">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 85.68px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        font-family: Kregan-Regular, Kregan;
+      }
+
+      .cls-1, .cls-3 {
+        fill: #e5a63f;
+      }
+
+      .cls-2 {
+        font-size: 62.14px;
+      }
+
+      .cls-2, .cls-4 {
+        fill: #a9432a;
+      }
+
+      .cls-3 {
+        font-size: 47.52px;
+      }
+
+      .cls-4 {
+        font-size: 303.28px;
+        stroke: #a9432a;
+        stroke-miterlimit: 10;
+        stroke-width: 7px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_2-2" data-name="Layer 2">
+    <text class="cls-2" transform="translate(10.12 52.85)"><tspan x="0" y="0">Your travel guide in</tspan></text>
+    <text class="cls-4" transform="translate(3.5 342.31)"><tspan x="0" y="0">Syria</tspan></text>
+    <text class="cls-1" transform="translate(11.14 521.87)"><tspan x="0" y="0">One map...</tspan></text>
+    <text class="cls-3" transform="translate(154.2 580.38)"><tspan x="0" y="0">thousands of destinations</tspan></text>
+  </g>
+</svg>
