@@ -9,6 +9,8 @@ export default function LanguageToggle() {
   const toggleLang = () => {
     const newLang = locale === "ar" ? "en" : "ar";
     setLocale(newLang);
+    // Reload page to fetch data with new language
+    window.location.reload();
   };
 
   return (

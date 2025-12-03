@@ -39,7 +39,7 @@ const MapSection = ({ regions, isHovered }: MapSectionProps) => {
               ? "absolute z-10 transition-all duration-200 max-w-full h-auto "
               : "absolute -z-10 transition-all duration-200 max-w-full h-auto "
           }
-          src={`/assets/SVG/${region.name}.svg`}
+          src={`/assets/SVG/${region.region_id}.svg`}
           alt={region.name}
           width={mapwidth}
           height={mapHeight}

@@ -46,7 +46,7 @@ const RegionsList = ({
           href={`/reagion/${region.region_id}`}
           key={region.region_id}>
           <Image
-            src={`/assets/Images/RegionImage/${region.name}.png`}
+            src={`/assets/Images/RegionImage/${region.region_id}.png`}
             alt={region.name}
             width="300"
             height="100"
