@@ -17,13 +17,6 @@ const SuperAdminDashBoard = () => {
       <h1 className="text-3xl font-bold text-white mb-6">
         <UserName userKey={"super_name"} label={t('welcomes.adminDashboard')} />
       </h1>
-      <div className="flex flex-col gap-4">
-        <Link
-          href="/admin/SuperAdminDashboard/ManagePlacesPage"
-          className="bg-amber-300 text-amber-900 px-6 py-3 rounded shadow hover:bg-amber-400 transition w-fit">
-          {t('admin.managePlaces')}
-        </Link>
-      </div>
     </div>
   );
 };

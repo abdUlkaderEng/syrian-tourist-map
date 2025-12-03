@@ -1,5 +1,5 @@
 "use client";
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getPlaces, Place } from "@/libs/getPlaces";
 import { deletePlace } from "@/libs/admin";
 import { PenBox, Plus, Trash2 } from "lucide-react";
@@ -9,6 +9,7 @@ import Button from "@/Components/Form/Button";
 import { useTranslations } from "next-intl";
 import { useToast } from "@/Components/Toast/useToast";
 import { set } from "zod";
+import ReusableTable from "../Components/TableManager";
 const ManagePlacesPage = () => {
   const [places, setPlaces] = useState<{ data: Place[]; error: string }>({
     data: [],
@@ -20,7 +21,7 @@ const ManagePlacesPage = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const t = useTranslations();
   const { showToast } = useToast();
-  const [confirm,setConfirm]=useState(false);
+  const [confirm, setConfirm] = useState(false);
   useEffect(() => {
     getPlaces("", "super")
       .then(setPlaces)
@@ -29,28 +30,27 @@ const ManagePlacesPage = () => {
   }, []);
 
   const handleDelete = (id?: number) => {
-  if (!id) return;
+    if (!id) return;
 
-  showToast({
-    title: t("confirmMessages.deletePlace"),
-    type: "confirm",
-    onConfirm: async () => {
-      const success = await deletePlace(id);
+    showToast({
+      title: t("confirmMessages.deletePlace"),
+      type: "confirm",
+      onConfirm: async () => {
+        const success = await deletePlace(id);
 
-      if (success) {
-        setPlaces(prev => ({
-          ...prev,
-          data: prev.data.filter(p => p.place_id !== id),
-        }));
+        if (success) {
+          setPlaces((prev) => ({
+            ...prev,
+            data: prev.data.filter((p) => p.place_id !== id),
+          }));
 
-        showToast({ title: t("placeManage.placeDeleted"), type: "success" });
-      } else {
-        showToast({ title: t("placeManage.deleteFailed"), type: "error" });
-      }
-    },
-  });
-};
-
+          showToast({ title: t("placeManage.placeDeleted"), type: "success" });
+        } else {
+          showToast({ title: t("placeManage.deleteFailed"), type: "error" });
+        }
+      },
+    });
+  };
 
   const handleEditSuccess = (updatedPlace: Place) => {
     setPlaces((prev) => ({
@@ -70,7 +70,28 @@ const ManagePlacesPage = () => {
 
   return (
     <>
-      <div className="max-w-5xl mx-auto p-6">
+      <ReusableTable
+        title={t("place.places")}
+        data={places.data}
+        columns={[
+          { header: t("place.placeName"), accessor: "name" },
+          { header: t("place.placeLocation"), accessor: "location" },
+        ]}
+        actions={[
+          { icon: <PenBox />, onClick: (place) => setSelectedPlace(place), variant: "normal" },
+          {
+            icon: <Trash2 />,
+            onClick: (place) => handleDelete(place.place_id),
+            variant: "danger",
+          },
+        ]}
+        addButton={{
+          text: t("place.addPlace"),
+          onClick: () => setShowAddModal(true),
+
+        }}
+      />
+      {/* <div className="max-w-5xl mx-auto p-6">
           <h1 className="text-3xl  mb-3  font-semibold text-gray-800">
             {t("place.places")}
           </h1>
@@ -122,7 +143,7 @@ const ManagePlacesPage = () => {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
 
       {/* Edit Modal */}
       <EditPlaceModal
@@ -144,6 +165,4 @@ const ManagePlacesPage = () => {
   );
 };
 
-
 export default ManagePlacesPage;
-

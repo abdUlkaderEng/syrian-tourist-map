@@ -79,7 +79,7 @@ export default function Sidebar() {
 
             <li>
               <Link
-                href={["/admin/SuperAdminDashboard/Settings"].join("")}
+                href={["/admin/SuperAdminDashboard/adminManagePage"].join("")}
                 className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 text-[#E7A24A]">
                 <Settings />
                 {open && (

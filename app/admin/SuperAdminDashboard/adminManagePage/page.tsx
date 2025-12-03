@@ -7,7 +7,13 @@ const AddAdminSchema = z.object({
   password: z.string().min(8, "كلمة المرور يجب ان تكون اكثر من 8 حروف"),
 });
 const AddAdminPage = () => {
-  return <></>;
+  return <>
+  <div>
+
+
+
+  </div>
+  </>;
 };
 
 export default AddAdminPage;
