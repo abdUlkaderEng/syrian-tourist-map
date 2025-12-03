@@ -5,10 +5,8 @@ import { Roboto, Tajawal } from "next/font/google";
 import AdminLink from "./Components/NavBarComponents/AdminLink";
 import HomeLink from "./Components/NavBarComponents/HomeLink";
 import SyriaMapBG from "../Components/SyriaMapBG";
-import { ToastProvider } from "@/Components/Toast/ToastProvider";
 import LoginLogoutButton from "./Components/NavBarComponents/LoginLogoutButton";
-import { LocaleProvider } from "./Providers/LocaleProvider";
-import { LocaleContextProvider } from "./Providers/LocaleContext";
+import Providers from "./Providers/Providers";
 
 const primaryFont = Roboto({
   weight: ["400", "700"],
@@ -29,31 +27,26 @@ export const metadata: Metadata = {
   title: "دليل السياحة في سوريا",
   description: "عرض الأماكن السياحية في سوريا مع معلومات مفصلة عنها.",
 };
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-theme="light">
-      <body
-        className={`${primaryFont.variable} ${arabicFont.variable} antialiased`}>
+      <body className={`${primaryFont.variable} ${arabicFont.variable} antialiased`}>
         <SyriaMapBG />
-        <LocaleContextProvider>
-          <LocaleProvider>
-            <ToastProvider>
-              <nav className="navbar fixed top-0 left-0 right-0 bg-transparent backdrop-blur-sm z-50 hover:backdrop-blur-lg transition-all duration-400 flex justify-between">
-                <HomeLink />
-                <div className="w-[12%] flex justify-around items-center">
-                  <LanguageToggle />
-                  <LoginLogoutButton />
-                  <AdminLink />
-                </div>
-              </nav>
-              <main className="pt-20">{children}</main>
-            </ToastProvider>
-          </LocaleProvider>
-        </LocaleContextProvider>
+
+        <Providers>
+          <nav className="navbar fixed top-0 left-0 right-0 bg-transparent backdrop-blur-sm z-50 hover:backdrop-blur-lg transition-all duration-400 flex justify-between">
+            <HomeLink />
+            <div className="w-[12%] flex justify-around items-center">
+              <LanguageToggle />
+              <LoginLogoutButton />
+              <AdminLink />
+            </div>
+          </nav>
+
+          <main className="pt-20">{children}</main>
+        </Providers>
+
       </body>
     </html>
   );

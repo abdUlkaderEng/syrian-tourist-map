@@ -1,5 +1,6 @@
 "use client";
 
+import { ToastProvider } from "@/Components/Toast/ToastProvider";
 import React, {
   createContext,
   useContext,
@@ -47,9 +48,11 @@ export function LocaleContextProvider({ children }: { children: ReactNode }) {
   if (!mounted) return null;
 
   return (
+
     <LocaleContext.Provider value={{ locale, setLocale }}>
       {children}
     </LocaleContext.Provider>
+
   );
 }
 

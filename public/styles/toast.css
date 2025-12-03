@@ -1,0 +1,31 @@
+/* Confirm Toast */
+.toast-confirm {
+  @apply w-full max-w-md p-4 rounded-lg shadow-lg text-white flex flex-col gap-3 pointer-events-auto;
+  background: rgba(56, 189, 248, 0.25); /* sky glass */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Success Toast */
+.toast-success {
+  @apply w-full max-w-md p-4 rounded-lg shadow-lg text-white flex items-start gap-3 pointer-events-auto;
+  background: rgba(16, 185, 129, 0.25); /* emerald glass */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Error Toast */
+.toast-error {
+  @apply w-full max-w-md p-4 rounded-lg shadow-lg text-white flex items-start gap-3 pointer-events-auto;
+  background: rgba(239, 68, 68, 0.25); /* red glass */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Buttons for Confirm Toast */
+.toast-confirm .btn-cancel {
+  @apply px-4 py-2 rounded-md bg-white/20 hover:bg-white/30 transition-colors text-sm font-medium;
+}
+.toast-confirm .btn-confirm {
+  @apply px-4 py-2 rounded-md bg-white hover:bg-white/90 transition-colors text-sm font-medium text-blue-600;
+}

@@ -71,13 +71,32 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     <ToastContext.Provider value={{ showToast, dismissToast }}>
       {children}
 
+      {/* Regular toasts (top-right) */}
       <div className="fixed top-4 right-4 z-50 flex flex-col gap-3 max-w-xs">
         <AnimatePresence>
-          {toasts.map((t) => (
-            <div id={"toast-" + t.id} key={t.id}>
-              <Toast toast={t} onClose={() => dismissToast(t.id)} />
-            </div>
-          ))}
+          {toasts
+            .filter((t) => t.type !== "confirm")
+            .map((t) => (
+              <div id={"toast-" + t.id} key={t.id}>
+                <Toast toast={t} onClose={() => dismissToast(t.id)} />
+              </div>
+            ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Confirm toasts (center) */}
+      <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
+        <AnimatePresence>
+          {toasts
+            .filter((t) => t.type === "confirm")
+            .map((t) => (
+              <div
+                id={"toast-" + t.id}
+                key={t.id}
+                className="pointer-events-auto">
+                <Toast toast={t} onClose={() => dismissToast(t.id)} />
+              </div>
+            ))}
         </AnimatePresence>
       </div>
     </ToastContext.Provider>

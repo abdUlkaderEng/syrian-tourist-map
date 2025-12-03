@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { useLocale } from "./LocaleContext";
+import { ToastProvider } from "@/Components/Toast/ToastProvider";
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const { locale } = useLocale();
