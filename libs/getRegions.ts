@@ -31,14 +31,14 @@ function getTranslationByLocale(
   locale: "ar" | "en"
 ): { name: string; description: string } {
   const translation = translations.find((t) => t.locale === locale);
-  
+
   if (translation) {
     return {
       name: translation.name,
       description: translation.description,
     };
   }
-  
+
   // Fallback to first translation if locale not found
   const fallback = translations[0];
   return {
@@ -47,11 +47,13 @@ function getTranslationByLocale(
   };
 }
 
-export async function getRegions(locale: "ar" | "en" = "ar"): Promise<Region[]> {
+export async function getRegions(
+  locale: "ar" | "en" = "ar"
+): Promise<Region[]> {
   try {
     const res = await api.get(`/region?lang=${locale}`);
     const data = res.data.regions || res.data.data || res.data || [];
-    
+
     // Handle both old and new data formats
     if (Array.isArray(data) && data.length > 0) {
       // Check if it's the new format with translations
@@ -70,13 +72,10 @@ export async function getRegions(locale: "ar" | "en" = "ar"): Promise<Region[]> 
         });
       }
     }
-    
+
     return data;
   } catch (error) {
     console.error("Error fetching regions:", error);
     return [];
   }
 }
-
-  
-
