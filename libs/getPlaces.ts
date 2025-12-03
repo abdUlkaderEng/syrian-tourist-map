@@ -6,6 +6,8 @@ export interface Place {
   location: string;
   google_map_url: string;
   region_id: number;
+  image_url: File;
+  type: "historical" | "entertainment" | "service";
 }
 
 export async function getPlaces(

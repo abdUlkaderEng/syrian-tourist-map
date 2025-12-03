@@ -7,6 +7,10 @@ import { useTranslations } from "next-intl";
 import Button from "@/Components/Form/Button";
 import Modal from "@/Components/Modal/Modal";
 import InputField from "@/Components/Form/InputField";
+import Textarea from "@/Components/Form/TextArea";
+import Select from "@/Components/Form/Select";
+import { usePlaceForm } from "@/hooks/usePlaceForm";
+import Image from "next/image";
 
 interface AddPlaceModalProps {
   onClose: () => void;
@@ -14,60 +18,37 @@ interface AddPlaceModalProps {
 }
 
 const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
-  const [formData, setFormData] = React.useState<Partial<Place>>({
-    name: "",
-    description: "",
-    location: "",
-    google_map_url: "",
-    region_id: 0,
-  });
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState("");
   const { showToast } = useToast();
   const t = useTranslations();
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: name === "region_id" ? parseInt(value) : value,
-    }));
-  };
+  const { formData, previewUrl, loading, error, handleChange, handleSubmit } =
+    usePlaceForm({
+      onSubmit: async (form) => addPlace(form),
+    });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    const payload: Omit<Place, "place_id"> = {
-      place_id: 0,
-      name: formData.name || "",
-      description: formData.description || "",
-      location: formData.location || "",
-      google_map_url: formData.google_map_url || "",
-      region_id: formData.region_id || 0,
-    } as unknown as Omit<Place, "place_id">;
-
-    const result = await addPlace(payload as any);
-    if (result) {
-      onSuccess(result);
+  const submitHandler = async (e: React.FormEvent) => {
+    const res = await handleSubmit(e);
+    
+    if (res.status === 201) {
+      onSuccess(res);
       onClose();
-      showToast({ title: t("successMessages.placeAdded"), type: "success" });
+      showToast({
+        title: t("successMessages.placeAdded"),
+        type: "success",
+      });
     } else {
-      setError(t("errorMessages.placeAddFailed"));
-      showToast({ title: t("errorMessages.placeAddFailed"), type: "error" });
+      showToast({
+        title: t("errorMessages.placeAddFailed"),
+        type: "error",
+      });
     }
-
-    setLoading(false);
   };
 
   return (
     <Modal
       title={t("placeManage.AddPlace")}
       onClose={onClose}
-      onSubmit={handleSubmit}
+      onSubmit={submitHandler}
       overflow>
       <InputField
         type="text"
@@ -75,8 +56,8 @@ const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
         label={t("placeManage.labels.name")}
         value={formData.name || ""}
         onChange={handleChange}
-        required
         placeholder={t("placeManage.place.placeholder.name")}
+        required
       />
 
       <InputField
@@ -85,24 +66,19 @@ const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
         label={t("placeManage.labels.location")}
         value={formData.location || ""}
         onChange={handleChange}
-        required
         placeholder={t("placeManage.place.placeholder.location")}
+        required
       />
 
-      <div>
-        <label className="mb-1 block font-medium">
-          {t("placeManage.labels.description")}
-        </label>
-        <textarea
-          name="description"
-          value={formData.description || ""}
-          onChange={(e) => handleChange(e as any)}
-          required
-          placeholder={t("placeManage.place.placeholder.description")}
-          className="w-full p-3 input-base rounded-md"
-          rows={6}
-        />
-      </div>
+      <Textarea
+        name="description"
+        label={t("placeManage.labels.description")}
+        value={formData.description || ""}
+        onChange={handleChange}
+        rows={6}
+        required
+        placeholder={t("placeManage.place.placeholder.description")}
+      />
 
       <InputField
         type="url"
@@ -122,15 +98,48 @@ const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
         placeholder={t("placeManage.place.placeholder.regionId")}
       />
 
+      <InputField
+        type="file"
+        name="image"
+        label={t("placeManage.labels.image")}
+        accept="image/*"
+        onChange={handleChange}
+      />
+
+      {previewUrl && (
+        <Image
+          width={200}
+          height={200}
+          src={previewUrl}
+          alt="preview"
+          className="mt-2 h-40 w-full object-cover rounded-md"
+        />
+      )}
+
+      <Select
+        name="type"
+        label={t("placeManage.labels.type")}
+        value={formData.type || "historical"}
+        onChange={handleChange}
+        options={[
+          { value: "historical", label: t("placeManage.types.historical") },
+          {
+            value: "entertainment",
+            label: t("placeManage.types.entertainment"),
+          },
+          { value: "service", label: t("placeManage.types.service") },
+        ]}
+      />
+
       {error && <p className="text-red-500 text-sm">{error}</p>}
 
       <div className="flex gap-3 pt-4">
         <Button type="submit" disabled={loading} className="flex-1 btn-normal">
           {loading
             ? t("placeManage.actions.saving")
-            : t("placeManage.actions.saveChanges")}
+            : t("placeManage.actions.save")}
         </Button>
-        <Button type="button" onClick={onClose} className="flex-1 btn-danger ">
+        <Button type="button" onClick={onClose} className="flex-1 btn-danger">
           {t("placeManage.actions.cancel")}
         </Button>
       </div>

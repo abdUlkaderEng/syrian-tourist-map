@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCookie } from "cookies-next";
 
 const BASE_URL = "http://127.0.0.1:8000/api";
 
@@ -39,6 +40,15 @@ export const superApi = axios.create({
     Accept: "application/json",
   },
 });
+
+superApi.interceptors.request.use((config) => {
+  const token = getCookie("super_token"); 
+    if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 
 export default api;
 

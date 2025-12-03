@@ -135,11 +135,10 @@
     "placeAdded": "Place added successfully",
     "placeUpdated": "Place updated successfully",
     "placeDeleted": "Place deleted successfully",
-   "loginSuccessfuly": "Login successfuly",
+    "loginSuccessfuly": "Login successfuly",
     "logoutSuccessfuly": "Logout successfuly",
     "registerSuccessfuly": "Register successfuly",
     "canLoginNow": "You can login now"
-  
   },
   "errorMessages": {
     "placeAddFailed": "Failed to add place",
@@ -154,15 +153,22 @@
   },
   "placeManage": {
     "editPlace": "Edit place",
-    "AddPlace":"Add place",
+    "AddPlace": "Add place",
     "toastSuccess": "Place updated successfully",
     "toastError": "Failed to update place. Please try again.",
+    "types": {
+      "historical": "Historical",
+      "entertainment": "Entertainment",
+      "service": "Service"
+    },
     "labels": {
       "name": "Name",
       "location": "Location",
       "description": "Description",
       "googleMapUrl": "Google Map URL",
-      "regionId": "Region ID"
+      "regionId": "Region ID",
+      "image": "Image",
+      "type": "Place type"
     },
     "place": {
       "placeholder": {
@@ -175,6 +181,7 @@
     },
     "actions": {
       "saveChanges": "Save changes",
+      "save": "Save",
       "saving": "Saving...",
       "cancel": "Cancel"
     }

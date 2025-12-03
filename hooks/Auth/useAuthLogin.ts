@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/Components/Toast/useToast";
 import { setUserNameCookie, setTokenCookie } from "@/hooks/useUserName";
 import { useTranslations } from "next-intl";
+import { adminApi, userApi } from "@/libs/axios";
 
 export interface AuthLoginOptions<TResponse> {
   apiInstance?: AxiosInstance;
@@ -41,8 +42,9 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
       // Extract and store token from response
 
       const token = extractToken(res.data);
-      const dataa = res.data ;
-      console.log('Respons:',dataa);
+      const dataa = res.data;
+      console.log("Respons:", dataa);
+      console.log(token);
       setTokenCookie(token, tokenCookieName);
 
       // Extract and store username
@@ -50,7 +52,7 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
       setUserNameCookie(userName);
 
       showToast({
-        title: t('successMessages.loginSuccessfuly'),
+        title: t("successMessages.loginSuccessfuly"),
         description: `${t("successMessages.hello")} ${userName}!!`,
         type: "success",
       });
@@ -58,8 +60,9 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
       if (redirectTo) router.push(redirectTo);
     } catch (err: any) {
       showToast({
-        title: t('errorMessages.loginFailed'),
-        description: err.response?.data?.message || t('errorMessages.somethingWentWrong') ,
+        title: t("errorMessages.loginFailed"),
+        description:
+          err.response?.data?.message || t("errorMessages.somethingWentWrong"),
         type: "error",
       });
     } finally {

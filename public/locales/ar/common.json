@@ -156,12 +156,19 @@
     "AddPlace":"إضافة مكان",
     "toastSuccess": "تم تحديث المكان بنجاح",
     "toastError": "فشل تحديث المكان. يرجى المحاولة مرة أخرى.",
+    "types": {
+      "historical": "تاريخي",
+      "entertainment": "ترفيهي",
+      "service": "خدمي"
+    },
     "labels": {
       "name": "اسم المكان",
       "location": "الموقع",
       "description": "الوصف",
       "googleMapUrl": "رابط خريطة جوجل",
-      "regionId": "معرّف المنطقة"
+      "regionId": "معرّف المنطقة",
+      "image":"الصورة",
+      "type":"نوع المكان"
     },
     "place": {
       "placeholder": {
@@ -174,6 +181,7 @@
     },
     "actions": {
       "saveChanges": "حفظ التغييرات",
+      "save": "حفظ ",
       "saving": "جاري الحفظ...",
       "cancel": "إلغاء"
     }
