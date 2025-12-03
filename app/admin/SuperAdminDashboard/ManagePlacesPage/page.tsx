@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getPlaces, Place } from "@/libs/getPlaces";
+import { useLocale } from "@/app/Providers/LocaleContext";
 import { deletePlace } from "@/libs/admin";
 import { PenBox, Plus, Trash2 } from "lucide-react";
 import EditPlaceModal from "../Components/EditPlaceModal";
@@ -22,12 +23,14 @@ const ManagePlacesPage = () => {
   const t = useTranslations();
   const { showToast } = useToast();
   const [confirm, setConfirm] = useState(false);
+  const { locale } = useLocale();
+
   useEffect(() => {
-    getPlaces("", "super")
+    getPlaces("", "super", locale)
       .then(setPlaces)
       .catch(() => setError("Failed to load places"))
       .finally(() => setLoading(false));
-  }, []);
+  }, [locale]);
 
   const handleDelete = (id?: number) => {
     if (!id) return;
@@ -78,7 +81,11 @@ const ManagePlacesPage = () => {
           { header: t("place.placeLocation"), accessor: "location" },
         ]}
         actions={[
-          { icon: <PenBox />, onClick: (place) => setSelectedPlace(place), variant: "normal" },
+          {
+            icon: <PenBox />,
+            onClick: (place) => setSelectedPlace(place),
+            variant: "normal",
+          },
           {
             icon: <Trash2 />,
             onClick: (place) => handleDelete(place.place_id),
@@ -88,7 +95,6 @@ const ManagePlacesPage = () => {
         addButton={{
           text: t("place.addPlace"),
           onClick: () => setShowAddModal(true),
-
         }}
       />
       {/* <div className="max-w-5xl mx-auto p-6">

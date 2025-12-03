@@ -1,16 +1,11 @@
-import { getPlaces } from "@/libs/getPlaces";
-import RegionsPageClient from "@/app/reagion/RegionPageClient/RegionsPageClient";
-export default async function RegionPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { id } = await params;
-  const places = await getPlaces(id,'user');
+import RegionPlacesLoader from "@/app/reagion/RegionPageClient/RegionPlacesLoader";
+
+export default function RegionPage({ params }: { params: { id: string } }) {
+  const { id } = params;
 
   return (
     <div className="animate-enter">
-      <RegionsPageClient places={places} />
+      <RegionPlacesLoader regionId={id} />
     </div>
   );
 }
