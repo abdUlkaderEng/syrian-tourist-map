@@ -89,7 +89,7 @@ export async function getPlaces(
       const regionNum = Number(regionId);
       if (!Number.isNaN(regionNum)) params.region_id = regionNum;
     }
-
+    
     const res = await apiInstance.get(`/places`, {  params });
 
     const raw = res.data.data || res.data || [];
