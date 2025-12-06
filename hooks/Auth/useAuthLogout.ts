@@ -3,8 +3,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import axios, { AxiosInstance } from "axios";
 import { useToast } from "@/Components/Toast/useToast";
-import { clearUserNameCookie, clearTokenCookie } from "@/hooks/useUserName";
 import { useTranslations } from "next-intl";
+import { useAuthSignal } from "./authSignal";
+import { useAuthStore } from "./authStore";
 
 export interface AuthLogoutOptions {
   apiInstance?: AxiosInstance;
@@ -18,27 +19,15 @@ export function useAuthLogout(options?: AuthLogoutOptions) {
   const { showToast } = useToast();
   const [loading, setLoading] = useState(false);
   const t = useTranslations();
+  const { refresh } = useAuthSignal();
+  const clearAuth = useAuthStore((state) => state.clearAuth);
   const logout = async () => {
     try {
       setLoading(true);
-
-      // Call backend logout endpoint to clear session/tokens
-      await apiInstance.post(
-        "/logout",
-        {},
-        {
-          withCredentials: true,
-        }
-      );
-
-      // Clear all cookies
-      clearTokenCookie("user_token");
-      clearTokenCookie("admin_token");
-      clearTokenCookie("super_token");
-      clearUserNameCookie();
-
+      clearAuth();
+      refresh();
       showToast({
-        title: t('successMessages.logoutSuccessfuly'),
+        title: t("successMessages.logoutSuccessfuly"),
         type: "success",
       });
 
@@ -47,7 +36,7 @@ export function useAuthLogout(options?: AuthLogoutOptions) {
     } catch (err) {
       console.error("Logout error:", err);
       showToast({
-        title: t('errorMessages.logoutFailed'),
+        title: t("errorMessages.logoutFailed"),
         type: "error",
       });
     } finally {

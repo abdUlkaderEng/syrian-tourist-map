@@ -1,0 +1,90 @@
+// import { create } from "zustand";
+// import { persist } from "zustand/middleware";
+
+// interface AuthState {
+//   token: string | null;
+//   username: string | null;
+//   role: "user" | "admin" | "superadmin" | null;
+//   hydrated: boolean;
+
+//   setAuth: (token: string, username: string, role: AuthState["role"]) => void;
+//   clearAuth: () => void;
+// }
+
+// export const useAuthStore = create<AuthState>()(
+//   persist(
+//     (set) => ({
+//       token: null,
+//       username: null,
+//       role: null,
+//       hydrated: false,
+
+//       setAuth: (token, username, role) =>
+//         set(() => ({
+//           token,
+//           username,
+//           role,
+//         })),
+
+//       clearAuth: () =>
+//         set(() => ({
+//           token: null,
+//           username: null,
+//           role: null,
+//         })),
+//     }),
+//     {
+//       name: "auth-storage",
+//       onRehydrateStorage: (state) => {
+//         state.hydrated = true;
+//       },
+//     }
+//   )
+// );
+
+
+
+
+
+
+
+
+
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+
+interface AuthState {
+  token: string | null;
+  username: string | null;
+  role: "user" | "admin" | "superadmin" ;
+
+  setAuth: (token: string, username: string, role: AuthState["role"]) => void;
+  clearAuth: () => void;
+}
+
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      token: null,
+      username: null,
+      role: null,
+
+      setAuth: (token, username, role) =>
+        set(() => ({
+          token,
+          username,
+          role,
+        })),
+
+      clearAuth: () =>
+        set(() => ({
+          token: null,
+          username: null,
+          role: null,
+        })),
+    }),
+    {
+      name: "auth-store", // اسم التخزين بالـ localStorage
+    }
+  )
+);

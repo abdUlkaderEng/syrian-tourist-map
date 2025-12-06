@@ -4,17 +4,18 @@ import { useState } from "react";
 import axios, { AxiosInstance } from "axios";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/Components/Toast/useToast";
-import { setUserNameCookie, setTokenCookie } from "@/hooks/useUserName";
 import { useTranslations } from "next-intl";
-import { adminApi, userApi } from "@/libs/axios";
+import { useAuthSignal } from "./authSignal";
+import { useAuthStore } from "./authStore";
+import { setCookie } from "cookies-next";
 
 export interface AuthLoginOptions<TResponse> {
   apiInstance?: AxiosInstance;
   endpoint: string;
   extractToken: (response: TResponse) => string;
   extractName: (response: TResponse) => string;
-  tokenCookieName?: string;
-  redirectTo?: string;
+  role: "user" | "admin" | "superadmin";
+  redirectTo: string;
 }
 
 export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
@@ -23,7 +24,7 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
     endpoint,
     extractToken,
     extractName,
-    tokenCookieName = "user_token",
+    role,
     redirectTo,
   } = options;
 
@@ -31,6 +32,9 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
   const router = useRouter();
   const { showToast } = useToast();
   const t = useTranslations();
+  const { refresh } = useAuthSignal();
+  const { setAuth } = useAuthStore();
+
   const login = async (data: any) => {
     setLoading(true);
 
@@ -39,25 +43,19 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
         withCredentials: true,
       });
 
-      // Extract and store token from response
-
       const token = extractToken(res.data);
-      const dataa = res.data;
-      console.log("Respons:", dataa);
-      console.log(token);
-      setTokenCookie(token, tokenCookieName);
-
-      // Extract and store username
       const userName = extractName(res.data);
-      setUserNameCookie(userName);
+
+      setAuth(token, userName, role);
+
+      router.push(redirectTo);
 
       showToast({
         title: t("successMessages.loginSuccessfuly"),
         description: `${t("successMessages.hello")} ${userName}!!`,
         type: "success",
       });
-
-      if (redirectTo) router.push(redirectTo);
+      refresh();
     } catch (err: any) {
       showToast({
         title: t("errorMessages.loginFailed"),

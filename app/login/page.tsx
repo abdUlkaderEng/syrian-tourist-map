@@ -33,7 +33,7 @@ const LoginPage = () => {
     endpoint: "/login",
     extractToken: (res: UserLoginResponse) => res.token,
     extractName: (res: UserLoginResponse) => res.user.name,
-    tokenCookieName: "user_token",
+    role:'user',
     redirectTo: "/",
   });
 

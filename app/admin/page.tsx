@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
-import api from "../../libs/axios";
+import api, { superApi } from "../../libs/axios";
 import InputField from "@/Components/Form/InputField";
 import Button from "@/Components/Form/Button";
 import FormContainer from "@/Components/Form/FormContainer";
@@ -14,7 +14,7 @@ interface SuperAdminLoginResponse {
   token_type: string;
   superadmin: {
     super_admin_id: number;
-    username: string;
+    name: string;
     email: string;
   };
 }
@@ -29,11 +29,11 @@ const AdminLoginPage = () => {
   });
   type AdminForm = z.infer<typeof adminSchema>;
   const { login, loading } = useAuthLogin<SuperAdminLoginResponse>({
-    apiInstance: api,
+    apiInstance: superApi,
     endpoint: "/superadmin/login",
     extractToken: (res) => res.token,
-    extractName: (res) => res.superadmin.username,
-    tokenCookieName: "super_token",
+    extractName: (res) => res.superadmin.name,
+    role:'superadmin',
     redirectTo: "/admin/SuperAdminDashboard",
   });
 

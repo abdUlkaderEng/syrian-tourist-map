@@ -1,20 +1,18 @@
 "use client";
 
-import { useUserName } from "@/hooks/useUserName";
+import { useAuthStore } from "@/hooks/Auth/authStore";
+
 
 interface StoredValueProps {
-  userKey: string;
   label?: string;
   className?: string;
 }
 
 export default function UserName({
-  userKey: storageKey,
   label,
   className,
 }: StoredValueProps) {
-  const value = useUserName(storageKey);
-
+  const name = useAuthStore((state) => state.username);
   return (
     <div
       className={`flex items-center gap-2  font-medium px-3 py-1 rounded-lg ${className}`}>
@@ -22,7 +20,7 @@ export default function UserName({
         <span className="text-gray-500 whitespace-nowrap">{label}</span>
       )}
 
-      <span className="text-gray-700 font-semibold">{value ?? ""}</span>
+      <span className="text-gray-700 font-semibold">{name ?? ""}</span>
     </div>
   );
 }

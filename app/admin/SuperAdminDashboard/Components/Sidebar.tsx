@@ -10,12 +10,15 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
-import { useUserName } from "@/hooks/useUserName";
 import { useTranslations } from "next-intl";
+import UserName from "@/Components/UserName";
+import { useAuthStore } from "@/hooks/Auth/authStore";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(true);
-  const username = useUserName();
+  const username = useAuthStore(state => state.username);
+  
+  
   const t = useTranslations();
 
   return (
@@ -31,11 +34,9 @@ export default function Sidebar() {
             </div>
             {open && (
               <div>
-                <div className="text-sm font-semibold">
-                  {t("hello")}
-                </div>
+                <div className="text-sm font-semibold">{t("hello")}</div>
                 <div className="text-xs text-gray-600">
-                  {username || (t ? t("profile.profile") : "Admin")}
+                  <UserName label={t("profile.profile")} />
                 </div>
               </div>
             )}
@@ -45,7 +46,7 @@ export default function Sidebar() {
             aria-label="Toggle sidebar"
             onClick={() => setOpen((s) => !s)}
             className="p-1 rounded-md ">
-            {open ?   <ChevronRight /> : <ChevronLeft />}
+            {open ? <ChevronRight /> : <ChevronLeft />}
           </button>
         </div>
 
@@ -91,8 +92,6 @@ export default function Sidebar() {
             </li>
           </ul>
         </nav>
-
-       
       </div>
     </aside>
   );

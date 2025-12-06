@@ -1,3 +1,4 @@
+import { useAuthStore } from "@/hooks/Auth/authStore";
 import axios from "axios";
 import { getCookie } from "cookies-next";
 
@@ -41,14 +42,32 @@ export const superApi = axios.create({
   },
 });
 
-superApi.interceptors.request.use((config) => {
-  const token = getCookie("super_token"); 
-    if (token) {
+// Interceptor to add token from cookie to Authorization header
+userApi.interceptors.request.use((config) => {
+  const token = useAuthStore(state => state.token)
+  // const token = getCookie("user_token")?.toString() || "";
+  if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 
+adminApi.interceptors.request.use((config) => {
+  const token = getCookie("admin_token")?.toString() || "";
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+superApi.interceptors.request.use((config) => {
+  const token = useAuthStore.getState().token
+  console.log(token)
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
 export default api;
 
