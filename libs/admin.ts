@@ -1,4 +1,5 @@
 import { superApi } from "./axios";
+import { Admin } from "./getAdmins";
 import { Place } from "./getPlaces";
 
 export async function deletePlace(placeId: number): Promise<boolean> {
@@ -35,15 +36,40 @@ export async function addPlace(
   const isForm = data instanceof FormData;
 
   try {
+    console.log(data)
     return await superApi.post(`/storeplace`, data, {
       headers: isForm
-        ? { "Content-Type": "multipart/form-data" }
-        : { "Content-Type": "application/json" },
+      ? { "Content-Type": "multipart/form-data" }
+      : { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error("Error adding place:", error);
     return null;
   }
 }
+export async function addAdmin(data: FormData) {
+  try {
+    const res = await superApi.post<Admin>("/createadmin", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return res;
+  } catch (error: any) {
+    console.error("Error adding admin:", error);
+    return null;
+  }
+}
+
+export async function deleteAdmin(id: number) {
+  try {
+    return await superApi.delete(`/deleteadmin/${id}`);
+  } catch (error) {
+    console.error("Error deleting admin:", error);
+    return null;
+  }
+}
+
 
 

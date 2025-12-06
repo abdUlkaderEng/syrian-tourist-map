@@ -10,9 +10,12 @@ interface UsePlaceFormProps {
 
 export function usePlaceForm({ place, onSubmit }: UsePlaceFormProps) {
   const [formData, setFormData] = useState<Partial<Place>>({
-    name: "",
-    description: "",
-    location: "",
+    name_ar: "",
+    name_en: "",
+    description_ar: "",
+    description_en: "",
+    location_ar: "",
+    location_en: "",
     google_map_url: "",
     region_id: 0,
     image_url: undefined,
@@ -23,14 +26,17 @@ export function usePlaceForm({ place, onSubmit }: UsePlaceFormProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  // لو عم نعمل Edit
+  // Edit case
   useEffect(() => {
+    console.log(place)
     if (place) {
       setFormData({
-        name: place.name,
-        description: place.description,
-        location: place.location,
+        name_ar: place.name_ar,
+        name_en: place.name_en,
+        description_ar: place.description_ar,
+        description_en: place.description_en,
+        location_ar: place.location_ar,
+        location_en: place.location_en,
         google_map_url: place.google_map_url,
         region_id: place.region_id,
         image_url: place.image_url,

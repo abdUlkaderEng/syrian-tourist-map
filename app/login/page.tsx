@@ -35,6 +35,7 @@ const LoginPage = () => {
     extractName: (res: UserLoginResponse) => res.user.name,
     role:'user',
     redirectTo: "/",
+    extractId: (res: UserLoginResponse) =>  res.user.user_id,
   });
 
   const {

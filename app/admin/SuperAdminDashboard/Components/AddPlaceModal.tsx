@@ -52,32 +52,60 @@ const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
       overflow>
       <InputField
         type="text"
-        name="name"
-        label={t("placeManage.labels.name")}
-        value={formData.name || ""}
+        name="name_ar"
+        label={t("placeManage.labels.name_ar")}
+        value={formData.name_ar || ""}
         onChange={handleChange}
-        placeholder={t("placeManage.place.placeholder.name")}
+        placeholder={t("placeManage.place.placeholder.name_ar")}
         required
       />
+      <InputField
+        type="text"
+        name="name_en"
+        label={t("placeManage.labels.name_en")}
+        value={formData.name_en || ""}
+        onChange={handleChange}
+        placeholder={t("placeManage.place.placeholder.name_en")}
+        required
+      />
+      
 
       <InputField
         type="text"
-        name="location"
-        label={t("placeManage.labels.location")}
-        value={formData.location || ""}
+        name="location_ar"
+        label={t("placeManage.labels.location_ar")}
+        value={formData.location_ar || ""}
         onChange={handleChange}
-        placeholder={t("placeManage.place.placeholder.location")}
+        placeholder={t("placeManage.place.placeholder.location_ar")}
+        required
+      />
+      <InputField
+        type="text"
+        name="location_en"
+        label={t("placeManage.labels.location_en")}
+        value={formData.location_en || ""}
+        onChange={handleChange}
+        placeholder={t("placeManage.place.placeholder.location_en")}
         required
       />
 
       <Textarea
-        name="description"
-        label={t("placeManage.labels.description")}
-        value={formData.description || ""}
+        name="description_ar"
+        label={t("placeManage.labels.description_ar")}
+        value={formData.description_ar || ""}
         onChange={handleChange}
         rows={6}
         required
-        placeholder={t("placeManage.place.placeholder.description")}
+        placeholder={t("placeManage.place.placeholder.description_ar")}
+      />
+      <Textarea
+        name="description_en"
+        label={t("placeManage.labels.description_en")}
+        value={formData.description_en || ""}
+        onChange={handleChange}
+        rows={6}
+        required
+        placeholder={t("placeManage.place.placeholder.description_en")}
       />
 
       <InputField

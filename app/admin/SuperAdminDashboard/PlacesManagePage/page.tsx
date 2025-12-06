@@ -10,7 +10,7 @@ import Button from "@/Components/Form/Button";
 import { useTranslations } from "next-intl";
 import { useToast } from "@/Components/Toast/useToast";
 import { set } from "zod";
-import ReusableTable from "../Components/TableManager";
+import TableManager from "../Components/TableManager";
 const ManagePlacesPage = () => {
   const [places, setPlaces] = useState<{ data: Place[]; error: string }>({
     data: [],
@@ -73,7 +73,7 @@ const ManagePlacesPage = () => {
 
   return (
     <>
-      <ReusableTable
+      <TableManager
         title={t("place.places")}
         data={places.data}
         columns={[
@@ -97,67 +97,11 @@ const ManagePlacesPage = () => {
           onClick: () => setShowAddModal(true),
         }}
       />
-      {/* <div className="max-w-5xl mx-auto p-6">
-          <h1 className="text-3xl  mb-3  font-semibold text-gray-800">
-            {t("place.places")}
-          </h1>
-
-        <div className=" overflow-hidden border   glass">
-          <table className="w-full text-center">
-            <thead>
-              <tr className="">
-                <th className="p-4 ">{t("place.placeName")}</th>
-                <th className="p-4 ">{t("place.placeLocation")}</th>
-                <th className="p-4">
-                  <Button
-            onClick={() => setShowAddModal(true)}
-            fullWidth={false}
-            className="btn-normal text-sm shadow-none "
-            variant="secondary">
-            {t("place.addPlace")}
-            <Plus className="ml-2" />
-          </Button>
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-          
-
-              </tr>
-              {places.data.map((place) => (
-                <tr key={place.place_id} className="border-b border-[#e4bc75]">
-                  <td className="p-4 text-gray-900 border-l border-[#e4bc75]">
-                    {place.name}
-                  </td>
-                  <td className="p-4  text-gray-600  ">{place.location}</td>
-                  <td className="p-4 flex gap-3 justify-end">
-                    <button
-                      onClick={() => setSelectedPlace(place)}
-                      className=" btn-normal   ">
-                      <PenBox />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(place.place_id)}
-                      className="btn-danger">
-                      <Trash2 />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div> */}
-
-      {/* Edit Modal */}
       <EditPlaceModal
         place={selectedPlace}
         onClose={() => setSelectedPlace(null)}
         onSuccess={handleEditSuccess}
       />
-      {/* Add Modal (render only when requested) */}
       {showAddModal && (
         <AddPlaceModal
           onClose={() => setShowAddModal(false)}

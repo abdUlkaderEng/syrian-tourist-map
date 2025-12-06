@@ -5,6 +5,7 @@
   "hello": "مرحبًا",
   "welcome": "أهلاً وسهلاً",
   "headerUrl": "/assets/SVG/HeaderAr.svg",
+  "id": "الرقم",
   "nav": {
     "home": "الرئيسية",
     "map": "الخريطة",
@@ -72,7 +73,7 @@
   "auth": {
     "login": "تسجيل الدخول",
     "logout": "تسجيل الخروج",
-    "checkAdmin": "التحقق من المسؤول",
+    "checkAdmin": "التحقق من المشرف",
     "signup": "إنشاء حساب",
     "register": "إنشاء حساب",
     "username": "اسم المستخدم",
@@ -122,12 +123,12 @@
     "tours": "جولات"
   },
   "welcomes": {
-    "adminDashboard": "لوحة تحكم المسؤول"
+    "adminDashboard": "لوحة تحكم المشرف"
   },
   "admin": {
     "managePlaces": "إدارة الأماكن",
     "manageUsers": "إدارة المستخدمين",
-    "manageAdmins": "إدارة المسؤولين"
+    "manageAdmins": "إدارة المشرفين"
   },
   "successMessages": {
     "hello": "مرحبًا",
@@ -163,8 +164,14 @@
     },
     "labels": {
       "name": "اسم المكان",
+      "name_ar": "اسم المكان باللغة العربية",
+      "name_en": "اسم المكان باللغة الإنجليزية",
       "location": "الموقع",
+      "location_ar": "الموقع باللغة العربية",
+      "location_en": "الموقع باللغة الإنجليزية",
       "description": "الوصف",
+      "description_ar": "الوصف باللغة العربية",
+      "description_en": "الوصف باللغة الإنجليزية",
       "googleMapUrl": "رابط خريطة جوجل",
       "regionId": "معرّف المنطقة",
       "image":"الصورة",
@@ -173,8 +180,14 @@
     "place": {
       "placeholder": {
         "name": "أدخل اسم المكان",
+        "name_ar": "أدخل اسم المكان باللعة العربية",
+        "name_en": "أدخل اسم المكان باللغة الإنجليزية",
         "location": "أدخل موقع المكان",
+        "location_ar": "أدخل موقع المكان باللغة العربية",
+        "location_en": "أدخل موقع المكان بالغة الإنكليزية",
         "description": "أدخل وصف المكان",
+        "description_ar": "أدخل وصف المكان باللغة العربية",
+        "description_en": "أدخل وصف المكان باللغة الإنكليزية",
         "googleMapUrl": "https://...",
         "regionId": "معرّف المنطقة"
       }
@@ -185,5 +198,32 @@
       "saving": "جاري الحفظ...",
       "cancel": "إلغاء"
     }
+  },
+  "adminManage":{
+    "title":"إدارة المشرفين",
+    "actions":{
+      "addAdmin":"إضافة مشرف",
+      "deleteAdmin":"حذف مشرف"
+
+    },
+    "labels":{
+      "adminName":"اسم المشرف",
+      "adminPassword":"كلمة سر المشرف",
+      "adminConfirmPassword":"تأكيد كلمة سر المشرف"
+
+    },
+    "placeholder":{
+      "enterAdminName":"أضف اسم المشرف",
+      "adminPassword":"أضف كلمة سر المشرف",
+      "adminConfirmPassword":"أضف تأكيد كلمة سر المشرف"
+
+    },
+
+    "messages":{
+      "addSuccess":"تمت إضافة المشرف بنجاح",
+      "addFailed":" فشل في إضافة المشرف. يرجى المحاولة مرة أخرى."
+    }
   }
+
+  
 }

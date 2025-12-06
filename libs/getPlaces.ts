@@ -30,9 +30,12 @@ export interface PlaceFromBackend {
 
 export interface Place {
   place_id: number;
-  name: string;
-  description: string;
-  location: string;
+  name_ar: string;
+  name_en: string;
+  description_ar: string;
+  description_en: string;
+  location_ar: string;
+  location_en: string;
   google_map_url: string;
   region_id: number;
   image_url?: string | null;

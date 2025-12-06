@@ -35,6 +35,7 @@ const AdminLoginPage = () => {
     extractName: (res) => res.superadmin.name,
     role:'superadmin',
     redirectTo: "/admin/SuperAdminDashboard",
+    extractId: (res) => res.superadmin.super_admin_id,
   });
 
   const {

@@ -15,7 +15,7 @@ interface Action<T> {
   className?: string;
 }
 
-interface ReusableTableProps<T> {
+interface TableManagerProps<T> {
   title: string;
   data: T[];
   columns: Column<T>[];
@@ -27,13 +27,13 @@ interface ReusableTableProps<T> {
   };
 }
 
-export default function ReusableTable<T>({
+export default function TableManager<T>({
   title,
   data,
   columns,
   actions,
   addButton,
-}: ReusableTableProps<T>) {
+}: TableManagerProps<T>) {
   return (
     <div className="max-w-5xl mx-auto p-6">
       <h1 className="text-3xl mb-3 font-semibold text-gray-800">{title}</h1>
@@ -51,8 +51,7 @@ export default function ReusableTable<T>({
                 <th className="p-4">
                   <button
                     onClick={addButton.onClick}
-                    className={`btn-normal w-full text-sm shadow-none flex items-center justify-center`}
-                  >
+                    className={`btn-normal w-full text-sm shadow-none flex items-center justify-center`}>
                     {addButton.text}
                     <Plus />
                   </button>
@@ -61,13 +60,12 @@ export default function ReusableTable<T>({
             </tr>
           </thead>
           <tbody>
-            {data.map((row, idx) => (
-              <tr key={idx} className="border-b border-[#e4bc75]">
+            {data.map((row, index) => (
+              <tr key={index} className="border-b border-[#e4bc75]">
                 {columns.map((col, index) => (
                   <td
                     key={index}
-                    className={`p-4 text-gray-900 border-l border-[#e4bc75]`}
-                  >
+                    className={`p-4 text-gray-900 border-l border-[#e4bc75]`}>
                     {typeof col.accessor === "function"
                       ? col.accessor(row)
                       : (row[col.accessor] as any)}
@@ -75,14 +73,11 @@ export default function ReusableTable<T>({
                 ))}
                 {actions && (
                   <td className="p-4 flex gap-3 justify-end">
-                    
-                    
                     {actions.map((action, index) => (
                       <button
                         key={index}
                         onClick={() => action.onClick(row)}
-                        className={`btn-${action.variant}`}
-                      >
+                        className={`btn-${action.variant}`}>
                         {action.icon}
                       </button>
                     ))}

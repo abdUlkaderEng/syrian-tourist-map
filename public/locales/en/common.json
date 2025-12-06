@@ -5,6 +5,8 @@
   "hello": "Hello",
   "welcome": "Welcome",
   "headerUrl": "/assets/SVG/HeaderEn.svg",
+  "id": "ID",
+
   "nav": {
     "home": "Home",
     "map": "Map",
@@ -163,8 +165,14 @@
     },
     "labels": {
       "name": "Name",
+      "name_ar": "Name in Arabic",
+      "name_en": "Name in English",
       "location": "Location",
+      "location_ar": "Location in Arabic",
+      "location_en": "Location in English",
       "description": "Description",
+      "description_ar": "Description in Arabic",
+      "description_en": "Description in English",
       "googleMapUrl": "Google Map URL",
       "regionId": "Region ID",
       "image": "Image",
@@ -173,8 +181,14 @@
     "place": {
       "placeholder": {
         "name": "Enter place name",
+        "name_ar": "Enter place name in Arabic",
+        "name_en": "Enter place name in English",
         "location": "Enter location",
+        "location_ar": "Enter location in Arabic",
+        "location_en": "Enter location in English",
         "description": "Enter place description",
+        "description_ar": "Enter place description in Arabic",
+        "description_en": "Enter place description in English",
         "googleMapUrl": "https://...",
         "regionId": "Region ID"
       }
@@ -185,5 +199,31 @@
       "saving": "Saving...",
       "cancel": "Cancel"
     }
+  },
+  "adminManage":{
+    "title":"Admin Management",
+    "actions":{
+      "addAdmin":"Add admin",
+      "deleteAdmin":"Delete admin"
+
+    },
+    "labels":{
+      "adminName":"Admin name",
+      "adminPassword":"Admin password",
+      "adminConfirmPassword":"admin confirm password"
+
+    },
+    "placeholder":{
+      "enterAdminName":"Add admin Name",
+      "adminPassword":"Add admin password",
+      "adminConfirmPassword":"Add admin confirm password"
+
+    },
+     "messages":{
+      "addSuccess":"Admin added successfully.",
+      "addFailed":"Failed to add admin. Please try again."
+    }
   }
+
+
 }

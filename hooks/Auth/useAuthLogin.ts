@@ -14,6 +14,7 @@ export interface AuthLoginOptions<TResponse> {
   endpoint: string;
   extractToken: (response: TResponse) => string;
   extractName: (response: TResponse) => string;
+  extractId: (response: TResponse) => number;
   role: "user" | "admin" | "superadmin";
   redirectTo: string;
 }
@@ -24,6 +25,7 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
     endpoint,
     extractToken,
     extractName,
+    extractId,
     role,
     redirectTo,
   } = options;
@@ -45,8 +47,9 @@ export function useAuthLogin<TResponse>(options: AuthLoginOptions<TResponse>) {
 
       const token = extractToken(res.data);
       const userName = extractName(res.data);
+      const id = extractId(res.data);
 
-      setAuth(token, userName, role);
+      setAuth(token, userName, role, id);
 
       router.push(redirectTo);
 

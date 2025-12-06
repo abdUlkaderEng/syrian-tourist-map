@@ -52,8 +52,9 @@ const {
       return updatePlace(place.place_id, form);
     },
   });
-if (!place) return null;
 
+  if (!place) return null;
+  
   const submitHandler = async (e: React.FormEvent) => {
     const result = await handleSubmit(e);
     if (result.status === 200) {
@@ -80,28 +81,55 @@ if (!place) return null;
       className="max-w-2xl">
       <InputField
         type="text"
-        name="name"
-        label={t("placeManage.labels.name")}
-        value={formData.name || ""}
+        name="name_ar"
+        label={t("placeManage.labels.name_ar")}
+        value={formData.name_ar || ""}
         onChange={handleChange}
         required
         placeholder={t("placeManage.place.placeholder.name")}
       />
       <InputField
         type="text"
-        name="location"
-        label={t("placeManage.labels.location")}
-        value={formData.location || ""}
+        name="name_en"
+        label={t("placeManage.labels.name_en")}
+        value={formData.name_en || ""}
+        onChange={handleChange}
+        required
+        placeholder={t("placeManage.place.placeholder.name")}
+      />
+      <InputField
+        type="text"
+        name="location_ar"
+        label={t("placeManage.labels.location_ar")}
+        value={formData.location_ar || ""}
         onChange={handleChange}
         required
         placeholder={t("placeManage.place.placeholder.location")}
       />
-      <Textarea
-        label={t("placeManage.labels.description")}
-        name="description"
-        value={formData.description || ""}
+      <InputField
+        type="text"
+        name="location_en"
+        label={t("placeManage.labels.location_en")}
+        value={formData.location_en || ""}
         onChange={handleChange}
-        placeholder={t("placeManage.place.placeholder.description")}
+        required
+        placeholder={t("placeManage.place.placeholder.location_en")}
+      />
+      <Textarea
+        label={t("placeManage.labels.description_ar")}
+        name="description_ar"
+        value={formData.description_ar || ""}
+        onChange={handleChange}
+        placeholder={t("placeManage.place.placeholder.description_ar")}
+        rows={6}
+        required
+      />
+      <Textarea
+        label={t("placeManage.labels.description_en")}
+        name="description_en"
+        value={formData.description_en || ""}
+        onChange={handleChange}
+        placeholder={t("placeManage.place.placeholder.description_en")}
         rows={6}
         required
       />
