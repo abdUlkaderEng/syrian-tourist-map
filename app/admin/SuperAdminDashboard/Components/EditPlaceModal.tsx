@@ -124,14 +124,30 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
         onChange={handleChange}
         placeholder={t("placeManage.place.placeholder.googleMapUrl")}
       />
-      <InputField
-        type="number"
-        name="region_id"
+
+ <Select
         label={t("placeManage.labels.regionId")}
-        value={formData.region_id ? String(formData.region_id) : ""}
+        name={"region_id"}
+        value={formData.region_id ? String(formData.region_id) : "" }
         onChange={handleChange}
-        placeholder={t("placeManage.place.placeholder.regionId")}
-      />
+        options={[
+          { value: 1, label: t("regions.Damascus") },
+          { value: 2, label: t("regions.Daraa") },
+          { value: 3, label: t("regions.Aleppo") },
+          { value: 4, label: t("regions.Homs") },
+          { value: 5, label: t("regions.Hama") },
+          { value: 6, label: t("regions.Latakia") },
+          { value: 7, label: t("regions.Tartus") },
+          { value: 8, label: t("regions.Ref_Damascus") },
+          { value: 9, label: t("regions.As_Swedaa") },
+          { value: 10, label: t("regions.Der_Elzor") },
+          { value: 11, label: t("regions.Al_Haska") },
+          { value: 12, label: t("regions.Al_raqqa") },
+          { value: 13, label: t("regions.Idlib")},
+          { value: 14, label: t("regions.Al_Qunaitra") },
+        ]} />
+
+      
       <div>
         <InputField
           label={t("placeManage.labels.image")}
