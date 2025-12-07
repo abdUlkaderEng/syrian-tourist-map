@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Place } from "@/libs/getPlaces";
+import { Place, PlaceFromBackend } from "@/libs/getPlaces";
 import { addPlace } from "@/libs/admin";
 import { useToast } from "@/Components/Toast/useToast";
 import { useTranslations } from "next-intl";
@@ -14,7 +14,7 @@ import Image from "next/image";
 
 interface AddPlaceModalProps {
   onClose: () => void;
-  onSuccess: (newPlace: Place) => void;
+  onSuccess: (newPlace: PlaceFromBackend) => void;
 }
 
 const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
@@ -28,7 +28,7 @@ const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
 
   const submitHandler = async (e: React.FormEvent) => {
     const res = await handleSubmit(e);
-    
+
     if (res.status === 201) {
       onSuccess(res);
       onClose();
@@ -68,7 +68,6 @@ const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
         placeholder={t("placeManage.place.placeholder.name_en")}
         required
       />
-      
 
       <InputField
         type="text"
@@ -104,6 +103,7 @@ const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
         value={formData.description_en || ""}
         onChange={handleChange}
         rows={6}
+        
         required
         placeholder={t("placeManage.place.placeholder.description_en")}
       />
@@ -116,15 +116,35 @@ const AddPlaceModal = ({ onClose, onSuccess }: AddPlaceModalProps) => {
         onChange={handleChange}
         placeholder={t("placeManage.place.placeholder.googleMapUrl")}
       />
-
-      <InputField
+      <Select
+        label={t("placeManage.labels.regionId")}
+        name={"region_id"}
+        value={formData.region_id ? String(formData.region_id) : "" }
+        onChange={handleChange}
+        options={[
+          { value: 1, label: t("regions.Damascus") },
+          { value: 2, label: t("regions.Daraa") },
+          { value: 3, label: t("regions.Aleppo") },
+          { value: 4, label: t("regions.Homs") },
+          { value: 5, label: t("regions.Hama") },
+          { value: 6, label: t("regions.Latakia") },
+          { value: 7, label: t("regions.Tartus") },
+          { value: 8, label: t("regions.Ref_Damascus") },
+          { value: 9, label: t("regions.As_Swedaa") },
+          { value: 10, label: t("regions.Der_Elzor") },
+          { value: 11, label: t("regions.Al_Haska") },
+          { value: 12, label: t("regions.Al_raqqa") },
+          { value: 13, label: t("regions.Idlib")},
+          { value: 14, label: t("regions.Al_Qunaitra") },
+        ]} />
+      {/* <InputField
         type="number"
         name="region_id"
         label={t("placeManage.labels.regionId")}
         value={formData.region_id ? String(formData.region_id) : ""}
         onChange={handleChange}
         placeholder={t("placeManage.place.placeholder.regionId")}
-      />
+      /> */}
 
       <InputField
         type="file"

@@ -1,15 +1,15 @@
+
 "use client";
 import { useState, useEffect } from "react";
-import { Place } from "@/libs/getPlaces";
+import { PlaceFromBackend } from "@/libs/getPlaces";
 
 interface UsePlaceFormProps {
-  place?: Place | null;
-  // onSubmit يستقبل FormData فقط
+  place?: PlaceFromBackend | null;
   onSubmit: (form: FormData) => Promise<any>;
 }
 
 export function usePlaceForm({ place, onSubmit }: UsePlaceFormProps) {
-  const [formData, setFormData] = useState<Partial<Place>>({
+  const [formData, setFormData] = useState<any>({
     name_ar: "",
     name_en: "",
     description_ar: "",
@@ -17,35 +17,41 @@ export function usePlaceForm({ place, onSubmit }: UsePlaceFormProps) {
     location_ar: "",
     location_en: "",
     google_map_url: "",
-    region_id: 0,
-    image_url: undefined,
+    region_id: "",
     type: "historical",
+    image_url: null,
   });
 
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  // Edit case
+
+  // Fill formData from backend on edit
   useEffect(() => {
-    console.log(place)
     if (place) {
+      const ar = place.translations.find((t) => t.locale === "ar");
+      const en = place.translations.find((t) => t.locale === "en");
+
+  
       setFormData({
-        name_ar: place.name_ar,
-        name_en: place.name_en,
-        description_ar: place.description_ar,
-        description_en: place.description_en,
-        location_ar: place.location_ar,
-        location_en: place.location_en,
-        google_map_url: place.google_map_url,
-        region_id: place.region_id,
-        image_url: place.image_url,
-        type: place.type,
+        name_ar: ar?.name || "",
+        name_en: en?.name || "",
+        description_ar: ar?.description || "",
+        description_en: en?.description || "",
+        location_ar: ar?.location || "",
+        location_en: en?.location || "",
+        google_map_url: place.google_map_url || "",
+        region_id: place.region_id || "",
+        type: place.type || "historical",
+        image_url: place.image_url, // للعرض فقط
       });
+
+      setPreviewUrl(place.image_url || null);
     }
   }, [place]);
 
-  // Clean preview
+  // clean preview
   useEffect(() => {
     return () => {
       if (previewUrl) URL.revokeObjectURL(previewUrl);
@@ -59,19 +65,20 @@ export function usePlaceForm({ place, onSubmit }: UsePlaceFormProps) {
   ) => {
     const target = e.target;
 
-    if (target instanceof HTMLInputElement && target.type === "file") {
+    if (
+      target instanceof HTMLInputElement &&
+      target.type === "file"
+    ) {
       const file = target.files?.[0] || null;
       setImageFile(file);
       setPreviewUrl(file ? URL.createObjectURL(file) : null);
       return;
     }
 
-    setFormData(prev => ({
+    setFormData((prev: any) => ({
       ...prev,
       [target.name]:
-        target.name === "region_id"
-          ? parseInt(target.value)
-          : target.value,
+        target.name === "region_id" ? Number(target.value) : target.value,
     }));
   };
 
@@ -82,19 +89,41 @@ export function usePlaceForm({ place, onSubmit }: UsePlaceFormProps) {
 
     const form = new FormData();
 
-    // append كل الداتا العادية
-    Object.entries(formData).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
-        form.append(key, String(value));
-      }
-    });
+    const translations = [
+    {
+      locale: "ar",
+      name: formData.name_ar,
+      description: formData.description_ar,
+      location: formData.location_ar,
+    },
+    {
+      locale: "en",
+      name: formData.name_en,
+      description: formData.description_en,
+      location: formData.location_en,
+    },
+  ];
 
-    // append الصورة
+
+    // append translations
+    form.append("translations", JSON.stringify(translations));
+    form.append("name_ar", formData.name_ar);
+    form.append("name_en", formData.name_en);
+    form.append("description_ar", formData.description_ar);
+    form.append("description_en", formData.description_en);
+    form.append("location_ar", formData.location_ar);
+    form.append("location_en", formData.location_en);
+
+    // append other fields
+    form.append("google_map_url", formData.google_map_url);
+    form.append("region_id", String(formData.region_id));
+    form.append("type", formData.type);
+
+    // image
     if (imageFile) {
       form.append("image_url", imageFile);
     }
 
-    // Send to hook caller
     const result = await onSubmit(form).catch(() => null);
 
     if (!result) {

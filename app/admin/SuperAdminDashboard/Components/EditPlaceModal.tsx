@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { Place } from "@/libs/getPlaces";
+import { Place, PlaceFromBackend } from "@/libs/getPlaces";
 import { updatePlace } from "@/libs/admin";
 import { useToast } from "@/Components/Toast/useToast";
 import { useTranslations } from "next-intl";
@@ -14,47 +14,29 @@ import { audio } from "framer-motion/client";
 import { usePlaceForm } from "@/hooks/usePlaceForm";
 
 interface EditPlaceModalProps {
-  place: Place | null;
+  place: PlaceFromBackend | null;
   onClose: () => void;
-  onSuccess: (updatedPlace: Place) => void;
+  onSuccess: (updatedPlace: PlaceFromBackend) => void;
 }
 
 const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
-  // const [formData, setFormData] = React.useState<Partial<Place>>({
-  //   name: "",
-  //   description: "",
-  //   location: "",
-  //   google_map_url: "",
-  //   region_id: 0,
-  //   image_url: undefined,
-  //   type: "historical",
-  // });
-  const [imageFile, setImageFile] = React.useState<File | null>(null);
-  // const [previewUrl, setPreviewUrl] = React.useState<string | null>(null);
-  // const [loading, setLoading] = React.useState(false);
-  // const [error, setError] = React.useState("");
   const { showToast } = useToast();
   const t = useTranslations();
 
-
-
-const {
-    formData,
-    previewUrl,
-    loading,
-    error,
-    handleChange,
-    handleSubmit,
-  } = usePlaceForm({
-    place,
-    onSubmit: async (form) => {
-      if (!place) return null;
-      return updatePlace(place.place_id, form);
-    },
-  });
+  const { formData, previewUrl, loading, error, handleChange, handleSubmit } =
+    usePlaceForm({
+      place,
+      onSubmit: async (form) => {
+        if (!place) return null;
+        return updatePlace(place.id, form);
+      },
+    });
+  {
+    console.log("Preview URL:", previewUrl);
+  }
 
   if (!place) return null;
-  
+
   const submitHandler = async (e: React.FormEvent) => {
     const result = await handleSubmit(e);
     if (result.status === 200) {

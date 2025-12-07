@@ -1,4 +1,5 @@
 import { adminApi, superApi, userApi } from "@/libs/axios";
+import { ca } from "zod/v4/locales";
 
 export interface Translation {
   id: number;
@@ -92,8 +93,8 @@ export async function getPlaces(
       const regionNum = Number(regionId);
       if (!Number.isNaN(regionNum)) params.region_id = regionNum;
     }
-    
-    const res = await apiInstance.get(`/places`, {  params });
+
+    const res = await apiInstance.get(`/places`, { params });
 
     const raw = res.data.data || res.data || [];
 
@@ -128,3 +129,23 @@ export async function getPlaces(
     return { data: [], error: "fetching-error" };
   }
 }
+
+
+
+export async function getManagingPlaces(): Promise<PlaceFromBackend[]> {
+  try {
+    const res = await superApi.get("/getplaces");
+
+    if (!Array.isArray(res.data.places)) {
+      console.warn("API did not return array:", res.data);
+      return [];
+    }
+
+    return res.data.places;
+  } catch (err) {
+    console.error("Failed to fetch places:", err);
+    return [];
+  }
+}
+
+

@@ -43,14 +43,14 @@ export const superApi = axios.create({
 });
 
 // Interceptor to add token from cookie to Authorization header
-userApi.interceptors.request.use((config) => {
-  const token = useAuthStore(state => state.token)
-  // const token = getCookie("user_token")?.toString() || "";
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+// userApi.interceptors.request.use((config) => {
+//   const token = useAuthStore(state => state.token)
+//   // const token = getCookie("user_token")?.toString() || "";
+//   if (token) {
+//     config.headers.Authorization = `Bearer ${token}`;
+//   }
+//   return config;
+// });
 
 adminApi.interceptors.request.use((config) => {
   const token = getCookie("admin_token")?.toString() || "";

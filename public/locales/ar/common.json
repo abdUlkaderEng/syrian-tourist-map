@@ -6,6 +6,22 @@
   "welcome": "أهلاً وسهلاً",
   "headerUrl": "/assets/SVG/HeaderAr.svg",
   "id": "الرقم",
+  "regions": {
+    "Damascus": "دمشق",
+    "Ref_Damascus": "ريف دمشق",
+    "Aleppo": "حلب",
+    "Homs": "حمص",
+    "Latakia": "اللاذقية",
+    "Hama": "حماة",
+    "Der_Elzor": "دير الزور",
+    "Tartus": "طرطوس",
+    "Al_raqqa": "الرقة",
+    "Daraa": "درعا",
+    "As_Swedaa": "السويداء",
+    "Idlib": "إدلب",
+    "Al_Qunaitra": "القنيطرة",
+    "Al_Haska": "الحسكة"
+  },
   "nav": {
     "home": "الرئيسية",
     "map": "الخريطة",

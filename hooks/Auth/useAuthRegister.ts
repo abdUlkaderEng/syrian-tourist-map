@@ -32,7 +32,6 @@ export const useAuthRegister = () => {
         },
         { withCredentials: true }
       );
-      console.log(res.data.data);
 
       showToast({
         title: t('successMessages.registerSuccessfuly'),

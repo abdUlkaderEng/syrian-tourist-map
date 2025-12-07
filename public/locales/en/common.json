@@ -6,7 +6,22 @@
   "welcome": "Welcome",
   "headerUrl": "/assets/SVG/HeaderEn.svg",
   "id": "ID",
-
+"regions": {
+    "Damascus": "Damascus",
+    "Ref_Damascus": "Rural Damascus",
+    "Aleppo": "Aleppo",
+    "Homs": "Homs",
+    "Latakia": "Latakia",
+    "Hama": "Hama",
+    "Der_Elzor": "Deir ez-Zor",
+    "Tartus": "Tartus",
+    "Al_raqqa": "Raqqa",
+    "Daraa": "Daraa",
+    "As_Swedaa": "As-Suwayda",
+    "Idlib": "Idlib",
+    "Al_Qunaitra": "Quneitra",
+    "Al_Haska": "Al-Hasakah"
+  },
   "nav": {
     "home": "Home",
     "map": "Map",
