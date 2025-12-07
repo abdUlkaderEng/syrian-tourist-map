@@ -55,7 +55,7 @@ export default function Sidebar() {
             <li>
               <Link
                 href={"/admin/SuperAdminDashboard/PlacesManagePage"}
-                className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 text-[#E7A24A]">
+                className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 text-[#832411]">
                 <MapPin />
                 {open && (
                   <span className="font-medium">
@@ -67,8 +67,8 @@ export default function Sidebar() {
 
             <li>
               <Link
-                href={["/admin/SuperAdminDashboard/UsersManagepage"].join("")}
-                className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 text-[#E7A24A]">
+                href={["/admin/SuperAdminDashboard/UsersManagePage"].join("")}
+                className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 text-[#832411]">
                 <Users />
                 {open && (
                   <span className="font-medium">
@@ -81,7 +81,7 @@ export default function Sidebar() {
             <li>
               <Link
                 href={["/admin/SuperAdminDashboard/AdminsManagePage"].join("")}
-                className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 text-[#E7A24A]">
+                className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 text-[#832411]">
                 <Settings />
                 {open && (
                   <span className="font-medium">

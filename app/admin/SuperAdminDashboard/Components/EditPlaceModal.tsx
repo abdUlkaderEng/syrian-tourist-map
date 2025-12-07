@@ -144,7 +144,8 @@ const EditPlaceModal = ({ place, onClose, onSuccess }: EditPlaceModalProps) => {
           <Image
             width={250}
             height={50}
-            src={previewUrl}
+            src={`http://localhost:8000/storage/${previewUrl}`}
+            unoptimized
             alt="preview"
             className="max-w-full mt-2 h-40 object-cover rounded-md"
           />

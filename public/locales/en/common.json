@@ -238,7 +238,14 @@
       "addSuccess":"Admin added successfully.",
       "addFailed":"Failed to add admin. Please try again."
     }
+  },
+  "usersManage":{
+    "title":"Users manage",
+    "username":"Username",
+    "email":"Email"
+
   }
+
 
 
 }

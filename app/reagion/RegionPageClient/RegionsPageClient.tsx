@@ -45,7 +45,7 @@ export default function RegionsPageClient({ places }: RegionsPageClientProps) {
 
     return;
   }
-
+  console.log("Places:",places)
   return (
     <div className="flex flex-wrap justify-center gap-4 p-1">
       {places?.data.map((place, index) => (
@@ -56,7 +56,7 @@ export default function RegionsPageClient({ places }: RegionsPageClientProps) {
             <Image
               width={400}
               height={200}
-              src={"/assets/Images/RegionImage/دمشق.png"}
+            src={`http://localhost:8000/storage/${place.image_url}`}
               alt={place.name}
               className="object-cover w-full h-full"
             />

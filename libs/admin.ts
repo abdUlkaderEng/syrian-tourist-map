@@ -70,6 +70,14 @@ export async function deleteAdmin(id: number) {
     return null;
   }
 }
+export async function deleteUser(id: number) {
+  try {
+    return await superApi.delete(`/deleteuser/${id}`);
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    return null;
+  }
+}
 
 
 
