@@ -6,7 +6,7 @@
   "welcome": "Welcome",
   "headerUrl": "/assets/SVG/HeaderEn.svg",
   "id": "ID",
-"regions": {
+  "regions": {
     "Damascus": "Damascus",
     "Ref_Damascus": "Rural Damascus",
     "Aleppo": "Aleppo",
@@ -215,46 +215,39 @@
       "cancel": "Cancel"
     }
   },
-  "adminManage":{
-    "title":"Admin Management",
-    "actions":{
-      "addAdmin":"Add admin",
-      "deleteAdmin":"Delete admin"
-
+  "adminManage": {
+    "title": "Admin Management",
+    "actions": {
+      "addAdmin": "Add admin",
+      "deleteAdmin": "Delete admin"
     },
-    "labels":{
-      "adminName":"Admin name",
-      "adminPassword":"Admin password",
-      "adminConfirmPassword":"admin confirm password"
-
+    "labels": {
+      "adminName": "Admin name",
+      "adminPassword": "Admin password",
+      "adminConfirmPassword": "admin confirm password"
     },
-    "placeholder":{
-      "enterAdminName":"Add admin Name",
-      "adminPassword":"Add admin password",
-      "adminConfirmPassword":"Add admin confirm password"
-
+    "placeholder": {
+      "enterAdminName": "Add admin Name",
+      "adminPassword": "Add admin password",
+      "adminConfirmPassword": "Add admin confirm password"
     },
-     "messages":{
-      "addSuccess":"Admin added successfully.",
-      "addFailed":"Failed to add admin. Please try again."
+    "messages": {
+      "addSuccess": "Admin added successfully.",
+      "addFailed": "Failed to add admin. Please try again."
     }
   },
-  "usersManage":{
-    "title":"Users manage",
-    "username":"Username",
-    "email":"Email"
-
+  "usersManage": {
+    "title": "Users manage",
+    "username": "Username",
+    "email": "Email"
   },
-"comments":{
-    "title":"Comments",
-    "empty":"There is no comments",
-    "placeholder":"Write a comment...",
-    "messages":{
-      "addSuccess":"Added successfully.",
-      "addFailed":"Failed to add."
+  "comments": {
+    "title": "Comments",
+    "empty": "There is no comments",
+    "placeholder": "Write a comment...",
+    "messages": {
+      "addSuccess": "Added successfully.",
+      "addFailed": "Failed to add."
     }
   }
-
-
-
 }

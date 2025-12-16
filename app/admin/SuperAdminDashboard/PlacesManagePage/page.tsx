@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  getManagingPlaces,
-  PlaceFromBackend,
-} from "@/libs/getPlaces";
+import { getManagingPlaces, PlaceFromBackend } from "@/libs/getPlaces";
 import { useLocale } from "@/app/Providers/LocaleContext";
 import { deletePlace } from "@/libs/admin";
 import { PenBox, Trash2 } from "lucide-react";
@@ -12,11 +9,13 @@ import AddPlaceModal from "../Components/AddPlaceModal";
 import { useTranslations } from "next-intl";
 import { useToast } from "@/Components/Toast/useToast";
 import TableManager from "../Components/TableManager";
+import TableSkeleton from "../Components/TableSkeleton";
 const ManagePlacesPage = () => {
   const [places, setPlaces] = useState<{ data: PlaceFromBackend[] }>({
     data: [],
   });
   const [loading, setLoading] = useState(true);
+  const [skeletonRows, setSkeletonRows] = useState(5);
   const [error, setError] = useState("");
   const [selectedPlace, setSelectedPlace] = useState<PlaceFromBackend | null>(
     null
@@ -27,9 +26,16 @@ const ManagePlacesPage = () => {
   const { locale } = useLocale();
 
   useEffect(() => {
+    setLoading(true);
     getManagingPlaces()
-      .then((res) => setPlaces({ data: res }))
-      .catch(() => setError("Failed to load places"))
+      .then((res) => {
+        setPlaces({ data: res });
+        setSkeletonRows(Math.min(Math.max(res.length, 3), 10)); // Set skeleton rows based on data length (3-10)
+      })
+      .catch(() => {
+        setError("Failed to load places");
+        setSkeletonRows(5); // Default to 5 rows on error
+      })
       .finally(() => setLoading(false));
   }, [locale]);
   const Places2 = getManagingPlaces();
@@ -65,21 +71,29 @@ const ManagePlacesPage = () => {
     setSelectedPlace(null);
   };
 
-  if (loading)
+  if (loading) {
     return (
-      <div className="text-center py-10 text-gray-600">Loading places...</div>
+      <TableSkeleton
+        columns={5}
+        hasActions={true}
+        hasAddButton={true}
+        title={t("places.title")}
+        rows={skeletonRows}
+      />
     );
-  if (error) return <div className="text-red-500 text-center">{error}</div>;
+  }
+
+  if (error) return <div className="p-6 text-red-500">{error}</div>;
   console.log("Places:", places.data);
   const mappedPlaces = places.data.map((p) => {
-    const translations = p.translations || []; 
+    const translations = p.translations || [];
     const ar = translations.find((t) => t.locale === "ar");
     const en = translations.find((t) => t.locale === "en");
 
     return {
       ...p,
-      name_ar: ar?.name ,
-      name_en:en?.name,
+      name_ar: ar?.name,
+      name_en: en?.name,
       location_ar: ar?.location,
       location_en: en?.location,
     };
@@ -94,8 +108,14 @@ const ManagePlacesPage = () => {
         columns={[
           { header: t("placeManage.labels.name_ar"), accessor: "name_ar" },
           { header: t("placeManage.labels.name_en"), accessor: "name_en" },
-          { header: t("placeManage.labels.location_ar"), accessor: "location_ar" },
-          { header: t("placeManage.labels.location_en"), accessor: "location_en" },
+          {
+            header: t("placeManage.labels.location_ar"),
+            accessor: "location_ar",
+          },
+          {
+            header: t("placeManage.labels.location_en"),
+            accessor: "location_en",
+          },
         ]}
         actions={[
           {

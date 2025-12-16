@@ -49,7 +49,7 @@ export default function RegionsPageClient({ places }: RegionsPageClientProps) {
     return;
   }
 
-  console.log(places);
+  
   return (
     <div>
       <SearchBox />

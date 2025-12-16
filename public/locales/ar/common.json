@@ -161,16 +161,15 @@
     "placeUpdateFailed": "فشل في تحديث المكان",
     "placeDeleteFailed": "فشل في حذف المكان",
     "unauthorizedAccess": "لا يمكنك الوصول إلى هذه الصفحة",
-      "pleaseSignin": "يرجى تسجيل الدخول",
+    "pleaseSignin": "يرجى تسجيل الدخول",
     "loginFailed": "فشل تسجيل الدخول. يرجى التحقق من بيانات الاعتماد والمحاولة مرة أخرى.",
     "somethingWentWrong": "حدث خطأ ما.",
     "logoutFailed": "فشل تسجيل الخروج. يرجى المحاولة مرة أخرى.",
     "registerFailed": "فشل في إنشاء الحساب. يرجى المحاولة مرة أخرى."
-  
   },
   "placeManage": {
     "editPlace": "تعديل المكان",
-    "AddPlace":"إضافة مكان",
+    "AddPlace": "إضافة مكان",
     "toastSuccess": "تم تحديث المكان بنجاح",
     "toastError": "فشل تحديث المكان. يرجى المحاولة مرة أخرى.",
     "types": {
@@ -190,8 +189,8 @@
       "description_en": "الوصف باللغة الإنجليزية",
       "googleMapUrl": "رابط خريطة جوجل",
       "regionId": "معرّف المنطقة",
-      "image":"الصورة",
-      "type":"نوع المكان"
+      "image": "الصورة",
+      "type": "نوع المكان"
     },
     "place": {
       "placeholder": {
@@ -215,45 +214,40 @@
       "cancel": "إلغاء"
     }
   },
-  "adminManage":{
-    "title":"إدارة المشرفين",
-    "actions":{
-      "addAdmin":"إضافة مشرف",
-      "deleteAdmin":"حذف مشرف"
-
+  "adminManage": {
+    "title": "إدارة المشرفين",
+    "actions": {
+      "addAdmin": "إضافة مشرف",
+      "deleteAdmin": "حذف مشرف"
     },
-    "labels":{
-      "adminName":"اسم المشرف",
-      "adminPassword":"كلمة سر المشرف",
-      "adminConfirmPassword":"تأكيد كلمة سر المشرف"
-
+    "labels": {
+      "adminName": "اسم المشرف",
+      "adminPassword": "كلمة سر المشرف",
+      "adminConfirmPassword": "تأكيد كلمة سر المشرف"
     },
-    "placeholder":{
-      "enterAdminName":"أضف اسم المشرف",
-      "adminPassword":"أضف كلمة سر المشرف",
-      "adminConfirmPassword":"أضف تأكيد كلمة سر المشرف"
-
+    "placeholder": {
+      "enterAdminName": "أضف اسم المشرف",
+      "adminPassword": "أضف كلمة سر المشرف",
+      "adminConfirmPassword": "أضف تأكيد كلمة سر المشرف"
     },
 
-    "messages":{
-      "addSuccess":"تمت إضافة المشرف بنجاح",
-      "addFailed":" فشل في إضافة المشرف. يرجى المحاولة مرة أخرى."
+    "messages": {
+      "addSuccess": "تمت إضافة المشرف بنجاح",
+      "addFailed": " فشل في إضافة المشرف. يرجى المحاولة مرة أخرى."
     }
   },
-  "usersManage":{
-    "title":"إدارة المستخدمين",
-    "username":"اسم المستخدم",
-    "email":"البريد الإلكتروني"
+  "usersManage": {
+    "title": "إدارة المستخدمين",
+    "username": "اسم المستخدم",
+    "email": "البريد الإلكتروني"
   },
-  "comments":{
-    "title":"التعليقات",
-    "empty":"لايوجد تعليقات لعرضها",
-    "placeholder":"شارك رأيك...",
-    "messages":{
-      "addSuccess":"تم إضافة التعليق",
-      "addFailed":"لم يتم إضافة التعليق"
+  "comments": {
+    "title": "التعليقات",
+    "empty": "لايوجد تعليقات لعرضها",
+    "placeholder": "شارك رأيك...",
+    "messages": {
+      "addSuccess": "تم إضافة التعليق",
+      "addFailed": "لم يتم إضافة التعليق"
     }
   }
-
-  
 }

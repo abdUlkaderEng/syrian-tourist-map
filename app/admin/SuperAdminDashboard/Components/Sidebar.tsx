@@ -16,9 +16,8 @@ import { useAuthStore } from "@/hooks/Auth/authStore";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(true);
-  const username = useAuthStore(state => state.username);
-  
-  
+  const username = useAuthStore((state) => state.username);
+
   const t = useTranslations();
 
   return (
