@@ -9,3 +9,36 @@
 .card-ios:hover {
   backdrop-filter: blur(15px) saturate(115%);
 }
+.flip-wrapper {
+  width: 100%;
+  min-height: clamp(640px, 50vh, 940px);
+  perspective: 1000px;
+  position: relative;
+}
+
+.flip-card {
+  position: relative;
+  width: 100%;
+  min-height: clamp(640px, 50vh, 940px);
+  
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  min-height: clamp(640px, 50vh, 940px);
+  
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+}

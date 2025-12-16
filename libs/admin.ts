@@ -36,7 +36,6 @@ export async function addPlace(
   const isForm = data instanceof FormData;
 
   try {
-    console.log(data)
     return await superApi.post(`/storeplace`, data, {
       headers: isForm
       ? { "Content-Type": "multipart/form-data" }

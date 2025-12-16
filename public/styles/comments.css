@@ -1,0 +1,57 @@
+.comment-item {
+  @apply flex gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-md
+         border border-white/10 shadow-sm
+         transition hover:bg-white/10;
+}
+.comment-avatar {
+  @apply w-9 h-9 rounded-full flex items-center justify-center
+         bg-[#f9bc43]/20 text-[#f9bc43]
+         font-bold text-sm shrink-0;
+}
+.comment-body {
+  @apply flex flex-col gap-1 w-full;
+}
+.comment-header {
+  @apply flex items-center justify-between;
+}
+
+.comment-author {
+  @apply text-sm font-semibold ;
+}
+
+.comment-date {
+  @apply text-xs text-gray-600;
+}
+.comment-text {
+  @apply text-sm text-gray-700 leading-relaxed break-words;
+}
+.comment-input-wrapper {
+  @apply flex items-center gap-2 p-2 rounded-xl
+         bg-white/5 backdrop-blur-md
+         border border-white/10;
+}
+
+.comment-input {
+  @apply flex-1 bg-transparent outline-none
+         text-sm text-gray-600 placeholder-gray-500;
+}
+
+.comment-send {
+  @apply px-3 py-1 rounded-lg text-sm font-medium
+         bg-[#f9bc43] text-white
+         hover:opacity-90 transition;
+}
+.comment-item {
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

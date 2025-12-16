@@ -1,7 +1,7 @@
 /* Confirm Toast */
 .toast-confirm {
   @apply w-full max-w-md p-4 rounded-lg shadow-lg text-white flex flex-col gap-3 pointer-events-auto;
-  background: rgba(56, 189, 248, 0.25); /* sky glass */
+  background: rgba(255, 243, 131, 0.158); 
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -17,7 +17,7 @@
 /* Error Toast */
 .toast-error {
   @apply w-full max-w-md p-4 rounded-lg shadow-lg text-white flex items-start gap-3 pointer-events-auto;
-  background: #ff0000; /* red glass */
+  background: #ff00009a; /* red glass */
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }

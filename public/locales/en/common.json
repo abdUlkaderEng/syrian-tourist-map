@@ -244,6 +244,15 @@
     "username":"Username",
     "email":"Email"
 
+  },
+"comments":{
+    "title":"Comments",
+    "empty":"There is no comments",
+    "placeholder":"Write a comment...",
+    "messages":{
+      "addSuccess":"Added successfully.",
+      "addFailed":"Failed to add."
+    }
   }
 
 

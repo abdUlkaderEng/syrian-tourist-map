@@ -30,7 +30,7 @@ export interface PlaceFromBackend {
 }
 
 export interface Place {
-  place_id: number;
+  id: number;
   name: string;
   description: string;
   location: string;
@@ -61,9 +61,9 @@ function getTranslationByLocale(
 }
 
 export async function getPlaces(
+  apiType: "user" | "admin" | "superadmin",
+  locale: "ar" | "en" = "ar",
   regionId?: string | number,
-  apiType: "user" | "admin" | "super" = "user",
-  locale: "ar" | "en" = "ar"
 ): Promise<{ data: Place[]; error: string }> {
   let apiInstance;
   switch (apiType) {
@@ -73,7 +73,7 @@ export async function getPlaces(
     case "admin":
       apiInstance = adminApi;
       break;
-    case "super":
+    case "superadmin":
       apiInstance = superApi;
       break;
     default:

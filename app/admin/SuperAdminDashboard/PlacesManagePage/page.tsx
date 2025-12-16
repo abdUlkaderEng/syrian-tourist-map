@@ -2,19 +2,15 @@
 import React, { useEffect, useState } from "react";
 import {
   getManagingPlaces,
-  getPlaces,
-  Place,
   PlaceFromBackend,
 } from "@/libs/getPlaces";
 import { useLocale } from "@/app/Providers/LocaleContext";
 import { deletePlace } from "@/libs/admin";
-import { PenBox, Plus, Trash2 } from "lucide-react";
+import { PenBox, Trash2 } from "lucide-react";
 import EditPlaceModal from "../Components/EditPlaceModal";
 import AddPlaceModal from "../Components/AddPlaceModal";
-import Button from "@/Components/Form/Button";
 import { useTranslations } from "next-intl";
 import { useToast } from "@/Components/Toast/useToast";
-import { set } from "zod";
 import TableManager from "../Components/TableManager";
 const ManagePlacesPage = () => {
   const [places, setPlaces] = useState<{ data: PlaceFromBackend[] }>({
@@ -28,7 +24,6 @@ const ManagePlacesPage = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const t = useTranslations();
   const { showToast } = useToast();
-  const [confirm, setConfirm] = useState(false);
   const { locale } = useLocale();
 
   useEffect(() => {
