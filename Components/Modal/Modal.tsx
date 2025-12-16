@@ -22,7 +22,7 @@ export default function Modal({
   className = "",
 }: ModalProps) {
   return (
-    <div className="fixed inset-0 bg-transparent backdrop-blur-lg z-50 p-4">
+    <div className={`fixed inset-0 bg-transparent backdrop-blur-lg z-50 p-4 ${className}`}>
       <FormContainer
         title={title}
         onSubmit={onSubmit ?? (() => {})}

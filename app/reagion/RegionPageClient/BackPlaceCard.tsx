@@ -41,7 +41,7 @@ export default function BackPlaceCard({
       showToast({ type: "success", title: t("comments.messages.addSuccess") });
       const updated = await getComments(targetId);
       setComments(Array.isArray(updated) ? updated : []);
-      setCommentText('')
+      setCommentText("");
     } else {
       showToast({ type: "error", title: t("comments.messages.addFailed") });
     }
@@ -68,7 +68,6 @@ export default function BackPlaceCard({
         </button>
       </div>
 
-      {/* قائمة التعليقات */}
       <div className="flex-1 overflow-y-auto mb-3 space-y-2 ">
         {comments.length === 0 && (
           <p className="text-sm text-gray-500">{t("comments.empty")}</p>
@@ -84,7 +83,7 @@ export default function BackPlaceCard({
                 <span className="comment-author">
                   {comment.user?.name ?? "مستخدم"}
                 </span>
-                <span className="comment-date">منذ {comment.date}</span>
+                <span className="comment-date">{comment.date}</span>
               </div>
 
               <p className="comment-text">{comment.content}</p>
@@ -92,40 +91,20 @@ export default function BackPlaceCard({
           </div>
         ))}
 
-        {/* إدخال تعليق */}
-        <div className="comment-input-wrapper shrink-0">
-          <input
-            type="text"
-            value={commentText}
-            onChange={(e) => setCommentText(e.target.value)}
-            placeholder="اكتب تعليقك..."
-            className="comment-input"
-          />
-          <button className="comment-send" onClick={submitComment}>
-            <SendHorizontal />
-          </button>
-        </div>
 
-        {/* <div className="flex gap-2">
-          <InputField
-            type="text"
-            value={commentText}
-            onChange={(e) => setCommentText(e.target.value)}
-            placeholder={t("comments.placeholder")}
-          />
-          <button className="btn-normal  " onClick={submitComment}>
-          </button>
-        </div> */}
+      </div>
+      <div className="comment-input-wrapper shrink-0">
+        <input
+          type="text"
+          value={commentText}
+          onChange={(e) => setCommentText(e.target.value)}
+          placeholder="اكتب تعليقك..."
+          className="comment-input"
+        />
+        <button className="comment-send" onClick={submitComment}>
+          <SendHorizontal />
+        </button>
       </div>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-

@@ -24,7 +24,7 @@ export default function Home() {
 
   return (
     <main className="flex overflow-hidden  ">
-      <MapSection regions={regions} isHovered={isHovered} />
+      <MapSection regions={regions} isHovered={isHovered} className="sm:hidden md:hidden lg:flex"  />
       <RegionsList
         regions={regions}
         onMouseEnter={handleMouseEnter}

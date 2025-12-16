@@ -7,6 +7,7 @@ import HomeLink from "./Components/NavBarComponents/HomeLink";
 import SyriaMapBG from "../Components/SyriaMapBG";
 import LoginLogoutButton from "./Components/NavBarComponents/LoginLogoutButton";
 import Providers from "./Providers/Providers";
+import SearchBox from "@/Components/SearchComponent";
 
 const primaryFont = Roboto({
   weight: ["400", "700"],

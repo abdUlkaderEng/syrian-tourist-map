@@ -17,7 +17,7 @@ const RegionsList = ({
 }: RegionsListProps) => {
   const t = useTranslations();
   return (
-    <div className="w-[50%] grid grid-cols-2 place-items-center gap-4 overflow-y-scroll h-[85vh]">
+    <div className="sm:w-full md:w-full lg:w-[50%] grid grid-cols-2 place-items-center gap-4 overflow-y-scroll h-[85vh]">
       {/* Header */}
 
       <Image

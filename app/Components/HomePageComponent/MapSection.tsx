@@ -5,15 +5,16 @@ import { Region } from "@/libs/getRegions";
 interface MapSectionProps {
   regions: Region[];
   isHovered: { [key: number]: boolean };
+  className?:string
 }
 
-const MapSection = ({ regions, isHovered }: MapSectionProps) => {
+const MapSection = ({ regions, isHovered ,className}: MapSectionProps) => {
   const shadowHeight = "225";
   const shadowWidth = "560";
   const mapHeight = "275";
   const mapwidth = "550";
   return (
-    <div className="w-1/2 justify-center  px-5  overflow-y-hidden  ">
+    <div className={`w-1/2 justify-center  px-5  overflow-y-hidden ${className} `} >
       {/* shadow map */}
       <Image
         width={shadowWidth}
